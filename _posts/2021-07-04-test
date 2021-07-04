@@ -1,6 +1,6 @@
 ---
-layout = single
-title = "블로그 포스팅 연습"
+layout: single
+title: "블로그 포스팅 연습"
 ---
 
 # 블로그 포스팅 연습
