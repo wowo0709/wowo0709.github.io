@@ -63,8 +63,8 @@ n에서 출발하여 짝수인 지점에서는 x(1/2) 지점으로, 홀수인 �
 def solution(n):
     answer = 0
     while n: 
-        n = n / 2 if n % 2 == 0 else n - 1
-        answer += 1
+        if n % 2 == 0: n = n // 2
+        else: n, answer = n-1, answer+1
 
     return answer
 ```
