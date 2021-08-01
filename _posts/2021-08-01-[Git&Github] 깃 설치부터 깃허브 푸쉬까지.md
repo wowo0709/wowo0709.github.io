@@ -1,0 +1,246 @@
+---
+layout: single
+title: "[Git] 깃 설치부터 깃허브 푸쉬까지"
+---
+
+# 깃 설치부터 깃허브 푸쉬까지
+
+<br>
+
+### <span style="color:rgb(124, 7, 160)">깃 설치하기</span>
+
+---
+
+<br>
+
+**1. 깃 설치 파일 다운로드**
+
+*  [깃 다운로드](https://git-scm.com/)
+
+![image-20210801124358951](https://user-images.githubusercontent.com/70505378/127765241-d0eb985c-1a59-48bb-8729-53e98bae353f.png)
+
+<br>
+
+**2. 깃 설치**
+
+<img src="https://user-images.githubusercontent.com/70505378/127765254-05bf832d-0d38-4df1-871d-78daec89abf9.png" alt="image-20210801122924766" style="zoom:80%;" />
+
+**3. 사용자 초기 설정**
+
+```assembly
+git config --global user.name "사용자 이름"
+git config --global user.email "사용자 이메일"
+```
+
+<br>
+
+### <span style="color:rgb(124, 7, 160)">깃허브 리포지토리 가져오기</span>
+
+---
+
+<br>
+
+**4. 깃 배쉬에서 리포지토리를 가져올 위치로 이동**
+
+```assembly
+cd 사용자 지정 위치(절대 경로)
+/* 예시 */
+cd c:/repositories/
+```
+
+깃허브를 사용하다 보면 리포지토리를 여러 개 생성하게 되기 때문에 저장소들을 담아둘 디렉터리 (예: repositories)를 하나 만들어두는 것을 추천합니다. 
+
+<br>
+
+**5. 깃허브 리포지토리 복제하기: clone**
+
+```assembly
+git clone 원격저장소명 원격저장소주소
+/* 예시 */
+git clone origin "https://..."
+```
+
+일반적으로 원격저장소명에는 "origin"을 사용합니다. 
+
+<br>
+
+원격 저장소 주소는 아래 그림처럼 가져옵니다. 초록색 [Code] 버튼을 누르고 빨간색 박스 안의 오른쪽 아이콘을 누르면 주소가 복사됩니다. (HTTPS 주소를 가져와야 함)
+
+![image-20210801125931450](https://user-images.githubusercontent.com/70505378/127765268-93fc5582-2d82-4d89-b5f4-3b8f426a4773.png)
+
+<br>
+
+**6. 파일 탐색기에서 원격 리포지토리를 가져온 위치로 가서 복제되었는지 확인**
+
+<img src="https://user-images.githubusercontent.com/70505378/127765296-b1247288-a224-46f6-9522-e080fbe9473f.png" alt="image-20210801124236612" style="zoom:80%;" />
+
+<br>
+
+### <span style="color:rgb(124, 7, 160)">작업 공간 만들기</span>
+
+---
+
+<br>
+
+**7. 사용자 브랜치 만들기: checkout -b**
+
+깃 배쉬에서 복제한 저장소 위치로 이동합니다. 
+
+이동하면 초기에는 아래 그림과 같이 자신이 main 브랜치에 있다고 나오는데, 본인만의 개인 브랜치를 생성해서 자신의 브랜치에서만 작업을 수행해야 힙니다. (협업 시)
+
+![image-20210801125417288](https://user-images.githubusercontent.com/70505378/127765310-8e1486d2-1820-427a-8060-ba1c57f97a09.png)
+
+<br>
+
+```assembly
+git checkout -b 사용자브랜치명
+```
+
+브랜치는 개인 공간 같은 느낌으로, main 브랜치와 구분되는 본인의 브랜치를 만들어야 합니다. 
+
+<br>
+
+위의 명령어를 실행하면 아래와 같이 자신의 브랜치로 이동되어 있을 것입니다. 
+
+![image-20210801131502145](https://user-images.githubusercontent.com/70505378/127765313-fccb9a57-4402-433d-86d2-bc8f39cbbf0b.png)
+
+<br>
+
+✋ **브랜치 생성, 삭제, 이동**
+
+사실 브랜치의 생성, 삭제, 이동 명령어는 따로 구분되어 있습니다. 
+
+위의 **git checkout -b** 명령어는 브랜치 생성과 동시에 이동하도록 하는 명령어입니다. 
+
+* 브랜치 생성
+
+    ```assembly
+    git branch 생성할브랜치명
+    ```
+
+* 브랜치 삭제
+
+    ```assembly
+    git branch -d 삭제할브랜치명
+
+* 브랜치 이동
+
+    ```assembly
+    git checkout 이동할브랜치명
+
+<br>
+
+### <span style="color:rgb(124, 7, 160)">파일 생성/수정/삭제하고 원격저장소로 내보내기</span>
+
+---
+
+<br>
+
+**8. main 브랜치 내용 가져오기: pull**
+
+<br>
+
+지금은 git clone을 사용한 직후라 새로운 내용이 없지만, 항상 본인이 개인 브랜치에서 작업을 시작하기 전에는 main 브랜치 내용을 가져와 먼저 업데이트 해주어야 합니다. 
+
+```assembly
+git pull origin main
+```
+
+<br>
+
+**9. 추가/수정/삭제 된 파일들을 스테이지에 올리기: add**
+
+<br>
+
+스테이지란 실제로 커밋을 하기 전에 임시로 올려놓는 저장소로, 새로 만들어진 파일이라면 반드시 스테이지를 거쳐야 합니다. 
+
+``` assembly
+git add 파일명
+```
+
+모든 파일을 스테이징하고 싶다면 아래처럼 합니다. 
+
+```assembly
+git add .
+```
+
+<br>
+
+**10. 스테이징된 파일 커밋하기: commit**
+
+<br>
+
+커밋은 스테이지에 있는 파일들을 중간 저장소로 보내는 명령어입니다. 
+
+```assembly
+git commit -m "커밋 메시지"
+```
+
+커밋을 할 때는 반드시 커밋 메시지와 함께 작성해서 자신이 무엇을 생성/수정/삭제 했는지 로그를 남겨놓습니다. 
+
+<br>
+
+**11. 커밋된 파일들을 원격 저장소로 내보내기: push**
+
+<br>
+
+커밋만으로는 파일들이 원격 저장소에 적용되지는 않습니다. 커밋된 파일들을 원격 저장소에 내보내는 과정을 거쳐야 합니다. 
+
+```assembly
+git push 원격저장소명 푸쉬할브랜치명
+```
+
+원격 저장소명은 앞의 5번 과정에서 지정했던 이름으로 지정하고 푸쉬할 브랜치명은 본인 브랜치로 지정합니다. 
+
+<br>
+
+### <span style="color:rgb(124, 7, 160)">원격 저장소에서 요청 수락하기</span>
+
+---
+
+<br>
+
+**12. 원격 저장소에서 pull하기**
+
+<br>
+
+로컬 저장소에서 push한 내용들은 원격 저장소에서 pull해야 합니다. 
+
+원격 저장소에서 [Pull Requests] - [New pull request] 로 이동합니다. 
+
+![image-20210801131851106](https://user-images.githubusercontent.com/70505378/127765323-6a838f0c-ea6c-4c22-8c6e-d294bed34365.png)
+
+본인 브랜치명으로 되어 있는 request가 있을 것입니다. 본인 브랜치명을 클릭합니다. 
+
+<br>
+
+본인이 수정한 내용이 나옵니다. 내용이 맞으면 Create pull request를 클릭합니다. 
+
+![image-20210801132000003](https://user-images.githubusercontent.com/70505378/127765334-fd23a038-49ac-4337-8dae-ef6def0167e9.png)
+
+<br>
+
+커밋할 때 본인이 작성했던 커밋 메시지와 추가적으로 코멘트를 남길 수 있는 창이 뜹니다. 
+
+남기거나 남기지 않은 후에 [Create pull request]를 클릭합니다. 
+
+![image-20210801132110581](https://user-images.githubusercontent.com/70505378/127765340-db2cd612-f8a6-4ba7-ad0f-121c0a5a93ef.png)
+
+<br>**13. main 브랜치로 합병하기: merge**
+
+<br>
+
+협업하는 사람들이 최종적으로 공유하는 브랜치는 main 브랜치입니다. 
+
+본인의 커밋이 main 브랜치에 합병되어도(합쳐져도) 괜찮은 상태임을 확인했다면 최종적으로 [merge pull request]를 눌러 main 브랜치에 merge 합니다. 
+
+![image-20210801132456066](https://user-images.githubusercontent.com/70505378/127765346-80441f50-a8a7-46e2-8c99-d8d58a8c6995.png)
+
+<br>
+
+**14. 원격 저장소의 main 브랜치로 가서 본인의 커밋이 잘 적용되었는지 확인합니다. **
+
+<br>
+
+**15. 이제 다시 작업을 한다면 8 ~ 14 번의 과정을 반복합니다. <span style="color:rgb(243, 12, 31)">항상 작업 전에는 pull하는 것을 잊지 마세요!!!</span>**
+
