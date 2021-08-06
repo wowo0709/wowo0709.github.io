@@ -55,9 +55,9 @@ cd c:/repositories/
 **5. 깃허브 리포지토리 복제하기: clone**
 
 ```assembly
-git clone 원격저장소명 원격저장소주소
+git clone 원격저장소주소
 /* 예시 */
-git clone origin "https://..."
+git clone "https://..."
 ```
 
 일반적으로 원격저장소명에는 "origin"을 사용합니다. 
