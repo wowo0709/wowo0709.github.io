@@ -1,4 +1,4 @@
-# 위장
+# 주식 가격
 
 ##### 문제 설명
 
@@ -61,10 +61,10 @@ def solution(prices):
     answer = [i for i in range(len(prices)-1,-1,-1)]
     s = []
     for time in range(len(prices)):
-        while tmp and prices[time] < prices[tmp[-1]]:
-                t = tmp.pop()
+        while s and prices[time] < prices[s[-1]]:
+                t = s.pop()
                 answer[t] = time - t
-        tmp.append(time)
+        s.append(time)
     return answer
 ```
 
