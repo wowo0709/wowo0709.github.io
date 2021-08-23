@@ -303,7 +303,7 @@ dataset = dataset.map(parse_fn)
 
 <br>
 
-**TFRecord** 파일 생성에 대한 부분은 아래 주소에서 확인하지. 
+**TFRecord** 파일 생성에 대한 부분은 아래 주소에서 확인하자. 
 
 > https://ballentain.tistory.com/48
 
@@ -413,38 +413,107 @@ tf.data API는 데이터 처리와 흐름을 최적화하기 위한 메서드와
 
 **병렬화와 프리패치**
 
+기본적으로 데이터셋 메서드 대부분은 병렬화 없이 샘플을 하나씩 처리한다. 하지만 여기서 몇 가지 옵션을 추가함으로써 **병렬화**와 **프리패치**를 가능하게 할 수 있다. 
 
+.interleave( ) 나 .map( ) 메서드에 `num_parallel_calls` 파라미터를 지정하면 이 메서드가 생성할 수 있는 스레드 수를 지정할 수 있다. 
 
+또 **.prefetch(buffer_size)** 메서드를 통해 입력 파이프 라인이 현재 샘플이 소비되는 동안 다음 데이터셋 호출을 기다리는 대신 다음 샘플을 준비하게 하는 프리 패치를 가능하게 할 수 있다. 
 
+병렬 호출 및 프리패치를 가능하게 함으로써 훈련 시간이나 전처리 시간 측면에서 성능이 크게 향상될 수 있다. 
 
+<br>
 
+**연산 결합**
 
+tf.data는 성능을 더 향상시키거나 더 신뢰할 수 있는 결과를 얻게 위해 일부 핵심 연산을 결합하는 함수를 제공하기도 한다. 
 
+예를 들면 tf.data.experimental.**shuffle_and_repeat**(buffer_size, count, seed) 이나 tf.data.experimental.**map_and_batch**(map_func, batch_size, num_parrallel_batches) 등이 있다. 
 
+두 연산을 결합함으로써 일부 계산 오버헤드를 피할 수 있게 된다. 
 
+<br>
 
+**전역 속성을 설정하기 위한 옵션 전달**
 
+텐서플로 2에서는 모든 연산의 영향을 줄 '전역 옵션'을 설정하여 데이터셋을 구성할 수도 있다. tf.data.**Options** 는 .with_options(options) 메서드를 통해 데이터셋에 전달될 수 있고 데이터셋을 매개변수화하기 위한 몇 가지 특성을 갖는 구조다. 
 
+`.experimental_autotune`을 True로 설정하면 텐서플로는 모든 데이터셋 연산에 적용할 num_parallel_calls 값을 타깃 시스템의 능력에 맞춰 자동으로 튜닝한다. 
 
+`.experimental_optimization` 특성에는 데이터셋 연산을 자동 최적화하는 일과 관련된 일련의 하위 옵션들이 포함돼 있다. 다음 코드처럼 .map_and_batch_fusion을 True로 설정하면 자동으로 .map( )과 .batch( ) 호출을 결합하고 .map_parallelization을 True로 설정하면 자동으로 매핑 함수 중 일부를 병렬화할 수 있다. 
 
-
-
-
-
-
-
-
-
-
-
-
+```python
+options = tf.data.Options
+options.experimental_autotune = True
+options.experimental_optimization.map_and_batch_fusion = True
+dataset = dataset.with_options(options)
+```
 
 <br>
 
 <br>
 
-### 정리
+#### 데이터셋 모니터링 및 재사용
 
----
+입력 파이프라인을 모니터링하는 방법과 함께 나중에 사용하기 위해 캐시에 저장하고 복원하는 방법에 대해 살펴보자. 
 
-* 
+<br>
+
+**성능 통계 집계**
+
+텐서플로 2에서는 지연 시간이나 각 요소에 의해 생산된 바이트 수 같은 tf.data 파이프라인과 관련된 일부 통계를 집계할 수 있다. 
+
+전역 옵션을 통해 데이터셋에 대해 이 지표 값을 모으도록 지정할 수 있다. 
+
+tf.data.Options 인스턴스는 tf.data.experimental.StatsOptions 클래스의 `.experimental_stats` 필드를 가지는데, 여기에 앞서 언급한 데이터셋 지표와 관련된 몇 가지 옵션을 지정한다. (예를 들어, 지연 시간을 측정할 수 있게 .latency_all_edges를 True로 설정)
+
+또한 `.aggregator` 속성이 있어 tf.data.experimental.StatsAggregator의 인스턴스를 받을 수 있다. 이 객체는 다음 코드에서처럼 데이터셋에 추가되어 요청받은 통계를 집계할 수 있고, 기록해서 텐서보드에 시각화할 수 있는 요약 정보를 제공한다. 
+
+```python
+# 유틸리티 함수를 사용해 TF에 이 데이터셋에 대한 지연 통계를 수집하도록 지시:
+dataset = dataset.apply(tf.data.experimental.latency_stats("data_latency"))
+# 전역 옵션을 통해 통계 집계 기능을 데이터셋과 연결:
+stats_aggregator = tf.data.experimental.StatsAggregator()
+options = tf.data.Options()
+options.experimental_stats.aggregator = stats_aggregator
+dataset = dataset.with_options(options)
+# 나중에 집계된 통계는 이를 기록하기 위해 요약 정보로 얻을 수 있음:
+summary_writer = tf.summary.create_file.writer('/path/to/summaries/folder')
+with summary_writer.as_default():
+    stats_summary = stats_aggregator.get_summary()
+    # ...텐서보드를 위해 'summary_writer'로 요약 정보 기록
+```
+
+입력 파이프라인 전체 뿐 아니라 그 내부 연산 각각에 대해서도 통계를 얻을 수 있다. 
+
+<br>
+
+**데이터셋 캐시 저장 및 재사용**
+
+마지막으로 텐서플로는 생성된 샘플을 '캐시에 저장'하거나 tf.data 파이프라인 통계를 저장하기 위해 몇 가지 함수를 제공한다. 
+
+데이터셋의 `.cache(filename)` 메서드를 호출함으로써 샘플을 캐시에 저장할 수 있다. 따라서 데이터가 캐시에 저장되면 데이터를 다시 반복할 때 동일한 변환 과정을 거칠 필요가 없다. 
+
+```python
+dataset = tf.data.TextLineDataset('/path/to/file.txt')
+dataset_v1 = dataset.cache('cached_textlines.temp').map(parse_fn)
+dataset_v2 = dataset.map(parse_fn).cache('cached_images.temp')
+```
+
+dataset_v1의 경우 텍스트 행을 캐시에 저장하기 때문에 parse_fn에서 이뤄진 변환은 세대마다 반복되어야 한다. 따라서 시간 측면에서 비효율적일 수 있다. 
+
+dataset_v2의 경우 이미지를 캐시에 저장한다. 이렇게 하면 계산 시간을 절약할 수 있지만, 메모리 측면에서 비효율적일 수 있다. 
+
+따라서 캐시에 저장하는 일은 신중하게 고려돼야 한다. 
+
+<br>
+
+마지막으로 훈련이 중단되면 이전 입력 배치를 다시 반복하지 않고 훈련을 재개할 수 있도록 '데이터셋의 상태를 저장'할 수도 있다. 이는 적은 수의 다양한 배치에서 훈련받는(따라서 과적합의 위험이 있는) 모델에서 더 영향력을 발휘한다. 
+
+에스티메이터의 경우 tf.data.experimental.CheckpointInputPipelineHook을 사용할 수 있다. 
+
+<br>
+
+<br>
+
+텐서플로 개발자는 데이터 흐름을 설정하고 최적화하는 일이 머신러닝 애플리케이션에 얼마나 중요한지 알기 때문에 tf.data API를 정교화하기 위해 새로운 기능을 꾸준히 제공하고 있다. 이 기능들을 활용하면 구현 오버헤드와 훈련 시간을 상당히 줄일 수 있다. 
+
