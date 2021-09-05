@@ -9,7 +9,7 @@ layout: archive
   float: left;
 }
 .right-box {
-  background: beige;
+  background: ghostwhite;
   float: right;
 }
 </style>
@@ -37,8 +37,8 @@ layout: archive
 
 </body>
 
-<aside>
-  <div class="right-box">
+<aside class='right-box'>
+  <div>
     {% for category in site.categories %} 
       {{ category | first }} ({{ category | last | size }})
     {% endfor %}
