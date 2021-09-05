@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Computer Vision] 1(1). 컴퓨터 비전과 신경망 개론"
+categories: ['AI', 'Computer Vision']
 ---
 
 <br>

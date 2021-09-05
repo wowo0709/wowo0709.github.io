@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[MachineLearning] 넘파이와 판다스"
+categories: ['AI', 'Machine Learning']
 ---
 
 

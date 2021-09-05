@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Github] 깃허브 페이지에 이미지 올리는 법"
+categories: ['Git&Github']
 ---
 
 # 깃허브 페이지에 이미지 올리는 법

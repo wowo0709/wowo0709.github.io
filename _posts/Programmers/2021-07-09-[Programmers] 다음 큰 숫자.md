@@ -1,3 +1,10 @@
+---
+layout: single
+title: "[Programmers] 다음 큰 숫자"
+categories: ['Algorithm', 'Programmers']
+---
+
+
 # 다음 큰 숫자
 
 ### 문제 설명
