@@ -33,16 +33,16 @@ layout: archive
       {% include archive-single.html type=entries_layout %}
     {% endfor %}
   </div>
-  <aside>
-    <div class="right-box">
-      {% for category in site.categories %} 
-        {{ category | first }} ({{ category | last | size }})
-      {% endfor %}
-    </div>
-  </aside>  
-
   {% include paginator.html %}
 
 </body>
+
+<aside>
+  <div class="right-box">
+    {% for category in site.categories %} 
+      {{ category | first }} ({{ category | last | size }})
+    {% endfor %}
+  </div>
+</aside> 
 
 </html>
