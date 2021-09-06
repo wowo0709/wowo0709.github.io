@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[MachineLearning] 사이킷런을 이용한 머신러닝"
+categories: ['AI', 'MachineLearning']
 ---
 
 
