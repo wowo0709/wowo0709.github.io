@@ -1,59 +1,20 @@
 ---
 layout: archive
+classes: wide
 ---
-<!DOCTYPE html>
-
-<style>
-.left-box{
-  background: beige;
-  float: left;
-}
-.right-box {
-  background: ghostwhite;
-  float: right;
-}
-</style>
-
-<body class>
 
 {{ content }}
 
 <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
 
+{% if paginator %}
+  {% assign posts = paginator.posts %}
+{% else %}
+  {% assign posts = site.posts %}
+{% endif %}
 
-  <header></header>
-  <nav></nav>
+{% for post in posts %}
+  {% include archive-single.html %}
+{% endfor %}
 
-  <!-- <aside>
-    <div class="right-box">
-      <ul>
-      {% for category in site.categories %} 
-        <li>{{ category | first }} ({{ category | last | size }})</li>
-      {% endfor %}
-      </ul>
-    </div>
-  </aside> -->
-
-  <main>
-    {% if paginator %}
-      {% assign posts = paginator.posts %}
-    {% else %}
-      {% assign posts = site.posts %}
-    {% endif %}
-
-    {% assign entries_layout = page.entries_layout | default: 'list' %}
-    <div class="entries-{{ entries_layout }}">
-      {% for post in posts %}
-        {% include archive-single.html type=entries_layout %}
-      {% endfor %}
-    </div>
-    {% include paginator.html %}
-
-  </main>
-
-
-</body>
-
-
-
-</html>
+{% include paginator.html %}
