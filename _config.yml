@@ -277,8 +277,8 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: true
+      comments: # true
       share: true
       related: true
-      # 사이드 바
+      # 사이드바
       sidebar_main: true
