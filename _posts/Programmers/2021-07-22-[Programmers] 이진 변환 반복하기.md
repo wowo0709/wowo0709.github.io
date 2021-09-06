@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] 이진 변환 반복하기"
+categories: ['Algorithm', 'Programmers']
+---
+
 # 이진 변환 반복하기
 
 ### 문제 설명

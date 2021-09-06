@@ -1,4 +1,10 @@
-# 순위 검색
+---
+layout: single
+title: "[Programmers] 소수 찾기"
+categories: ['Algorithm', 'Programmers']
+---
+
+# 소수 찾기
 
 ##### 문제 설명
 

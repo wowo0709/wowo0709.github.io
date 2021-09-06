@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] JadenCase 문자열 만들기"
+categories: ['Algorithm', 'Programmers']
+---
+
 # JadenCase 문자열 만들기
 
 ### 문제 설명

@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] 삼각 달팽이"
+categories: ['Algorithm', 'Programmers']
+---
+
 # 삼각 달팽이
 
 ##### 문제 설명

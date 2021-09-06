@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] 쿼드 압축 후 개수 세기"
+categories: ['Algorithm', 'Programmers']
+---
+
 # 쿼드 압축 후 개수 세기
 
 ### 문제 설명

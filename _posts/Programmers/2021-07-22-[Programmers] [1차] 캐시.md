@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] [1차] 캐시"
+categories: ['Algorithm', 'Programmers']
+---
+
 # [1차] 캐시
 
 ### 문제 설명

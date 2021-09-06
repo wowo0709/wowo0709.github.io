@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] H-Index"
+categories: ['Algorithm', 'Programmers']
+---
+
 # H-Index
 
 ### 문제 설명

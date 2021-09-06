@@ -1,4 +1,10 @@
-# 점프와 순간 이동
+---
+layout: single
+title: "[Programmers] 괄호 변환"
+categories: ['Algorithm', 'Programmers']
+---
+
+# 괄호 변환
 
 ### 문제 설명
 

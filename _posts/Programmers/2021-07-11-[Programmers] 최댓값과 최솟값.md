@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] 최댓값과 최솟값"
+categories: ['Algorithm', 'Programmers']
+---
+
 # 최댓값과 최솟값
 
 ### 문제 설명

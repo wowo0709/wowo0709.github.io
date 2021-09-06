@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] 카펫"
+categories: ['Algorithm', 'Programmers']
+---
+
 # 카펫
 
 ##### 문제 설명

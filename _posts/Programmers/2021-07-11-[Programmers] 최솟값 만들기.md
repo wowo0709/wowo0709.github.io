@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] 최솟값 만들기"
+categories: ['Algorithm', 'Programmers']
+---
+
 # 최솟값 만들기
 
 ### 문제 설명

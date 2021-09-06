@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 프린터"
+categories: ['Algorithm', 'Programmers']
 ---
 
 

@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 전화번호 목록"
+categories: ['Algorithm', 'Programmers']
 ---
 
 

@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 거리두기 확인하기"
+categories: ['Algorithm', 'Programmers']
 ---
 
 

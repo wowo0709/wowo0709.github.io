@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] [3차] 방금그곡"
+categories: ['Algorithm', 'Programmers']
+---
+
 # [3차] 방금그곡
 
 ### 문제 설명

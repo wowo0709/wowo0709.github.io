@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] 조이스틱"
+categories: ['Algorithm', 'Programmers']
+---
+
 # 조이스틱
 
 ##### 문제 설명

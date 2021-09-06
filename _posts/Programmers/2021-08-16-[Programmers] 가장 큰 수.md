@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] 가장 큰 수"
+categories: ['Algorithm', 'Programmers']
+---
+
 # 가장 큰 수
 
 ### 문제 설명

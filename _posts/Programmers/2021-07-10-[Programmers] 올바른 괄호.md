@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] 올바른 괄호"
+categories: ['Algorithm', 'Programmers']
+---
+
 # 올바른 괄호
 
 ### 문제 설명

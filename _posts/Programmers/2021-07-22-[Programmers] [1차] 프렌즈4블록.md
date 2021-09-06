@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] [1차] 프렌즈4블록"
+categories: ['Algorithm', 'Programmers']
+---
+
 # [1차] 프렌즈4블록
 
 ### 문제 설명

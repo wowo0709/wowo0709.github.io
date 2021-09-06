@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] 후보키"
+categories: ['Algorithm', 'Programmers']
+---
+
 # 후보키
 
 ### 문제 설명

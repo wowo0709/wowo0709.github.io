@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] 땅따먹기"
+categories: ['Algorithm', 'Programmers']
+---
+
 # 땅따먹기
 
 ### 문제 설명

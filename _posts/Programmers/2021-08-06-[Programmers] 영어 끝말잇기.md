@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] 영어 끝말잇기"
+categories: ['Algorithm', 'Programmers']
+---
+
 # 영어 끝말잇기
 
 ##### 문제 설명

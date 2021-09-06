@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] 구명보트"
+categories: ['Algorithm', 'Programmers']
+---
+
 # 구명보트
 
 ##### 문제 설명
