@@ -4,14 +4,23 @@ layout: archive
 
 {{ content }}
 
-{% assign categories_max = 0 %}
+<!-- {% assign categories_max = 0 %}
 {% for category in site.categories %}
   {% if category[1].size > categories_max %}
     {% assign categories_max = category[1].size %}
   {% endif %}
-{% endfor %}
+{% endfor %} -->
+<aside class="sidebar sticky">
+  <div>
+    <ul>
+    {% for category in site.categories %} 
+      <li>{{ category | first }} ({{ category | last | size }})</li>
+    {% endfor %}
+    </ul>
+  </div>
+</aside>
 
-<ul class="taxonomy__index">
+<!-- <ul class="taxonomy__index">
   {% for i in (1..categories_max) reversed %}
     {% for category in site.categories %}
       {% if category[1].size == i %}
@@ -40,4 +49,4 @@ layout: archive
       </section>
     {% endif %}
   {% endfor %}
-{% endfor %}
+{% endfor %} -->

@@ -27,16 +27,6 @@ layout: archive
   <header></header>
   <nav></nav>
 
-  <aside class="sidebar sticky">
-    <div>
-      <ul>
-      {% for category in site.categories %} 
-        <li>{{ category | first }} ({{ category | last | size }})</li>
-      {% endfor %}
-      </ul>
-    </div>
-  </aside>
-
   <section>
     {% if paginator %}
       {% assign posts = paginator.posts %}
