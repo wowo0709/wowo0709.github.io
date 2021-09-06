@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Android] 안드로이드에서 DrawView 위젯 사용하기"
+categories: ['Android']
 ---
 
 <br>
