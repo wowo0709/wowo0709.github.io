@@ -2,20 +2,17 @@
 layout: archive
 ---
 <!DOCTYPE html>
-<html>
 
-<head>
-  <style>
-  .left-box{
-    background: beige;
-    float: left;
-  }
-  .right-box {
-    background: ghostwhite;
-    float: right;
-  }
-  </style>
-</head>
+<style>
+.left-box{
+  background: beige;
+  float: left;
+}
+.right-box {
+  background: ghostwhite;
+  float: right;
+}
+</style>
 
 <body class>
 
@@ -27,7 +24,17 @@ layout: archive
   <header></header>
   <nav></nav>
 
-  <section>
+  <!-- <aside>
+    <div class="right-box">
+      <ul>
+      {% for category in site.categories %} 
+        <li>{{ category | first }} ({{ category | last | size }})</li>
+      {% endfor %}
+      </ul>
+    </div>
+  </aside> -->
+
+  <main>
     {% if paginator %}
       {% assign posts = paginator.posts %}
     {% else %}
@@ -42,7 +49,7 @@ layout: archive
     </div>
     {% include paginator.html %}
 
-  </section>
+  </main>
 
 
 </body>
