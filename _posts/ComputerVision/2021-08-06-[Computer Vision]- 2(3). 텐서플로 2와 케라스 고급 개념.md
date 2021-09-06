@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Computer Vision] 2(3). 텐서플로 2와 케라스 고급 개념"
+categories: ['AI', 'ComputerVision']
 ---
 
 

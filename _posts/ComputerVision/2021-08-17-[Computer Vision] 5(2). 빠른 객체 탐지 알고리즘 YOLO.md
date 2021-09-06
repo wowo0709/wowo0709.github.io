@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Computer Vision] 5(1). 빠른 객체 탐지 알고리즘 YOLO"
+categories: ['AI', 'ComputerVision']
 ---
 
 <br>

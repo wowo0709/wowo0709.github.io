@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Computer Vision] 4(5). 전이학습 예제"
+categories: ['AI', 'ComputerVision']
 ---
 
 

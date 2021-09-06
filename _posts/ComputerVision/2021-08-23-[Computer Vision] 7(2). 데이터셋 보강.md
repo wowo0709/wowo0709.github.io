@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Computer Vision] 7(2). 데이터셋 보강"
+categories: ['AI', 'ComputerVision']
 ---
 
 

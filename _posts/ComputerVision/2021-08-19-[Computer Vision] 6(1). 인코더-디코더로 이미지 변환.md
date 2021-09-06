@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Computer Vision] 6(1). 인코더-디코더로 이미지 변환"
+categories: ['AI', 'ComputerVision']
 ---
 
 

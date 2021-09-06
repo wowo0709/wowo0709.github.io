@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Computer Vision] 4(1). 고급 아키텍처의 이해 (1편. VGG)"
+categories: ['AI', 'ComputerVision']
 ---
 
 

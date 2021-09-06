@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Computer Vision] 3(2). 훈련 프로세스 개선"
+categories: ['AI', 'ComputerVision']
 ---
 
 <br>

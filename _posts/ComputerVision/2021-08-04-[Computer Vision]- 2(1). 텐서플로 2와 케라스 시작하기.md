@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Computer Vision] 2(1). 텐서플로 2와 케라스 시작하기"
+categories: ['AI', 'ComputerVision']
 ---
 
 

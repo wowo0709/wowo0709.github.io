@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Computer Vision] 7(3). 합성 데이터셋 랜더링"
+categories: ['AI', 'ComputerVision']
 ---
 
 

@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Computer Vision] 6(2). 의미론적 분할 이해하기"
+categories: ['AI', 'ComputerVision']
 ---
 
 

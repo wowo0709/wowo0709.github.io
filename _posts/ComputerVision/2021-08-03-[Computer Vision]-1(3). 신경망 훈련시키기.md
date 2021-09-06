@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Computer Vision] 1(3). 신경망 훈련시키기"
+categories: ['AI', 'ComputerVision']
 ---
 
 
