@@ -12,7 +12,7 @@
       </li>
       <li>
         <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
-        <span class="nav__sub-title">Language</span>
+        <span class="nav__sub-title">📖 Language</span>
             <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
             <ul>
                 <!--Python 카테고리 글들을 모아둔 페이지인 /categories/python 주소의 글로 링크 연결-->
@@ -32,7 +32,7 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-        <span class="nav__sub-title">Algorithm</span>
+        <span class="nav__sub-title">🧮 Algorithm</span>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "Baekjoon" %}
@@ -43,11 +43,11 @@
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "Programmers" %}
-                        <li><a href="/categories/programmers" class="">Programmers(Python)) ({{category[1].size}})</a></li>
+                        <li><a href="/categories/programmers" class="">Programmers(Python) ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
-        <span class="nav__sub-title">AI</span>
+        <span class="nav__sub-title">🚏 AI</span>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "ComputerVision" %}
@@ -76,7 +76,7 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-        <span class="nav__sub-title">Android</span>
+        <span class="nav__sub-title">📱 Android</span>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "Android" %}
@@ -84,7 +84,7 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-        <span class="nav__sub-title">Web</span>
+        <span class="nav__sub-title">💻 Web</span>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "HTML" %}
