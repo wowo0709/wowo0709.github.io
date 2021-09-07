@@ -65,7 +65,7 @@ toc_sticky: true
 | `["ABCDE", "AB", "CD", "ADE", "XYZ", "XYZ", "ACD"]` | [2,3,5] | `["ACD", "AD", "ADE", "CD", "XYZ"]` |
 | `["XYZ", "XWY", "WXA"]`                             | [2,3,4] | `["WX", "XY"]`                      |
 
-### 입출력 예에 대한 설명
+#### 입출력 예에 대한 설명
 
 ------
 
