@@ -103,7 +103,7 @@
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "NumericalAnalysis" %}
-                        <li><a href="/categories/numericalanalysis" class="">HTML ({{category[1].size}})</a></li>
+                        <li><a href="/categories/numericalanalysis" class="">NumericalAnalysis ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
