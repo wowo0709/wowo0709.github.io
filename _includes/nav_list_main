@@ -47,7 +47,7 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-        <span class="nav__sub-title">🚏 AI</span>
+        <span class="nav__sub-title">💡 AI</span>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "ComputerVision" %}
@@ -96,6 +96,14 @@
                 {% for category in site.categories %}
                     {% if category[0] == "CSS" %}
                         <li><a href="/categories/css" class="">CSS ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        <span class="nav__sub-title">🖊 Mathematics</span>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "NumericalAnalysis" %}
+                        <li><a href="/categories/numericalanalysis" class="">HTML ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
