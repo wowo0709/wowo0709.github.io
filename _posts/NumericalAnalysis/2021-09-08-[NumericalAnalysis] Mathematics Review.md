@@ -4,6 +4,7 @@ title: "[NumericalAnalysis] Mathematics Review"
 categories: ['Mathematics', 'NumericalAnalysis']
 toc: true
 toc_sticky: true
+tag: ['Set', 'Vector/Matrix', 'Linearity', 'Calculus']
 ---
 
 
