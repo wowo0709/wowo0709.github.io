@@ -94,11 +94,11 @@ analytics:
 
 # Site Author
 author:
-  name             : "Your Name"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
-  location         : "Somewhere"
-  email            :
+  name             : "Jeon Youngwoo"
+  avatar           : "/assets/images/avatar_01.jpg"
+  bio              : "큰 사람이 되려면 큰 물에서 놀아라"
+  location         : "Ilsan, South Korea"
+  email            : "wjsduddn0709@naver.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
