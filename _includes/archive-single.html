@@ -24,13 +24,29 @@
         <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
       {% endif %}
     </h2>
+    <!-- 날짜&카테고리 출력 -->
     {% if post.categories[0] != null %}
-		  <p class="archive__item-excerpt"><i class="far fa-calendar-alt"></i> {{ post.date | date: "%m/%d/%Y" }} &nbsp; <i class="far fa-folder-open"></i> {{ post.categories }}</p>
+		  <p class="archive__item-excerpt"><i class="far fa-calendar-alt"></i> {{ post.date | date: "%m/%d/%Y" }} &nbsp; 
+        <i class="far fa-folder-open"></i> 
+        {% for category in post.categories %}
+<<<<<<< HEAD
+          ↪{{ category }} <!--☑-->
+=======
+          {{ category }}
+>>>>>>> e8a3edc45b6dedc2a625b14bef841bc83e49f103
+        {% endfor %}
+      </p>
 	  {% else %}
 		  <p class="archive__item-excerpt"><i class="far fa-calendar-alt"></i> {{ post.date | date: "%m/%d/%Y" }}
 	  {% endif %}
+    <!-- 태그 출력 -->
     {% if post.tags[0] != null %}
-		  <p class="archive__item-excerpt"><i class="far fa-tags"></i> {{ post.tags }} </p>
+		  <p class="archive__item-excerpt">
+        <i class="far fa-tags"></i> 
+        {% for tag in post.tags %}
+          🔎{{ post.tags }}
+        {% endfor %}
+      </p>
 	  {% endif %}
 
     {% include page__meta.html type=include.type %}
