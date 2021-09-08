@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Computer Vision] 4(3). 고급 아키텍처의 이해 (3편. ResNet - 잔차 네트워크)"
+categories: ['AI', 'ComputerVision']
 ---
 
 

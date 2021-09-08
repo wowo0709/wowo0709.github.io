@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] 숫자의 표현"
+categories: ['Algorithm', 'Programmers']
+---
+
 # 숫자의 표현
 
 ### 문제 설명

@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] 배달"
+categories: ['Algorithm', 'Programmers']
+---
+
 # 배달
 
 ##### 문제 설명

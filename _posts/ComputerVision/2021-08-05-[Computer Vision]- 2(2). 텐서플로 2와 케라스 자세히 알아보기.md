@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Computer Vision] 2(2). 텐서플로 2와 케라스 자세히 알아보기"
+categories: ['AI', 'ComputerVision']
 ---
 
 

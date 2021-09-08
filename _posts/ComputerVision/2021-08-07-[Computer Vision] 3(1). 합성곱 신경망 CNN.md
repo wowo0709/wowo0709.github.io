@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Computer Vision] 3(1). 합성곱 신경망 CNN"
+categories: ['AI', 'ComputerVision']
 ---
 
 

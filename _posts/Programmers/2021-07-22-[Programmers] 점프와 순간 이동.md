@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] 점프와 순간 이동"
+categories: ['Algorithm', 'Programmers']
+---
+
 # 점프와 순간 이동
 
 ### 문제 설명

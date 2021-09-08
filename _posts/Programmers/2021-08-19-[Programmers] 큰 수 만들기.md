@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] 큰 수 만들기"
+categories: ['Algorithm', 'Programmers']
+---
+
 # 큰 수 만들기
 
 ### 문제 설명

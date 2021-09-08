@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Computer Vision] 7(4). VAE와 GAN으로 더 크고 현실적인 데이터셋 생성"
+categories: ['AI', 'ComputerVision']
 ---
 
 # VAE와 GAN으로 더 크고 현실적인 데이터셋 생성

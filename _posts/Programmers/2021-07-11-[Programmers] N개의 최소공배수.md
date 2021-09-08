@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] N개의 최소공배수"
+categories: ['Algorithm', 'Programmers']
+---
+
 # N개의 최소공배수
 
 ### 문제 설명

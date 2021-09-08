@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] 다리를 지나는 트럭"
+categories: ['Algorithm', 'Programmers']
+---
+
 # 다리를 지나는 트럭
 
 ### 문제 설명

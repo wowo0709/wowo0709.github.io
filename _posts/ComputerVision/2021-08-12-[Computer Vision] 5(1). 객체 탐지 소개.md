@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Computer Vision] 5(1). 객체 탐지 소개"
+categories: ['AI', 'ComputerVision']
 ---
 
 

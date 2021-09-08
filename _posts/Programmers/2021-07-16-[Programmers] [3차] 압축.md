@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] [3차] 압축"
+categories: ['Algorithm', 'Programmers']
+---
+
 # [3차] 압축
 
 ### 문제 설명

@@ -1,6 +1,7 @@
 ---
 layout: single
-title: "[Computer Vision] 9(3). 강력한 객체 탐지 모델 - Faster R-CNN"
+title: "[Computer Vision] 5(3). 강력한 객체 탐지 모델 - Faster R-CNN"
+categories: ['AI', 'ComputerVision']
 ---
 
 

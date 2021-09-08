@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] 순위 검색"
+categories: ['Algorithm', 'Programmers']
+---
+
 # 순위 검색
 
 ###### 문제 설명

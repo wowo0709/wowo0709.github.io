@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] 행렬의 곱셈"
+categories: ['Algorithm', 'Programmers']
+---
+
 # 행렬의 곱셈
 
 ### 문제 설명

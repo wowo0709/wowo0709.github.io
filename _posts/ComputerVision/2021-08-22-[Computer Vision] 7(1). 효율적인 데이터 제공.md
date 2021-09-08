@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Computer Vision] 7(1). 효율적인 데이터 제공"
+categories: ['AI', 'ComputerVision']
 ---
 
 

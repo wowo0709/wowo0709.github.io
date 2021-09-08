@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Recommendation System] TMDB 5000 데이터를 이용한 콘텐츠 기반 필터링 실습"
-categories: ['AI', 'Recommendation System']
+categories: ['AI', 'RecommendationSystem']
 ---
 
 

@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 튜플"
+categories: ['Algorithm', 'Programmers']
 ---
 
 

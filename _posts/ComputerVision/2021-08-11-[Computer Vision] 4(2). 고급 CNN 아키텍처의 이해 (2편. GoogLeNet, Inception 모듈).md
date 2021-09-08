@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Computer Vision] 4(2). 고급 CNN 아키텍처의 이해 (2편. GoogLeNet, Inception 모듈)"
+categories: ['AI', 'ComputerVision']
 ---
 
 

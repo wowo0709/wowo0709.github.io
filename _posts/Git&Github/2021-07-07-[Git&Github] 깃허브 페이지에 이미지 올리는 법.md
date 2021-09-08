@@ -28,7 +28,7 @@ categories: ['Git&Github']
 
 * YAML Front Matter가 뭐냐!! 하시는 분들 계실텐데, 아래 사진을 보시죠. 
 
-![image-20210707180637354](../assets/images/Github/image-20210707180637354.png)
+![image-20210707180637354](../../assets/images/Github/image-20210707180637354.png)
 
 저 '---'로 감싸져 있는 부분이 YAML Front Matter입니다. 
 
@@ -40,7 +40,7 @@ Typora에 이미지를 삽입하시려면 저 부분을 추가하셔야 해요!!
 
 저는 파일들이 깔끔하게 정리되어 있는 것을 좋아하기 때문에, 이미지 파일들을 저장해놓을 디렉터리를 따로 만들어놓습니다. 밑에서 꼭 이미지를 저장하지 않아도 이미지를 올릴 수 있는 방법에 대해서 설명하겠습니다. 
 
-![image-20210707204213720](../assets/images/Github/image-20210707204213720.png)
+![image-20210707204213720](../../assets/images/Github/image-20210707204213720.png)
 
 
 
@@ -89,19 +89,19 @@ Typora에 이미지를 삽입하시려면 저 부분을 추가하셔야 해요!!
 2. 본인 깃허브 레포지토리에서 **Issues**를 클릭합니다. 
 3. 아래 화면에서 **New Issue**를 클릭학니다. 
 
-![image-20210707205630276](../assets/images/Github/image-20210707205630276.png)
+![image-20210707205630276](../../assets/images/Github/image-20210707205630276.png)
 
 4. 아래 화면에서 **Open a blank issue**를 클릭합니다. 
 
-   ![image-20210707205756103](../assets/images/Github/image-20210707205756103.png)
+   ![image-20210707205756103](../../assets/images/Github/image-20210707205756103.png)
 
 5. 아래 화면의 텍스트 박스에 업로드를 원하는 이미지 파일을 드래그 앤 드롭합니다!
 
-   ![image-20210707205900882](../assets/images/Github/image-20210707205900882.png)
+   ![image-20210707205900882](../../assets/images/Github/image-20210707205900882.png)
 
 6. 그러면 아래 그림처럼 해당 이미지 파일의 링크가 나오는데, 그 링크가 해당 이미지 파일의 링크입니다! **Submit new issue**를 누르지 않아도 사용할 수 있습니다. 
 
-   ![image-20210707210118301](../assets/images/Github/image-20210707210118301.png)
+   ![image-20210707210118301](../../assets/images/Github/image-20210707210118301.png)
 
 
 

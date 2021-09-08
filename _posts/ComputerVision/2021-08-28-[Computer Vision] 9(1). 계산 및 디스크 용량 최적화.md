@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Computer Vision] 9(1). 계산 및 디스크 용량 최적화"
+categories: ['AI', 'ComputerVision']
 ---
 
 # 계산 및 디스크 용량 최적화

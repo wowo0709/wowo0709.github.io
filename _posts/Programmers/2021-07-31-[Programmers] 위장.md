@@ -1,3 +1,9 @@
+---
+layout: single
+title: "[Programmers] 위장"
+categories: ['Algorithm', 'Programmers']
+---
+
 # 위장
 
 ###### 문제 설명

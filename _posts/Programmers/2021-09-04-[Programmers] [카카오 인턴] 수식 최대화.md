@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Programmers] [카카오 인턴] 수식 최대화"
+categories: ['Algorithm', 'Programmers']
 ---
 
 

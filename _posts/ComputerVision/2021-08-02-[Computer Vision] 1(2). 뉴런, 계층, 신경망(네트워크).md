@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Computer Vision] 1(2). 뉴런, 계층, 신경망(네트워크)"
+categories: ['AI', 'ComputerVision']
 ---
 
 
