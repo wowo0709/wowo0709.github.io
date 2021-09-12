@@ -4,8 +4,8 @@ main:
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   - title: "Yearly"
     url: /year-archive/
-  # - title: "Monthly"
-  #   url: /monthly/
+  - title: "Monthly"
+    url: /month-archive/
   - title: "Categories"
     url: /categories/
   # - title: Tags
