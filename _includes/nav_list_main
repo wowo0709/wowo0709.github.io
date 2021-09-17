@@ -83,6 +83,13 @@
                     {% endif %}
                 {% endfor %}
             </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Optimization" %}
+                        <li><a href="/categories/optimization" class="">Optimization ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         <span class="nav__sub-title">📱 Android</span>
             <ul>
                 {% for category in site.categories %}
