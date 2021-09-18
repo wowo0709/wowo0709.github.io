@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[Search] 함수 최적화"
+title: "[Optimization] 함수 최적화"
 categories: ['AI', 'Optimization']
 toc: true
 toc_sticky: true
