@@ -28,3 +28,9 @@ categories: ['Android']
 
 * 액티비티 직접 만들기: [액티비티를 팝업(Popup)으로 띄우기 , 데이터 주고받기](https://ghj1001020.tistory.com/9)
 
+<br>
+
+**4. 타이틀 바 없애기**
+
+[[Android에서 타이틀바(TitleBar) 없애기]](http://progtrend.blogspot.com/2017/09/android-titlebar.html)
+

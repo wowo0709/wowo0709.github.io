@@ -4,6 +4,7 @@ title: "[Machine Learning] Linear Regression"
 categories: ['AI', 'MachineLearning']
 toc: true
 toc_sticky: true
+tag: ['Regression']
 ---
 
 
@@ -274,7 +275,4 @@ model.score(X,y)                  # evaluate model
 
 
 
-    
-
-
-# 
+​    

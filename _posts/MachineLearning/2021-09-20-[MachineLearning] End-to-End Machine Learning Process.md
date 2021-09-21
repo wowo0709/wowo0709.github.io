@@ -4,6 +4,7 @@ title: "[Machine Learning]end-to-end machine learning process"
 categories: ['AI', 'MachineLearning']
 toc: true
 toc_sticky: true
+tag: ['Regression']
 ---
 
 
@@ -864,7 +865,7 @@ encoded_cat_attribs[:10]
 ```
 
     ['<1H OCEAN', 'INLAND', 'ISLAND', 'NEAR BAY', 'NEAR OCEAN']
-
+    
     array([[0., 0., 0., 0., 1.],
            [0., 0., 0., 0., 1.],
            [0., 0., 0., 0., 1.],

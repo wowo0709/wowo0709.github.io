@@ -4,6 +4,7 @@ title: "[Machine Learning] Linear Classification"
 categories: ['AI', 'MachineLearning']
 toc: true
 toc_sticky: true
+tag: ['Classification']
 ---
 
 <br>
@@ -131,7 +132,7 @@ plt.show()
     
 
 
-    
+​    
 
 <br>
 
