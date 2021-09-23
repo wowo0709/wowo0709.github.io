@@ -90,6 +90,13 @@
                     {% endif %}
                 {% endfor %}
             </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "KnowledgeExpression" %}
+                        <li><a href="/categories/knowledgeexpression" class="">Knowledge Expression ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         <span class="nav__sub-title">📱 Android</span>
             <ul>
                 {% for category in site.categories %}
