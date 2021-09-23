@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[Machine Learning] Linear Regression"
+title: "[Machine Learning] Linear Regression (Libraries)"
 categories: ['AI', 'MachineLearning']
 toc: true
 toc_sticky: true
