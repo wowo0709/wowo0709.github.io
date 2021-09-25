@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[NumericalAnalysis] Representing Numbers"
+title: "[NumericalAnalysis] Error"
 categories: ['Mathematics', 'NumericalAnalysis']
 toc: true
 toc_sticky: true
