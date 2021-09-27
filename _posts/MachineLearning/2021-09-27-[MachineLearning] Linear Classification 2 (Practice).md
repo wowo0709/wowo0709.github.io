@@ -9,8 +9,6 @@ tag: ['Classification']
 
 
 
-# Linear Classification 2
-
 ## Example 1: Binary Classification
 
 Iris dataset을 사용한 binary classification 실습

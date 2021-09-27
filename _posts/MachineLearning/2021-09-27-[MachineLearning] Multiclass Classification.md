@@ -39,7 +39,7 @@ tag: ['Classification']
 
 <br>
 
-### Setup
+## Setup
 
 
 ```python
@@ -58,7 +58,7 @@ from sklearn.model_selection import cross_val_score, KFold
 
 <br>
 
-### two features
+## two features
 
 시각적으로 확인하기 위해 먼저 두 개의 특성으로 다중 분류 수행
 
@@ -274,7 +274,7 @@ scores.mean()
 ```
 
     [0.8        0.6        0.86666667 0.96666667 0.93333333]
-
+    
     0.8333333333333334
 
 <br>
