@@ -195,7 +195,7 @@ def print_result(X_train, X_test, y_train, y_test):
 
 <br>
 
-## classification on original dataset
+## Classification on original dataset
 
 
 ```python
@@ -398,7 +398,7 @@ plt.show()
 
 <br>
 
-## Classification
+## Classification on resampled dataset
 
 ### SMOTEed dataset
 
