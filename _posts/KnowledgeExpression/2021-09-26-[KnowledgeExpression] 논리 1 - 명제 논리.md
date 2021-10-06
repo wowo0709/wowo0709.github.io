@@ -70,7 +70,7 @@ tag: []
 
 ![image-20210926125214769](https://user-images.githubusercontent.com/70505378/134793789-6c7fa25b-48cd-49a7-9cdd-4a2770925d2d.png)
 
-### 논리곱 정규협(cojunctive normal form, CNF)
+### 논리곱 정규형(cojunctive normal form, CNF)
 
 논리합 절들이 논리곱으로 연결되어 있는 논리식
 
