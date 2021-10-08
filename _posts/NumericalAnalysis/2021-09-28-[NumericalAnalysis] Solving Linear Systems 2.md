@@ -43,6 +43,8 @@ tag: ['GaussianElimination', 'LUDecomposition']
 
 ![image-20210928183427474](https://user-images.githubusercontent.com/70505378/135062829-90b850b4-502e-4541-ac5c-a2f0444c23a0.png)
 
+![image-20211008225739990](https://user-images.githubusercontent.com/70505378/136570169-38e64e11-022e-4368-96a6-ceb29d2201a5.png)
+
 <br>
 
 ### Solving Systems using LU
