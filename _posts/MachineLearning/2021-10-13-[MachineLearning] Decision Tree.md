@@ -84,7 +84,6 @@ tree.plot_tree(clf, filled=True) # filled=True -> paint to indicate majority cla
 
 
 
-
 ![output_7_1](https://user-images.githubusercontent.com/70505378/137089824-687afce7-b2a5-432e-a454-31cb3bcc6320.png)
     <br>
 
@@ -136,7 +135,7 @@ with open("./iris.dot") as f:
 graphviz.Source(dot_graph)
 ```
 
-![image-20211013165001045](C:\Users\wjsdu\AppData\Roaming\Typora\typora-user-images\image-20211013165001045.png)
+![image-20211013165001045](https://user-images.githubusercontent.com/70505378/137134491-bf931df1-3831-43eb-a068-4b7e8b6a9741.png)
 
 <br>
 
