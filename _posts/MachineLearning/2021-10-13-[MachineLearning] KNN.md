@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[Machine Learning] SVM"
+title: "[Machine Learning] KNN"
 categories: ['AI', 'MachineLearning']
 toc: true
 toc_sticky: true
