@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[NumericalAnalysis] Solving Linear Systems"
+title: "[NumericalAnalysis] Solving Linear Systems 1"
 categories: ['Mathematics', 'NumericalAnalysis']
 toc: true
 toc_sticky: true

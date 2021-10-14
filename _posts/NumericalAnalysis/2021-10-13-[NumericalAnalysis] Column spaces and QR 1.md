@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[NumericalAnalysis] Column spaces and QR"
+title: "[NumericalAnalysis] Column spaces and QR 1"
 categories: ['Mathematics', 'NumericalAnalysis']
 toc: true
 toc_sticky: true
