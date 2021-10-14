@@ -35,6 +35,8 @@ tag: []
 
 ![image-20211014121044312](https://user-images.githubusercontent.com/70505378/137244729-9386c01c-38c0-498e-a15b-37746d4473f2.png)
 
+![image-20211014164018316](https://user-images.githubusercontent.com/70505378/137273158-656ebd68-31bc-424b-a3a8-754fc65516f8.png)
+
 <br>
 
 ### Implementation via Column Operations
