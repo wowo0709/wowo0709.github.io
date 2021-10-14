@@ -120,11 +120,85 @@ tag: ['Classification']
 
 #### 이진 분류기의 성능 평가
 
+`이진 분류기`란 두 개의 부류만을 갖는 데이터에 대한 분류기를 말합니다. 
 
+##### 혼돈 행렬 (Confusion Matrix)
+
+![image-20211014205944348](https://user-images.githubusercontent.com/70505378/137315435-7fd506b7-9cd6-49a2-9eb9-3946fa714833.png)
+
+* 재현율(recall)/민감도(sensitivity)/진양성율(true positiive rate)
+  * 양성 데이터 중 맞춘 비율
+  * **TP / (TP + FN)**
+* 특이도(specificity)/진음성율(true negative rate)
+  * 음성 데이터 중 맞춘 비율
+  * **TN / (FP + TN)**
+* 정밀도(precision, positive predictive value)
+  * 양성 예측 중 맞춘 비율
+  * **TP / (TP + FP)**
+* 음성 예측도(negative predictive value)
+  * 음성 예측 중 맞춘 비율
+  * **TN / (TN + FN)**
+* 위양성율(false positive rate)
+  * 음성 데이터 중 틀린 비율
+  * **FP / (FP + TN)** = 1 - (recall)
+* 위발견율(false discovery rate)
+  * 양성 예측 중 틀린 비율
+  * **FP / (TP + FP)** = 1 - (precision)
+* 정확도(accuracy)
+  * 전체 데이터 중 맞춘 비율
+  * **(TP + TN) / (TP + FP + TN + FN)**
+* F1 측도(F1 Score)
+  * 정밀도와 재현율의 조화 평균
+  * **(2 * precision * recall) / (precision + recall)**
+
+<br>
+
+##### ROC와AUC
+
+* `ROC 곡선` (Receiver Operating Characteristic Curve)
+  * 부류 판정 임계 값에 따른 (위양성율, 재현율) 그래프
+* `AUC 곡선` (Area Under the Curve)
+  * ROC 곡선에서 곡선 아래 부분의 면적
+  * 클수록 바람직
+
+![image-20211014210935176](https://user-images.githubusercontent.com/70505378/137315437-03323233-aaa0-4f61-9949-c7970781a359.png)
+
+**(a) - 성능: D > A > B > C**
+
+**(b) - 성능: 1 > 2**
+
+<br>
 
 <br>
 
 ### 불균형 데이터 문제
+
+* **특정 부류**에 속하는 **학습 데이터**의 개수가 다른 부류에 비하여 **지나치게 많은 경우**
+* **정확도**에 의한 성능 평가는 **무의미**할 수 있음
+  * 예. A 부류의 데이터가 전체의 99%인 경우, 분류기의 출력을 항상 A 분류로 하더라도 정확도는 99%가 됨. 
+
+![image-20211014211140631](https://user-images.githubusercontent.com/70505378/137315439-dc7b0290-2e0f-4cb1-8ea9-ceaea9aaf016.png)
+
+* **대응 방안**
+  * 가중치를 고려한 정확도 척도 사용
+  * 재현율, 정밀도 등의 다른 평가 지표 사용
+  * 많은 학습데이터를 갖는 부류에서 재표본추출 (re-sampling, undersampling)
+  * 적은 학습데이터를 갖는 부류에서 인공적인 데이터 생성 (undersampling)
+
+<br>
+
+#### SMOTE 알고리즘
+
+`SMOTE (Synthetic Minority Over-sampling TEchnique)` 알고리즘은 **빈도가 낮은 부류의 학습 데이터를 인공적으로 생성**해내는 방법입니다. 
+
+1. 임의로 낮은 빈도 부류의 학습 데이터 x 선택
+2. x의 k-근접 이웃(k-nearest neighbor, KNN)인 같은 부류의 데이터 선택
+3. k-근접 이웃 중에 무작위로 하나 y를 선택
+4. x와 y를 연결하는 직선 상의 무작위 위치에 새로운 데이터 생성
+
+![image-20211014211500127](https://user-images.githubusercontent.com/70505378/137315446-80ad6973-c3b0-42a3-8ed4-3b8c28c3582c.png)
+
+<br>
 
 
 
