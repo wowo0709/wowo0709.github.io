@@ -67,7 +67,7 @@ X_train.shape, X_test.shape, cancer.data.shape
 
 
 ```python
-# 결정 트리를 사용한 경우의 중요 변수
+# 결정 트리를 사용한 경우의 중요 특성
 
 list(zip(cancer.feature_names, clf.feature_importances_.round(4)))[:10]
 ```
@@ -88,6 +88,8 @@ list(zip(cancer.feature_names, clf.feature_importances_.round(4)))[:10]
 
 
 ```python
+# 정렬해서 상위 10개 검색
+
 df = pd.DataFrame({'feature':cancer.feature_names,'importance':clf.feature_importances_ })
 df=df.sort_values('importance', ascending=False)
 print(df.head(10))
@@ -174,15 +176,12 @@ plt.show()
 ```python
 from sklearn.ensemble import GradientBoostingClassifier
 
-
 gbc = GradientBoostingClassifier(n_estimators=500)
 gbc.fit(X_train, y_train)
 print(gbc.score(X_test, y_test))
 ```
 
     0.9790209790209791
-
-
 
 ```python
 df = pd.DataFrame({'feature':cancer.feature_names,'importance':gbc.feature_importances_ })
@@ -224,7 +223,7 @@ params = [{"C": [1,10,100,1000], "kernel":["linear"]},
           {"C": [1,10,100,1000], "kernel":["rbf"], "gamma":[0.001, 0.0001]}
          ]
 
-clf = GridSearchCV(svm.SVC(), params, n_jobs=-1 )
+clf = GridSearchCV(svm.SVC(), params, n_jobs=-1 ) # 모델, 튜닝 파라미터 리스트, CPU 수
 clf.fit(X_train, y_train)
 print('최적값 :', clf.best_estimator_)
 print('최적 score :', clf.best_score_)
