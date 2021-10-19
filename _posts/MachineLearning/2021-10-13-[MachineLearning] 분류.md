@@ -140,7 +140,7 @@ tag: ['Classification']
   * **TN / (TN + FN)**
 * 위양성율(false positive rate)
   * 음성 데이터 중 틀린 비율
-  * **FP / (FP + TN)** = 1 - (recall)
+  * **FP / (FP + TN)** = 1 - (specificity)
 * 위발견율(false discovery rate)
   * 양성 예측 중 틀린 비율
   * **FP / (TP + FP)** = 1 - (precision)
