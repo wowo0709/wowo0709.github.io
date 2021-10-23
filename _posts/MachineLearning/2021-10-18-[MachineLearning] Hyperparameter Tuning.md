@@ -13,6 +13,8 @@ tag: []
 
 ## Hyperparameter Tuning
 
+![A Practical Guide To Hyperparameter Optimization.](https://srdas.github.io/DLBook/DL_images/HPO1.png)
+
 - to choose a set of optimal hyperparameters for a learning algorithm
 - example case: Bike Renting Analysis problem (from kaggle)
 
@@ -866,7 +868,7 @@ hyperparameters_list
     Score = 0.16782
     ...
     Score = 0.08654
-
+    
     [{'rmsle': 0.1678247426392651,
       'n_estimators': 30,
       'max_depth': 10,

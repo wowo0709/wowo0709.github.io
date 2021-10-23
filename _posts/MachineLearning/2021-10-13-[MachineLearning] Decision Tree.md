@@ -14,6 +14,19 @@ tag: []
 
 ## Decision Tree Classifier
 
+### 특징
+
+* 모든 feature를 사용해서 나눠보고 가장 잘 구분하는 feature를 사용하여 최종 구분
+* **그리디 알고리즘**: 당장의 최선의 결정을 선택
+
+### 손실 함수
+
+* **Decision Tree**는 손실 함수로 **Impurity**를 사용
+
+![Are gini index, entropy or classification error measures causing any  difference on Decision Tree classification? - Quora](https://qph.fs.quoracdn.net/main-qimg-690a5cee77c5927cade25f26d1e53e77)
+
+<br>
+
 - Iris dataset
 
 

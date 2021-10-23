@@ -13,6 +13,10 @@ tag: []
 
 ## RandomForest Classifier
 
+![Ensemble Learning: Bagging &amp; Boosting | by Fernando López | Towards Data  Science](https://miro.medium.com/max/2000/1*zTgGBTQIMlASWm5QuS2UpA.jpeg)
+
+
+
 
 ```python
 import matplotlib.pyplot as plt

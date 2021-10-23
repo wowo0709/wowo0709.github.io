@@ -239,7 +239,7 @@ confusion_matrix(y_test, y_pred)  # one vs. rest
 
 ![image-20211012140425282](https://user-images.githubusercontent.com/70505378/136895703-761d4c6d-cac5-450e-b7fb-cebe611ec47d.png)
 
-![image-20211012140447032](C:\Users\wjsdu\AppData\Roaming\Typora\typora-user-images\image-20211012140447032.png)
+
 
 #### Loss Function
 
@@ -247,7 +247,7 @@ SVM uses **hinge loss.**
 
 ![image-20211012140447032](https://user-images.githubusercontent.com/70505378/136895704-1395cc44-cd0a-43b4-8e07-04eedb8522ed.png)
 
-![image-20211012140605301](C:\Users\wjsdu\AppData\Roaming\Typora\typora-user-images\image-20211012140605301.png)
+![image-20211012140605301](https://user-images.githubusercontent.com/70505378/138541000-3f681056-5297-497f-8c39-b66ef65772aa.png)
 
 <br>
 
@@ -863,7 +863,7 @@ xx.shape
      [[0. 0. 0.]
      [1. 1. 1.]
      [2. 2. 2.]]
-
+    
     (3, 3)
 
 
