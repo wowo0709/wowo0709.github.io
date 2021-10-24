@@ -14,6 +14,10 @@ tag: []
 
 ## KNN Classifier
 
+**KNN** 은 테스트 시에 새로운 데이터와 인접 데이터들 간의 거리를 계산한다. 
+
+따라서 특이하게, 훈련 시에는 하는 것이 없고 테스트 시에 시간이 오래 걸린다. 
+
 <img src="https://user-images.githubusercontent.com/70505378/138551513-5c5c0e06-6828-431f-aac4-d4d77cbd554e.png" alt="image-20211023175509831" style="zoom:50%;" />
 
 ![3-Class classification (k = 15, weights = 'uniform')](https://scikit-learn.org/stable/_images/sphx_glr_plot_classification_001.png)

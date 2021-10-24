@@ -15,6 +15,10 @@ tag: []
 
 #### SMOTE (Synthetic Minority Oversampling TEchnique)
 
+![img](https://miro.medium.com/max/770/1*R70XkU6wg9kKWC6OjxgKww.png)
+
+![img](http://2.bp.blogspot.com/-jI_cU6x3RiQ/UtjA_lWlqfI/AAAAAAAAALs/6TsO-cNmojM/s1600/a1.jpg)
+
 **Making imbalance dataset**
 
 * `make_classification`: n_samples, n_features, n_redundant, n_clusters_per_classes, weights, flip_y, random_state
@@ -81,7 +85,7 @@ AUC score:  0.9161672278338945
 **Smoted dataset (Oversampling, Resampling)**
 
 * `over_sampling.SMOTE`: sampling_strategy, k_neighbors, random_state
-  * fit_resample: X. y
+  * fit_resample: X, y
 
 ```python
 from imblearn.over_sampling import SMOTE
@@ -113,6 +117,10 @@ X, y = under.fit_resample(X_org, y_org)
 #### Borderline-SMOTE
 
 Borderline_SMOTE는 Majority class와 Minority class의 샘플의 비율이 비슷한 구역에서만 새로운 sample을 생성함으로써 noise를 무시할 수 있다. 
+
+![img](https://miro.medium.com/max/770/1*m1J4D5SJ2xbiHZVFjv3IPg.png)
+
+![funMV: 기계학습에서 Imbalanced learning](http://2.bp.blogspot.com/-aACF0FTDOQ8/UtjG6WYYpKI/AAAAAAAAAL4/vyn2c1qA5CE/s1600/a2.jpg)
 
 * `BorderlineSMOTE`: sampling_strategy, k_neighbors, m_neighbors, random_state
 
@@ -191,9 +199,9 @@ classifier = classifier.fit(X_train, y_train)
 * `SVC`: kernel, degree, C, gamma, probability
   * kernel: linear, poly, rbf, sigmoid, precomputed (default=rbf)
   * degree: degree of the polynomial kernel function (Ignored by all other kernels)
-  * gamma: inverse of deviation (값이 커지면 이웃으로 생각하는 범위가 좁아짐). 'auto' = 1 / n_features
   * C: inverse of regularization (값이 커지면 규제가 작아지고 즉, 모델의 복잡도가 증가(노이즈에 민감, 과적합 위험))
-  * probability: Whether to enable probability extimates. 
+  * gamma: inverse of deviation (값이 커지면 이웃으로 생각하는 범위가 좁아짐). 'auto' = 1 / n_features
+  * probability: Whether to enable probability estimates. 
 
 ```python
 from sklearn.svm import SVC
@@ -226,11 +234,12 @@ svm_clf.fit(X_train, y_train)
 
   ![image-20211023150702535](https://user-images.githubusercontent.com/70505378/138551511-addc72d3-62f2-42ab-97ab-4e3b1a68ee47.png)
 
-* `SVR`: kernel, degree, gamma, C, epsilon
+* `SVR`: kernel, degree, C, gamma, epsilon
+  
   * kernel: linear, poly, rbf, sigmoid, precomputed (default=rbf)
   * degree: degree of the polynomial kernel function (Ignored by all other kernels)
-  * gamma: inverse of deviation (값이 커지면 이웃으로 생각하는 범위가 좁아짐). 'auto' = 1 / n_features
   * C: inverse of regularization (값이 커지면 규제가 작아지고 즉, 모델의 복잡도가 증가(노이즈에 민감, 과적합 위험))
+  * gamma: inverse of deviation (값이 커지면 이웃으로 생각하는 범위가 좁아짐). 'auto' = 1 / n_features
   * epsilon: training loss with points predicted within a distance epsilon from the actual value (epslion이 커지면 올바른 예측이라고 여겨지는 street의 너비가 넓어지고 즉, 오차에 관대해진다(모델의 복잡도 감소))
 
 ```python
@@ -262,6 +271,10 @@ print (svr1.score(x, y), svr2.score(x, y), svr3.score(x, y))
 
 ### KNN(K Nearest Neighbors)
 
+**KNN** 은 테스트 시에 새로운 데이터와 인접 데이터들 간의 거리를 계산한다. 
+
+따라서 특이하게, 훈련 시에는 하는 것이 없고 테스트 시에 시간이 오래 걸린다. 
+
 <img src="https://user-images.githubusercontent.com/70505378/138551513-5c5c0e06-6828-431f-aac4-d4d77cbd554e.png" alt="image-20211023175509831" style="zoom:67%;" />
 
 ![3-Class classification (k = 15, weights = 'uniform')](https://scikit-learn.org/stable/_images/sphx_glr_plot_classification_001.png)
@@ -287,6 +300,8 @@ print("kNN score: {:.2f}".format(knn.score(X_test, y_test))) # kNN score: 0.98
 * 모든 feature를 사용해서 나눠보고 가장 잘 구분하는 feature를 사용하여 최종 구분
 * **그리디 알고리즘**: 당장의 최선의 결정을 선택
 * **손실 함수**: Impurity (불순도)
+  * 지니 계수: [0, 0.5] 의 값
+  * 엔트로피: (-INF, 1] 사이의 값
 
 ![Are gini index, entropy or classification error measures causing any  difference on Decision Tree classification? - Quora](https://qph.fs.quoracdn.net/main-qimg-690a5cee77c5927cade25f26d1e53e77)
 
@@ -379,6 +394,9 @@ tr_reg1.score(X_test, y_test)
 
 #### Voting (Stacking)
 
+* **Hard Voting**: 가장 많은 모델이 예측한 클래스로 최종 결정
+* **Soft Voting**: 각 모델이 예측한 각 클래스의 확률을 고려, 각 클래스 별로 평균하여 최종 결정
+
 ![What Is Voting Classifier In Machine Learning](https://miro.medium.com/max/2000/1*IG6Pe5FmrkEJlCmEQt1e5g.png)
 
 * `VotingClassifier`: estimators, voting, weights
@@ -401,7 +419,11 @@ print(eclf1.predict(X)) # [1 1 1 2 2 2]
 
 <br>
 
-#### RandomForest
+#### RandomForest (Bagging)
+
+* 중복을 허용한 n개의 샘플을 추출하여 평균을 구하는 작업을 n번 반복
+* Overfitting 해소, 일반적인 모델 생성
+* Parallel Session
 
 ![Ensemble Learning: Bagging &amp; Boosting | by Fernando López | Towards Data  Science](https://miro.medium.com/max/2000/1*zTgGBTQIMlASWm5QuS2UpA.jpeg)
 
@@ -438,6 +460,10 @@ list(zip(cancer.feature_names, rfc.feature_importances_.round(4)))[:10]
 <br>
 
 #### Boosting
+
+* **Bagging**은 독립적인 input data를 가지고(복원 추출) 독립적으로 예측하지만, **Boosting**은 이전 모델이 다음 모델에 영향을 준다. 
+* 맞추기 어려운 문제를 맞추는 것에 초점을 둔다. 
+* Serial Session
 
 * `GradientBoostingClassifier/GradientBoostingRegressor`: n_estimators, learning_rate, max_depth, min_samples_split, min_samples_leaf, max_features, max_leaf_nodes
 

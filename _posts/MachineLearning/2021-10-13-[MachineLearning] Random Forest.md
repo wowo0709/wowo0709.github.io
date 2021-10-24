@@ -136,6 +136,10 @@ plt.show()
 
 ### Random Forest (Bagging)
 
+* 중복을 허용한 n개의 샘플을 추출하여 평균을 구하는 작업을 n번 반복
+* Overfitting 해소, 일반적인 모델 생성
+* Parallel Session
+
 ```python
 # 랜덤 포레스트를 사용한 경우의 중요 특성
 
@@ -174,7 +178,9 @@ plt.show()
 
 ### Gradient Boosting (Boosting)
 
-**Boosting 방법을 써보자**
+* **Bagging**은 독립적인 input data를 가지고(복원 추출) 독립적으로 예측하지만, **Boosting**은 이전 모델이 다음 모델에 영향을 준다. 
+* 맞추기 어려운 문제를 맞추는 것에 초점을 둔다. 
+* Serial Session
 
 
 ```python
@@ -209,88 +215,6 @@ plt.show()
     
 
 <br>
-
-<br>
-
-## Grid Search
-
-**SVM과 비교**
-
-### Grid Search:
-
-- The grid search will try all combinations of parameter values and select the set of parameters which provides the most accurate model.
-- 그리드 서치의 매개변수를 설정한다(C, gamma)
-
-
-```python
-params = [{"C": [1,10,100,1000], "kernel":["linear"]},
-          {"C": [1,10,100,1000], "kernel":["rbf"], "gamma":[0.001, 0.0001]}
-         ]
-
-clf = GridSearchCV(svm.SVC(), params, n_jobs=-1 ) # 모델, 튜닝 파라미터 리스트, CPU 수
-clf.fit(X_train, y_train)
-print('최적값 :', clf.best_estimator_)
-print('최적 score :', clf.best_score_)
-
-#테스트 데이터로 최종 평가
-score = clf.score(X_test, y_test)
-print('최종 평가 =',score)
-```
-
-    최적값 : SVC(C=100, kernel='linear')
-    최적 score : 0.9601094391244871
-    최종 평가 = 0.965034965034965
-
-<br>
-
-<br>
-
-## Tuning the hyper-parameters of an estimator
-
-### A search consists of:
-
-- an estimator (regressor or classifier such as sklearn.svm.SVC());
-- a parameter space;
-- a method for searching or sampling candidates;
-- a cross-validation scheme; and
-- a score function.
-
-
-```python
-# to find the names and current values for all parameters for a given 
-# estimator,
-clf.get_params()
-```
-
-
-
-
-    {'cv': None,
-     'error_score': nan,
-     'estimator__C': 1.0,
-     'estimator__break_ties': False,
-     'estimator__cache_size': 200,
-     'estimator__class_weight': None,
-     'estimator__coef0': 0.0,
-     'estimator__decision_function_shape': 'ovr',
-     'estimator__degree': 3,
-     'estimator__gamma': 'scale',
-     'estimator__kernel': 'rbf',
-     'estimator__max_iter': -1,
-     'estimator__probability': False,
-     'estimator__random_state': None,
-     'estimator__shrinking': True,
-     'estimator__tol': 0.001,
-     'estimator__verbose': False,
-     'estimator': SVC(),
-     'n_jobs': -1,
-     'param_grid': [{'C': [1, 10, 100, 1000], 'kernel': ['linear']},
-      {'C': [1, 10, 100, 1000], 'kernel': ['rbf'], 'gamma': [0.001, 0.0001]}],
-     'pre_dispatch': '2*n_jobs',
-     'refit': True,
-     'return_train_score': False,
-     'scoring': None,
-     'verbose': 0}
 
 <br>
 
