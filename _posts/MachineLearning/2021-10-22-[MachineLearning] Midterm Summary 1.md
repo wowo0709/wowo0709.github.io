@@ -26,23 +26,23 @@ housing.info() # 데이터프레임의 각 feature의 개수, dtype
 housing["열 이름"].value_counts() # 해당 열의 어떤 값이 몇 개 있는지 반환
 housing.describe() # 데이터프레임의 각 feature에 대한 수치적 정보(개수, 평균, 최소값 등)를 반환
 
-housing["median_income"].hist() # feature의 value_count()를 히스토그램으로 plot
+housing["median_income"].hist() # feature의 value_counts()를 히스토그램으로 plot
 housing["income_cat"] = pd.cut(housing["median_income"], # feature의 값을 특정 구간으로 매핑
-                              bins = [0., 1.5, 3.0, 4.5, 6. np.inf], 
+                              bins = [0., 1.5, 3.0, 4.5, 6., np.inf], 
                               labels = [1,2,3,4,5])
 
 housing.corr() # 상관관계 행렬
 housing.sort_values(by="열 이름", ascending) # 데이터프레임을 특정 열의 값을 기준으로 정렬
 
 # 추가
-data['diagnosis'] = data['diagnosis'].map({'M':1, 'B':0})
+data['diagnosis'] = data['diagnosis'].map({'M':1, 'B':0}) # 값을 매핑
 ```
 
 <br>
 
 #### 훈련-테스트 데이터셋 분리
 
-* `train_test_split`: dataset, test_size, random_state
+* `train_test_split`: dataset, test_size, shuffle,  random_state
 * `StratifiedShuffleSplit`: n_splits, test_size, random_state
 
 ```python
@@ -60,6 +60,8 @@ for train_index, test_index in split.split(housing, housing["income_cat"]): # X,
 <br>
 
 #### 데이터 시각화
+
+* `DataFrame.plot`: kind, x, y, alpha, s, label, figsize, c, cmap, colorbar, sharex, sharey
 
 ```python
 # dataframe.plot
@@ -105,10 +107,21 @@ scatter_matrix(housing[attributes], figsize=(12, 8))
 
 #### 데이터 전처리
 
+* `SimpleImputer`: strategy
+* `OrdinalEncoder/LabelEncoder/OneHotEncoder`
+  * categories_, toarray()(for OneHotEncoder)
+* `StandardScaler/MinMaxScaler`
+  * mean_, std_, inverse_transform()
+* `Pipeline`: steps(list of tuples(name, transform))
+* `ColumnTransformer`: transformers(list of tuples(name, transformer, columns))
+
 ```python
-housing.drop("열 이름", axis) # 0: 행 방향, 1: 열 방향
+housing.drop("열 이름", axis) # 0: 행 방향, 1: 열 방향 (default: 0)
 housing.isnull().any(0) # 각 feature 별로 null이 있는지 검사
+housing.isnull().any(1) # 각 sample 별로 null이 있는지 검사
 housing.isnull().sum() # 각 feature 별로 null이 몇 개인지 검사
+housing.isnull().sum().sum() # 전체 데이터프레임에 null이 몇 개인지 검사
+
 housing_num = housing.drop("ocean_proximity", axis=1)
 
 # 누락값에 대한 처리
@@ -357,28 +370,28 @@ print('---------------------------')
 print('epoch=', epoch, 'error=', error, 'w1=', w1.round(2), 'w2=', w2.round(2), 'b=', b.round(2))
 
 '''
-epoch= 0 loss= 143.13519198204307 w= 18.663985686793474 b= 5.527577031987033
-epoch= 10 loss= 143.13519198204307 w= 18.663985686793474 b= 34.161569950771764
-epoch= 20 loss= 143.13519198204307 w= 18.663985686793474 b= 42.63247728631368
-epoch= 30 loss= 143.13519198204307 w= 18.663985686793474 b= 45.17114084654051
-epoch= 40 loss= 143.13519198204307 w= 18.663985686793474 b= 45.94040900283646
-epoch= 50 loss= 143.13519198204307 w= 18.663985686793474 b= 46.17526739749047
-epoch= 60 loss= 143.13519198204307 w= 18.663985686793474 b= 46.247108444149255
-epoch= 70 loss= 143.13519198204307 w= 18.663985686793474 b= 46.26894507259233
-epoch= 80 loss= 143.13519198204307 w= 18.663985686793474 b= 46.27545836078856
-epoch= 90 loss= 143.13519198204307 w= 18.663985686793474 b= 46.27732562044224
-epoch= 100 loss= 143.13519198204307 w= 18.663985686793474 b= 46.277819716244096
-epoch= 110 loss= 143.13519198204307 w= 18.663985686793474 b= 46.27792830496731
-epoch= 120 loss= 143.13519198204307 w= 18.663985686793474 b= 46.27793959569699
-epoch= 130 loss= 143.13519198204307 w= 18.663985686793474 b= 46.27793226596585
-epoch= 140 loss= 143.13519198204307 w= 18.663985686793474 b= 46.27792489363772
-epoch= 150 loss= 143.13519198204307 w= 18.663985686793474 b= 46.27792025712462
-epoch= 160 loss= 143.13519198204307 w= 18.663985686793474 b= 46.27791775399147
-epoch= 170 loss= 143.13519198204307 w= 18.663985686793474 b= 46.27791650126122
-epoch= 180 loss= 143.13519198204307 w= 18.663985686793474 b= 46.27791590193356
-epoch= 190 loss= 143.13519198204307 w= 18.663985686793474 b= 46.27791562359162
+epoch= 0 loss= 98.49198209239596 w1= 3.0622983189562536 w2= 4.764356865654392 b= 5.897084897272597
+epoch= 10 loss= 98.49198209239596 w1= 18.010371367108256 w2= 28.11790158719528 b= 34.84015273300073
+epoch= 20 loss= 98.49198209239596 w1= 23.92513539978548 w2= 35.47955293266165 b= 44.56444221585169
+epoch= 30 loss= 98.49198209239596 w1= 26.225643561017915 w2= 37.8418415003053 b= 47.81856077797792
+epoch= 40 loss= 98.49198209239596 w1= 27.11094695935368 w2= 38.61417874461482 b= 48.902444027182995
+epoch= 50 loss= 98.49198209239596 w1= 27.44947647216773 w2= 38.87154475680563 b= 49.26146817037565
+epoch= 60 loss= 98.49198209239596 w1= 27.578477035364905 w2= 38.95893768889174 b= 49.37959563238877
+epoch= 70 loss= 98.49198209239596 w1= 27.627561562799617 w2= 38.98915556957853 b= 49.418142205981276
+epoch= 80 loss= 98.49198209239596 w1= 27.646236490880202 w2= 38.99978248478305 b= 49.43059025098738
+epoch= 90 loss= 98.49198209239596 w1= 27.653347822725966 w2= 39.00357796550781 b= 49.43455663059089
+epoch= 100 loss= 98.49198209239596 w1= 27.656059892304143 w2= 39.00495242597293 b= 49.435798183185476
+epoch= 110 loss= 98.49198209239596 w1= 27.657096198309056 w2= 39.00545624717423 b= 49.43617740968662
+epoch= 120 loss= 98.49198209239596 w1= 27.65749303968171 w2= 39.005642884171394 b= 49.436289198820965
+epoch= 130 loss= 98.49198209239596 w1= 27.65764535248929 w2= 39.00571265085133 b= 49.4363203692288
+epoch= 140 loss= 98.49198209239596 w1= 27.65770394667565 w2= 39.00573893220989 b= 49.43632824570201
+epoch= 150 loss= 98.49198209239596 w1= 27.657726538440585 w2= 39.005748897521244 b= 49.43632984226368
+epoch= 160 loss= 98.49198209239596 w1= 27.65773526779394 w2= 39.0057526971633 b= 49.4363299559148
+epoch= 170 loss= 98.49198209239596 w1= 27.65773864763172 w2= 39.005754152737794 b= 49.43632982441512
+epoch= 180 loss= 98.49198209239596 w1= 27.657739958712025 w2= 39.005754712566734 b= 49.436329712316414
+epoch= 190 loss= 98.49198209239596 w1= 27.657740468179426 w2= 39.00575492861191 b= 49.43632964753197
 ---------------------------
-epoch= 199 error= 409.6591467434651 w1= 27.94 w2= 40.08 b= 46.28
+epoch= 199 error= 437.5417546691009 w1= 27.66 w2= 39.01 b= 49.44
 '''
 ```
 
@@ -575,7 +588,7 @@ Logistic Regression:  0.994
 
 ### KFold Validation
 
-* `KFold(StratifiedKFold)`: n_splits, shuffle, random_state
+* `KFold/StratifiedKFold`: n_splits, shuffle, random_state
 * `cross_val_score`: model, X, y, cv object
 
 ```python
@@ -636,7 +649,7 @@ TRAIN:
 
 ### Regualarization
 
-* **alpha** 하이퍼파라미터를 사용하고, 값이 클수록 규제의 효과가 크다.  
+**alpha** 하이퍼파라미터를 사용하고, 값이 클수록 규제의 효과가 크다.  
 
 * `Ridge`: alpha
 
@@ -651,9 +664,10 @@ TRAIN:
 
   * L1 규제로, 가중치를 전체적으로 줄인다. 따라서 값이 작은 가중치들이 먼저 사라지고 값이 큰 가중치들이 살아남는다. 
   * feature selection 효과가 있다. 
-
+  * 일반적으로 같은 alpha 값일 때 Ridge보다 규제의 효과가 크다. 
+  
   ![image-20211022231304308](https://user-images.githubusercontent.com/70505378/138479329-113565a3-bbca-4062-8103-13977378810d.png)
-
+  
   ![image-20211022231536570](https://user-images.githubusercontent.com/70505378/138479342-5dece631-beaa-4a88-82af-ea3ef22f6e03.png)
 
 ```python
@@ -693,7 +707,7 @@ softmax_reg.predict_proba([[5, 2]]) # array([[6.38014896e-07, 5.74929995e-02, 9.
 
 #### Static performance and Confusion matrix
 
-**Confusion matrix** - accuracy(**model.score()**), precision, recall(sensitivity), f1-score
+**Confusion matrix** - accuracy(<span style="color:red">**model.score()**</span>), precision, recall(sensitivity), f1-score
 
 ![image-20211022233716443](https://user-images.githubusercontent.com/70505378/138479345-99c01d80-c564-49e7-8612-63864639e8a6.png)
 
@@ -823,7 +837,7 @@ plt.legend(loc="upper right")
 
 * RMSE (root mean square error)
 
-* R-squared score (**model.score()**): y_true, y_pred
+* R-squared score (<span style="color:red">**model.score()**</span>): y_true, y_pred
 
   ![image-20211023000237963](https://user-images.githubusercontent.com/70505378/138479634-473dbc6c-2deb-48af-ad8b-90d2e3987ec2.png)
 
