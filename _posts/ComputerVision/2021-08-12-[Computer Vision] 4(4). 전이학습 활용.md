@@ -229,4 +229,5 @@ for layer in feature_Extractor_model.layers:
     layer.trainable = False # 전체 추출기를 고정
 ```
 
-👍 **자세한 전이학습 예제는 [[Computer Vision] 4(5). 전이학습 예제](https://wowo0709.github.io/Computer-Vision-4(5).-%EC%A0%84%EC%9D%B4%ED%95%99%EC%8A%B5-%EC%98%88%EC%A0%9C/)에서 확인하세요!**
+👍 **자세한 전이학습 예제는 [[Computer Vision] 4(5). 전이학습 예제](https://wowo0709.github.io/ai/computervision/Computer-Vision-4(5).-%EC%A0%84%EC%9D%B4%ED%95%99%EC%8A%B5-%EC%98%88%EC%A0%9C/)에서 확인하세요!**
+
