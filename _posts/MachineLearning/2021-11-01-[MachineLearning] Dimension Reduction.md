@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[Machine Learning] Feature Reduction"
+title: "[Machine Learning] Dimension Reduction"
 categories: ['AI', 'MachineLearning']
 toc: true
 toc_sticky: true

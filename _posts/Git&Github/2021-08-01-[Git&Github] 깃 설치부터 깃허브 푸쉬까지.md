@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Git] 깃 설치부터 깃허브 푸쉬까지"
-categories: ['Git&Github']
+categories: ['Git&Github','Git']
 ---
 
 # 깃 설치부터 깃허브 푸쉬까지

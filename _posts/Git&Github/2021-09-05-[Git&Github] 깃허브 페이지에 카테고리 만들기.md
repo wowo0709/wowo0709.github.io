@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[Github] 깃허브 페이지에 카테고리 만들기"
+categories: ['Git&Github','Github']
 ---
 
 
