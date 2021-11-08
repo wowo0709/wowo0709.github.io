@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Tensorflow&Keras] Tensorflow 1.0"
-categories: ['AI', 'MachineLearning']
+categories: ['AI', 'Tensorflow&Keras']
 toc: true
 toc_sticky: true
 tag: []

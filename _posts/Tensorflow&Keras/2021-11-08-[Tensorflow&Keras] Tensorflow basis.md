@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[Machine Learning] Tensorflow basis"
+title: "[Machine Learning] Tensorflow Basis"
 categories: ['AI', 'Tensorflow&Keras']
 toc: true
 toc_sticky: true
