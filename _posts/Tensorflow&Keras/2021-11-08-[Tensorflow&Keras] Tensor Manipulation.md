@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Tensorflow&Keras] Tensor Manipulation"
-categories: ['AI', 'Tensorflow&Keras']
+categories: ['AI', 'TensorflowKeras']
 toc: true
 toc_sticky: true
 tag: []

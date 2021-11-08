@@ -50,7 +50,7 @@
         <span class="nav__sub-title">💡 AI</span>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "Tensorflow&Keras" %}
+                    {% if category[0] == "TensorflowKeras" %}
                         <li><a href="/categories/tensorflow&keras" class="">Tensorflow&Keras ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
