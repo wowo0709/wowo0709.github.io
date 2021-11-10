@@ -1,10 +1,10 @@
 ---
 layout: single
-title: "[Programmers] N으로 표현"
+title: "[Programmers] 입국심사"
 categories: ['Algorithm', 'Programmers']
 toc: true
 toc_sticky: true
-tag: ['동적계획법']
+tag: ['이분탐색']
 ---
 
 
