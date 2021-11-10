@@ -4,7 +4,7 @@ title: "[Machine Learning] 신경망"
 categories: ['AI', 'MachineLearning']
 toc: true
 toc_sticky: true
-tag: ['NeuralNetwork', Perceptron', 'RBF']
+tag: ['NeuralNetwork', 'Perceptron', 'RBF']
 ---
 
 <br>
