@@ -126,19 +126,29 @@ tag: ['컨볼루션', '풀링', '구조']
 
 ## 컨볼루션 신경망의 구조
 
+* **특징 추출**을 위한 **컨볼루션 부분**
 
+  * `Conv 층`: 컨볼루션 연산
 
+  * `activation 함수`: ReLU 연산
 
+  * `Pooling 층`: 풀링 연산
 
+* 추출된 특징을 사용하여 **분류 또는 회귀**를 수행하는 **다층 퍼셉트론 부분**
+  * 전방향으로 전체 연결된 `FC(Fully Connected)층` 반복
+  * 분류의 경우 마지막 층에 `소프트맥스 연산`을 하는 층 추가
+* 컨볼루션 신경망 구조의 예
+  *  Conv-ReLU-Pool-Conv-ReLU-Pool-Conv-ReLU-Pool-FC-SM
+  *  Conv-Pool-Conv-Pool-Conv-FC-FC-SM
+  * Conv-Pool-Conv-Pool-Conv-Conv-Conv-Pool-FC-FC-SM
+  * Conv-ReLU-Pool-Conv-ReLU-Pool-Conv-ReLU-Pool-FC-FC-SM
 
+![image-20211117222116166](https://user-images.githubusercontent.com/70505378/142209072-7b757ec3-6d3a-4a73-90ae-78cd0c3f5ad6.png)
 
+![image-20211117222128593](https://user-images.githubusercontent.com/70505378/142209080-d6311fa0-f336-437a-9ee1-e71a7e52169e.png)
 
-
-
-
-
-
-
+* `학습대상 가중치 개수` = **(필터 크기 + 1) * (필터 개수)**
+* `노드 개수` -> **이전 층의 노드 개수**와 **현재 층의 필터 크기, 개수, 스트라이드, 패딩**에 의해 결정
 
 <br>
 
