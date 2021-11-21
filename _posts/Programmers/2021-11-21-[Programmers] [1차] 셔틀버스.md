@@ -1,10 +1,10 @@
 ---
 layout: single
-title: "[Programmers] 다단계 칫솔 판매"
+title: "[Programmers] [1차] 셔틀버스"
 categories: ['Algorithm', 'Programmers']
 toc: true
 toc_sticky: true
-tag: ['트리']
+tag: ['완전탐색']
 ---
 
 
