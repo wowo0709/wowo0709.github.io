@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Deep Learning] MNIST using keras"
-categories: ['AI', 'DeepLearning']
+categories: ['AI', 'TensorflowKeras']
 toc: true
 toc_sticky: true
 tag: ['MNIST','Keras']
