@@ -4,7 +4,7 @@ title: "[Deep Learning] Word Vector"
 categories: ['AI', 'DeepLearning']
 toc: true
 toc_sticky: true
-tag: ['Word2Vec','Glove]
+tag: ['Word2Vec','Glove']
 ---
 
 
