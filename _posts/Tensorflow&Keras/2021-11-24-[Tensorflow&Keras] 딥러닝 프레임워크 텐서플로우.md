@@ -165,6 +165,10 @@ tag: ['Tensorflow']
 
 <br>
 
+![image-20211207203711457](https://user-images.githubusercontent.com/70505378/145022596-f6c19ccc-8e3e-4a36-9ce0-31f3ebc085b2.png)
+
+<br>
+
 * **shape, size, rank**
 
   * 예
