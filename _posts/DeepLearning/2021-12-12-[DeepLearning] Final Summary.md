@@ -27,6 +27,8 @@ Scaling required!!
 
 #### DBSCAN
 
+* core point, border point, noise point
+
 * `DBSCAN`: eps, min_samples, metric
   * 0~n: class samples
   * -1: noise points
@@ -37,7 +39,7 @@ Scaling required!!
 
 * `SelectPercentile`: score_func, percentile
 * `PCA`: n_components
-* `TSNE`: n_components, perplexity
+* `TSNE`: n_components, perplexity(number of nearest neighbors that is used in other manifold learning algorithms)
 
 <br>
 
@@ -278,6 +280,8 @@ _________________________________________________________________
 
 ### MLP
 
+* `parameters = (input_shape) * (# of neurons) + (# of neurons)`
+
 ```python
 # Transfer learning
 conv_base = VGG16(weights = 'imagenet',   # loading 할 weights
@@ -330,6 +334,8 @@ history = model.fit_generator(
 <br>
 
 ### CNN
+
+* `parameters = (kernel_size) * (input_depth) * (# of neurons) + (# of neurons)`
 
 ```python
 model = models.Sequential()
@@ -415,9 +421,21 @@ history = model.fit_generator(
 
 ### Embedding/RNN
 
+* Embedding
+  * `parameters = (input_shape(단어 개수)) * (output_shape(단어 벡터 차원))`
+  * `output = (None, None, output_shape)`
+  * **input_length 지정 시**
+    * `output = (None, input_length, output_shape)`
+
 * SimpleRNN:
+  * `parameters = (Embedding output_shape * 2) * (# of neurons) + (# of neurons)`
+  * `output = (None, # of neurons)`
+  * **return_sequences = True 지정 시**
+    * `output = (None, input_length, # of neurons)`
+
   * SimpleRNN이 한 가지 다른 점은 넘파이 예제처럼 하나의 시퀀스가 아니라 다른 케라스 층과 마찬가지로 시퀀스 배치를 처리한다는 것입니다. 즉, (timesteps, input_features) 크기가 아니라 (batch_size, timesteps, input_features) 크기의 입력을 받습니다.
   * 케라스에 있는 모든 순환 층과 동일하게 SimpleRNN은 두 가지 모드로 실행할 수 있습니다. 각 타임스텝의 출력을 모은 전체 시퀀스를 반환하거나(크기가 (batch_size, timesteps, output_features)인 3D 텐서), 입력 시퀀스에 대한 마지막 출력만 반환할 수 있습니다(크기가 (batch_size, output_features)인 2D 텐서). 이 모드는 객체를 생성할 때 return_sequences 매개변수로 선택할 수 있습니다.
+
 
 ```python
 model = Sequential()
@@ -526,8 +544,9 @@ _________________________________________________________________
 ### Vectorizing
 
 * `CountVectorizer`
-
 * `TfidfVectorizer`: tokenizer, max_features
+
+![TF-IDF를 활용한 클래스 유사도 분석과 추천 서버 구축 1편 | 클래스101 기술 블로그](https://class101.dev/images/thumbnails/tf-idf.png)
 
 ```python
 cv = TfidfVectorizer(tokenizer=twitter_tokenizer, max_features=3000)
