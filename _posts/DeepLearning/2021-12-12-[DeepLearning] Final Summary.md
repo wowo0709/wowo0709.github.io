@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[Machine Learning] Final Summary"
+title: "[Deep Learning] Final Summary"
 categories: ['AI', 'DeepLearning']
 toc: true
 toc_sticky: true
