@@ -4,8 +4,10 @@ title: "[Python] 파이썬 set 자료구조"
 categories: ['Language', 'Python']
 toc: true
 toc_sticky: true
-tag: ['집합','set]
+tag: ['집합','set']
 ---
+
+
 
 
 
