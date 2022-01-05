@@ -12,7 +12,7 @@ toc_sticky: true
 
 ### RCNN의 구조
 
-![image-20220105173456273](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220105173456273.png)
+![image-20220105173456273](https://user-images.githubusercontent.com/70505378/148225750-2cf83cf1-19d3-4575-90a9-0c9b06fea844.png)
 
 1. 이미지 입력
 2. 약 2000개의 bottom-up region proposals를 추출
@@ -27,7 +27,7 @@ toc_sticky: true
 
 #### 1. Region Proposal
 
-![image-20220105173809873](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220105173809873.png)
+![image-20220105173809873](https://user-images.githubusercontent.com/70505378/148225752-d27e0bf5-c08f-447a-ba6d-80d4e0f1578a.png)
 
 * CNN의 입력으로 사용할 후보 영역 추출. 
 
@@ -35,7 +35,7 @@ toc_sticky: true
 
 **Selective search algorithm**
 
-![image-20220105173950401](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220105173950401.png)
+![image-20220105173950401](https://user-images.githubusercontent.com/70505378/148225754-e6b0fa27-aa6b-493a-8a46-acf47003cf5f.png)
 
 1. 색상, 질감, 영역크기 등을 이용해 (non-objective) segmentation을 수행. 이 작업을 통해 많은 small segmented areas를 얻는다. 
 2. Bottom-up(상향식) 방식으로 small segmented areas들을 합쳐 더 큰 segmented areas를 얻는다. 
@@ -45,7 +45,7 @@ toc_sticky: true
 
 #### 2. CNN
 
-![image-20220105174332917](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220105174332917.png)
+![image-20220105174332917](https://user-images.githubusercontent.com/70505378/148225757-5682280b-c9b9-41a8-9164-fa5166fea0a9.png)
 
 * 추출된 2000개 region proposal에 대해 각각 ConvNet 연산을 수행
 *  각각의 region proposal에 대해 4096-dimensional feature vector를 추출
@@ -53,7 +53,7 @@ toc_sticky: true
 
 **Domain-specific fine-tuning**
 
-![image-20220105174746664](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220105174746664.png)
+![image-20220105174746664](https://user-images.githubusercontent.com/70505378/148225719-cb9af3a2-46d4-4f31-8237-4745b38321f1.png)
 
 * 2000장의 region proposals와 ground-truth box의 IoU 값이 0.5 이상이면 positive sample로, 0.5 미만이면 negative sample로 분류한다. 
   * 이렇게 함으로써 ground truth만 positive sample로 정의할 때보다 30배 많은 학습 데이터 확보 가능
@@ -65,15 +65,15 @@ toc_sticky: true
 
 **IoU(Intersection over Union)**
 
-![image-20220105175324262](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220105175324262.png)
+![image-20220105175324262](https://user-images.githubusercontent.com/70505378/148225721-23782feb-c096-4468-85dc-035c930736e1.png)
 
-![image-20220105175337402](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220105175337402.png)
+![image-20220105175337402](https://user-images.githubusercontent.com/70505378/148225724-9a7d2824-40b2-4ca4-9ac0-4b3ebf2fb82f.png)
 
 <br>
 
 #### 3-1. Linear SVMs
 
-![image-20220105175406797](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220105175406797.png)
+![image-20220105175406797](https://user-images.githubusercontent.com/70505378/148225729-40b10730-fc34-45f3-a161-9ba646ed4d94.png)
 
 * 각각의 4096-dimensional feature vector에 대해 SVM으로 이진 분류를 수행. 따라서 분류하려는 객체의 수만큼의 SVM이 필요. 
 * 학습이 한차례 끝나면 hard negative mining 기법을 적용하여 재학습을 수행
@@ -81,7 +81,7 @@ toc_sticky: true
 
 **hard negative mining**
 
-![image-20220105175924113](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220105175924113.png)
+![image-20220105175924113](https://user-images.githubusercontent.com/70505378/148225731-3b450deb-5314-4c19-b4bc-10e947b12aa7.png)
 
 * 이미지에서 사람을 탐지하는 경우 사람은 positive sample, 배경은 negative sample에 해당한다. 모델 추론 시 '사람이 아니라고 예측했을 때 실제로 사람이 아닌 경우의 샘플'을 **'true negative sample'**, '사람이 아니라고 예측했지만 실제로는 사람인 경우의 샘플'을 **'false positive sample'**이라고 한다. 
 * 객체 탐지 시 negative sample의 수가 우세하기 때문에, 클래스 불균형으로 인하여 모델은 주로 false positive 오류를 주로 범하게 된다(배경이라고 예측할 확률이 높기 때문에). 
@@ -93,7 +93,7 @@ Selective search를 통해 얻은 bounding box의 크기를 조정해주는 boun
 
 * N개의 training pair인 {(P<sup>i</sup>,G<sup>i</sup>)}*i*=1,...,*N* 에 대해 P<sup>i<sup> = (*P**x**i*,*P**y**i*,*P**w**i*,*P**h**i*)는 해당 region에 대한 추정값으로 각각은 region 중심의 x,y좌표와 width와 height를 나타내고, 이에 대응되게 G<sup>i</sup> = (*G**x**i*,*G**y**i*,*G**w**i*,*G**h**i*)은 해당 region에 대한 ground truth이다.
 
-![image-20220105180646988](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220105180646988.png)
+![image-20220105180646988](https://user-images.githubusercontent.com/70505378/148225733-e5f3040d-2dc3-43a8-b1f8-ac3ee1c0f4af.png)
 
 * 위의 식을 만족하는 최적의 w를 찾는 것이며, 각 기호의 의미는 다음과 같다. 
 
@@ -103,7 +103,7 @@ Selective search를 통해 얻은 bounding box의 크기를 조정해주는 boun
 
   * t
 
-    ![image-20220105181244132](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220105181244132.png)
+    ![image-20220105181244132](https://user-images.githubusercontent.com/70505378/148225734-b51cb08b-b29f-4f1e-959c-9813660628c7.png)
 
 <br>
 
@@ -111,7 +111,7 @@ Selective search를 통해 얻은 bounding box의 크기를 조정해주는 boun
 
 최종적으로 얻게 되는 여러 개의 bounding box 중 가장 적합한 bounding box를 선택하는 알고리즘
 
-![image-20220105181432226](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220105181432226.png)
+![image-20220105181432226](https://user-images.githubusercontent.com/70505378/148225736-a515aef0-42cc-4c06-86df-193457caaa2a.png)
 
 1. bounding box 별로 지정한 confidence score threshold 이하의 box 제거
 2. 남은 bounding box를 confidence score에 따라 내림차순 정렬. 그 다음 confidence score가 높은 순의 bounding box부터 다른 box와의 IoU 값을 조사하여 IoU threshold 이상인 box를 모두 제거(포함하는 영역이 비슷하면서 confidence score가 더 낮은 bounding box는 조사할 필요가 없기 때문)
@@ -149,7 +149,7 @@ Selective search를 통해 얻은 bounding box의 크기를 조정해주는 boun
 
 ### Fast RCNN의 구조 
 
-![image-20220105182352809](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220105182352809.png)
+![image-20220105182352809](https://user-images.githubusercontent.com/70505378/148225738-8b00bf55-8383-4013-85d9-2627c07dd1ee.png)
 
 1. input image와 RoI(region of Interest)들이 입력으로 사용. 
 2. 각각의 RoI는 ConvNet 연산을 통해 고정된 크기의 feature map으로 pooling되고, FC(Fully Connected) layer를 통해 feature vector로 매핑됨. 
@@ -159,7 +159,7 @@ Selective search를 통해 얻은 bounding box의 크기를 조정해주는 boun
 
 ### RoI pooling layer
 
-![image-20220105182800467](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220105182800467.png)
+![image-20220105182800467](https://user-images.githubusercontent.com/70505378/148225741-1dfc6ae8-069f-4f4f-97f3-4f160574e0cc.png)
 
 ConvNet 연산 후 얻어지는 feature vector는 FC 층의 입력으로 사용되기 때문에 고정된 크기의 feature vector가 필요하다. 
 
@@ -173,7 +173,7 @@ RoI의 위치(좌표 및 높이, 너비), 입력 image와 feature map의 크기 
 
 **Spatial pyramid pooling**
 
-![image-20220105183135806](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220105183135806.png)
+![image-20220105183135806](https://user-images.githubusercontent.com/70505378/148225743-3e74affb-dd4e-48e1-969d-78a5f7887ddc.png)
 
 * 위 사진과 같이 하나의 feature map에 대해 max pooling을 수행하여 고정된 크기의 벡터를 얻는다. 
 * 1단계에서 1분할된 이미지(feature map 원본)에 대해, 2단계에서 4분할된 이미지에 대해, 3단계에서 16분할된 이미지에 대해 max pooling을 수행하여 최종적으로 1x256, 4x256, 16x256 크기의 벡터를 얻는다. 
@@ -200,7 +200,7 @@ Hierarchical sampling을 통해 학습에 사용될 Mini batch를 구성한다.
 
 Multi-task loss를 이용함으로써 end-to-end 학습이 가능해진다. 
 
-![image-20220105184756748](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220105184756748.png)
+![image-20220105184756748](https://user-images.githubusercontent.com/70505378/148225748-384ad2db-34a4-44e0-8ab1-3e314eb0bbde.png)
 
 * p = (p0, ..., pk): K+1 개의 class score
 * u: class ground truth
