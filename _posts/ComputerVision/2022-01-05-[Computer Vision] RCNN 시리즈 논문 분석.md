@@ -220,13 +220,118 @@ Multi-task loss를 이용함으로써 end-to-end 학습이 가능해진다.
 
 ## Faster RCNN
 
+### 개요
 
+SPPNet과 Fast RCNN은 region proposal 과정에 많은 시간과 연산이 소요되며, 이는 병목 현상을 일으킨다. 
 
+Faster RCNN은 이런 문제를 해결하기 위해 **detection network**와 **convolutional features**를 공유하는 `Region Proposal Network(RPN)`을 제안한다. 논문의 저자들은 Fast RCNN 부와 RPN 부의 convolutional features를 공유함으로써 이들을 하나의 네트워크로 합쳤다. 
 
+RPN은 여러 크기와 이미지 비율을 처리하기에 효율적으로 고안되었으며, 새로운 anchor boxes 방법을 사용함으로써 속도를 향상시킬 수 있었다. 
 
+또한 RPN과 Fast RCNN을 통합하기 위해 새로운 training scheme을 제안하였다. 
 
+Faster RCNN은 pretrained VGG-16 모델을 사용했을 때 GPU 환경에서 5fps를 보여주며, ILSVRC와 COCO2015 대회에서 1등을 차지한 바 있다. 
 
+<br>
 
+### Faster RCNN의 구조
+
+![image-20220110185509086](https://user-images.githubusercontent.com/70505378/148775730-22f6ec72-83ac-41bd-a27d-6bb779e25ff1.png)
+
+Faster RCNN은 크게 `RPN`과 `Fast RCNN` 부로 구성되어 있다.  
+
+두 모듈을 하나의 네트워크로 통합하여 object detection을 수행하며, RPN 모듈은 Fast RCNN 모듈에게 어떤 부분이 중요한 지 설명해주는 'attention mechanism'을 수행한다. 
+
+#### Region Proposal Network(RPN)
+
+![image-20220110220601483](https://user-images.githubusercontent.com/70505378/148775732-74bd84ac-fbbe-4772-8473-a022ee61ae13.png)
+
+**anchor**
+
+* 기존의 sliding window 방식은 고정된 크기의 window를 사용하기 때문에 다양한 크기의 객체를 탐지하는 데 문제가 있다. 
+* anchor는 각 pixel을 기준으로 k개의 anchor box를 이용하여 다양한 scale 및 ratio의 객체를 탐지할 수 있다. 
+  * 논문에서는 각 sliding position(pixel)마다 k=9(3x3)개의 anchor box를 사용했으며, 3개는 scale을 위해 3개는 ratio를 위해 사용된다. 
+  * conv feature map에 zero padding을 1 만큼 적용하면 각 pixel이 sliding window의 중심점이 되며, 따라서 최종적으로 WxHxk 개의 bounding box를 생성한다. 
+
+**Input/Output of RPN**
+
+![image-20220110221255049](https://user-images.githubusercontent.com/70505378/148775734-318e61aa-9ec8-4a80-b884-90af0b9f868d.png)
+
+1. Convolution network를 통과해 얻은 feature map(WxHxC)을 입력으로 사용한다. 
+
+2. feature map에 3x3 convolution 연산을 수행한다. zero padding을 1만큼 적용하여 **intermediate feature map**의 크기를 WxHx512로 유지한다. 
+
+3. Intermediate feature map에 대해 유사한 2개의 1x1 convolution 연산을 수행한다. 
+
+   3-1. Classification을 위한 convolution 연산의 결과는 WxHx(2k)이다. W와 H 차원의 값은 각각의 pixel 위치를 나타내고, 2k는 2 x k로, 2는 classification score(object vs non-object)를 나타내고 k는 각각의 anchor box를 나타낸다. 
+
+   3-2. Bounding box regression을 위한 convolution의 결과는 WxHx(4k)이다. 여기서 4는 중심점(x, y)과 높이/너비를 나타내고 k는 각각의 anchor box를 나타낸다. 
+
+**Loss function and training**
+
+![image-20220110222120009](https://user-images.githubusercontent.com/70505378/148775735-d6f08c17-d377-46b0-9ba7-35d01ff5e05a.png)
+
+> *i*: index of an anchor
+> p<sub>i</sub>: predicted probability
+> t<sub>i</sub>: parameterized coordinates
+> N<sub>cls</sub>: mini-batch size
+> N<sub>reg</sub>: the number of anchor locations
+> *λ*: balancing parameter (default = 10)
+> L<sub>cls</sub>: cross-entropy loss
+> L<sub>reg</sub>: L1 smooth loss
+>
+> 윗첨자로 쓰인 *는 ground-truth를 의미한다.
+
+p<sub>i</sub>* = 1 인 경우 positive sample이고, p<sub>i</sub>* = 0인 경우 negative sample이다. 
+
+* Positive sample: IoU가 가장 높은 anchors 또는 IoU가 0.7 이상인 경우
+* Negative sample: IoU가 0.3 이하인 경우
+* Ignore sample: positive도 negative도 아닌 anchors로 학습에 사용되지 않는다. (-1로 라벨링)
+* IoU는 anchor와 ground truth의 간의 계산으로 얻어진다. 
+
+RPN을 학습하기 위한 mini-batch는 하나의 이미지에서 얻은 anchors 중에서 positive 128개 + negative 128개 = 256개로 구성한다. 
+
+* 하나의 이미지에서 얻은 WxHxk 개의 anchor box들 중 이미지 경계를 벗어나는 anchor box들을 제거한다. (-1로 라벨링)
+* 위의 positive/negative 기준에 따라 sample labeling을 수행한다. 
+* positive/negative samples에서 128개씩 무작위로 뽑아 mini-batch를 생성한다. 
+
+참고로, ignore labeling을 하는 이유는 WxHxk 개의 anchor 중에서 256개의 anchor 만을 이용해서 loss를 구하지만, RPN의 output과 ground-truth의 차원을 맞춰줘야 하기 때문. 
+
+<br>
+
+#### Sharing Features for RPN & Faster RCNN
+
+RPN과 Fast R-CNN의 features 공유를 설명하기 전에, Fast R-CNN module은 Fast R-CNN 논문의 학습 방법으로 학습한다.
+
+한 가지 다른 점은 selective search를 통해 RoI를 받는 것이 아니라 RPN을 통해 RoI를 받는다. 
+
+이 때, 모든 anchor를 RoI로 설정하는 것이 아니라 Non-maximum suppression을 사용해 2000개의 RoI들만 이용한다.
+
+**4-Step Alternating Training**
+
+![image-20220110223246553](https://user-images.githubusercontent.com/70505378/148775736-62e7f3fb-279e-45c4-a76a-c80300627e4c.png)
+
+위 사진에서 파란색 네트워크는 갱신이 되지 않는 네트워크이다. 
+
+1. RPN training 방식을 통해 학습을 한다. 이때, pretrained VGG도 같이 학습한다. 
+2. (1)에서 학습된 RPN을 이용해 RoI를 추출하여 Fast RCNN 부분을 학습한다. 이때, pretrained VGG도 같이 학습한다. 
+3. (1)과 (2)로 학습된 pretrained VGG를 통해 추출한 feature map을 이용해 RPN을 학습한다. 이때, pretrained VGG와 Fast RCNN 부분은 학습하지 않는다. 
+4. (1)과 (2)로 학습된 pretrained VGG와 (3)을 통해 학습된 RPN을 이용해 Fast RCNN을 학습한다. 이때 pretrained VGG와 RPN은 학습하지 않는다. 
+
+<br>
+
+### Detection
+
+**Training**
+
+![image-20220110223634042](https://user-images.githubusercontent.com/70505378/148775737-59b2ef61-6407-4a28-80cf-3607256cf2b7.png)
+
+**Detection**
+
+![image-20220110223648646](https://user-images.githubusercontent.com/70505378/148775739-61d00882-243b-4436-b8f2-1d9c3f162489.png)
+
+* 학습 시와 추론 시에 다른 점은 학습 시에는 'Anchor target layer'와 'Proposal target layer'가 존재한다는 것이다. 이는 학습을 위해 필요한 ground truth를 만들어주는 layer들이다. 
+* Faster RCNN은 RPN을 이용한 특징 영역 추출로 기존의 모델들보다 정확도와 추론 시간 모두에서 더 뛰어난 성능을 보이는 객체 탐지 모델이다. 
 
 
 
