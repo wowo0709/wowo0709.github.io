@@ -50,8 +50,8 @@
         <span class="nav__sub-title">💡 AI</span>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "TensorflowKeras" %}
-                        <li><a href="/categories/tensorflow&keras" class="">Tensorflow&Keras ({{category[1].size}})</a></li>
+                    {% if category[0] == "AITech" %}
+                        <li><a href="/categories/aitech" class="">AI Tech ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
@@ -108,6 +108,13 @@
                 {% for category in site.categories %}
                     {% if category[0] == "KnowledgeExpression" %}
                         <li><a href="/categories/knowledgeexpression" class="">Knowledge Expression ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "TensorflowKeras" %}
+                        <li><a href="/categories/tensorflow&keras" class="">Tensorflow&Keras ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
