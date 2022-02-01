@@ -1,14 +1,14 @@
 ---
-title: programmers
+title: Bruteforce
 layout: archive
-permalink: categories/programmers
+permalink: categories/bruteforce
 author_profile: true
 sidebar_main: true
 ---
 
 
 
-{% assign posts = site.categories.Programmers %}
+{% assign posts = site.categories.Bruteforce %}
 
 {% for post in posts %} {% include archive-single.html type=page.entries_layout %}{% endfor %}
 
