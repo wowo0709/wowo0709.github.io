@@ -35,15 +35,113 @@
         <span class="nav__sub-title">🧮 Algorithm</span>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "Baekjoon" %}
-                        <li><a href="/categories/baekjoon" class="">Baekjoon(Python) ({{category[1].size}})</a></li>
+                    {% if category[0] == "Implementation" %}
+                        <li><a href="/categories/implementation" class="">Implementation ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "Programmers" %}
-                        <li><a href="/categories/programmers" class="">Programmers(Python) ({{category[1].size}})</a></li>
+                    {% if category[0] == "Bruteforce" %}
+                        <li><a href="/categories/bruteforce" class="">Bruteforce ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Sorting" %}
+                        <li><a href="/categories/sorting" class="">Sorting ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Backtracking" %}
+                        <li><a href="/categories/backtracking" class="">Backtracking ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "DFSBFS" %}
+                        <li><a href="/categories/dfsbfs" class="">DFS/BFS ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Graph" %}
+                        <li><a href="/categories/graph" class="">Graph ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Stack" %}
+                        <li><a href="/categories/stack" class="">Stack ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Queue" %}
+                        <li><a href="/categories/queue" class="">Queue ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "DivideConquer" %}
+                        <li><a href="/categories/divideconquer" class="">Divide&Conquer ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "BinarySearch" %}
+                        <li><a href="/categories/binarysearch" class="">BinarySearch ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Heap" %}
+                        <li><a href="/categories/heap" class="">Heap ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "ShortestPath" %}
+                        <li><a href="/categories/shortestpath" class="">ShortestPath ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "TwoPointer" %}
+                        <li><a href="/categories/twopointer" class="">TwoPointer ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "DynamicProgramming" %}
+                        <li><a href="/categories/dynamicprogramming" class="">DynamicProgramming ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Tree" %}
+                        <li><a href="/categories/tree" class="">Tree ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "UnionFind" %}
+                        <li><a href="/categories/unionfind" class="">UnionFind ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
