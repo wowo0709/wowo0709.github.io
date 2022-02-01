@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[Programmers] 전력망을 둘로 나누기"
+title: "[Programmers] 양과 늑대"
 categories: ['Algorithm', 'Programmers']
 toc: true
 toc_sticky: true
