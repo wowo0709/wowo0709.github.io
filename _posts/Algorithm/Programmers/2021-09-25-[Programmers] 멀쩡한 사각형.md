@@ -1,10 +1,10 @@
 ---
 layout: single
 title: "[Programmers] 멀쩡한 사각형"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Implementation']
 toc: true
 toc_sticky: true
-tag: ['최대공약수']
+tag: ['LCM']
 ---
 
 

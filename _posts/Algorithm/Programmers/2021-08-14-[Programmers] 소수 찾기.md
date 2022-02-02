@@ -1,7 +1,8 @@
 ---
 layout: single
 title: "[Programmers] 소수 찾기"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Implementation']
+tag: ['Permutations', 'Set', 'Prime']
 ---
 
 # 소수 찾기

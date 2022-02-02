@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 주식 가격"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Stack', 'SequentialSearch']
 ---
 
 # 주식 가격

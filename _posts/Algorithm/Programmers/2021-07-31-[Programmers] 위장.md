@@ -1,7 +1,8 @@
 ---
 layout: single
 title: "[Programmers] 위장"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Implementation']
+tag: ['Combinations']
 ---
 
 # 위장

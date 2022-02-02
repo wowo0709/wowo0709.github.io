@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] H-Index"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Sorting', 'SequentialSearch']
 ---
 
 # H-Index

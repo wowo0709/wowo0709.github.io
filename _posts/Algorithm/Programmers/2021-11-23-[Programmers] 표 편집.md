@@ -1,10 +1,10 @@
 ---
 layout: single
 title: "[Programmers] [1차] 셔틀버스"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Bruteforce', 'Implementation']
 toc: true
 toc_sticky: true
-tag: ['완전탐색']
+tag: ['DoublyLinkedList']
 ---
 
 

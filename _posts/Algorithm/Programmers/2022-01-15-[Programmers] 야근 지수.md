@@ -1,10 +1,9 @@
 ---
 layout: single
 title: "[Programmers] 야근 지수"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Heap']
 toc: true
 toc_sticky: true
-tag: ['힙']
 ---
 
 

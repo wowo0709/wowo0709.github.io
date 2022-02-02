@@ -1,10 +1,10 @@
 ---
 layout: single
 title: "[Programmers] 2 x n 타일링"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'DynamicProgramming']
 toc: true
 toc_sticky: true
-tag: ['동적계획법']
+tag: ['Fibonacci']
 ---
 
 

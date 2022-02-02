@@ -1,10 +1,10 @@
 ---
 layout: single
 title: "[Programmers] 순위"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Graph', 'Bruteforce']
 toc: true
 toc_sticky: true
-tag: ['그래프', '완전탐색']
+tag: ['Set']
 ---
 
 

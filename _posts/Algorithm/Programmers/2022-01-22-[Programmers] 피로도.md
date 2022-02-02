@@ -1,10 +1,10 @@
 ---
 layout: single
 title: "[Programmers] 피로도"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Bruteforce', 'BFSDFS']
 toc: true
 toc_sticky: true
-tag: ['완전탐색','순열','dfs']
+tag: ['Permutations']
 ---
 
 

@@ -1,10 +1,10 @@
 ---
 layout: single
 title: "[Programmers] 타겟 넘버"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'DFSBFS']
 toc: true
 toc_sticky: true
-tag: ['탐색', dfs/bfs']
+tag: ['Product']
 ---
 
 

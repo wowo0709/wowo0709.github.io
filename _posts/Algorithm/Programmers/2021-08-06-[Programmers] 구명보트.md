@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 구명보트"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Queue', 'TwoPointer']
 ---
 
 # 구명보트

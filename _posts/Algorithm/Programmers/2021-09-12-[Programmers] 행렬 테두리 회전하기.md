@@ -1,10 +1,10 @@
 ---
 layout: single
 title: "[Programmers] 행렬 테두리 회전하기"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Implementation']
 toc: true
 toc_sticky: true
-tag: ['행렬', '회전']
+tag: ['Matrix', 'Rotation']
 ---
 
 

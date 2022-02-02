@@ -1,10 +1,9 @@
 ---
 layout: single
 title: "[Programmers] 베스트앨범"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'HashMap']
 toc: true
 toc_sticky: true
-tag: ['해시맵']
 ---
 
 

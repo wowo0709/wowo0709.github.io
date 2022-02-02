@@ -1,10 +1,9 @@
 ---
 layout: single
 title: "[Programmers] 다단계 칫솔 판매"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Tree']
 toc: true
 toc_sticky: true
-tag: ['트리']
 ---
 
 

@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 올바른 괄호"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Stack', 'SequentialSearch']
 ---
 
 # 올바른 괄호

@@ -1,10 +1,9 @@
 ---
 layout: single
 title: "[Programmers] 오픈채팅방"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'HashMap']
 toc: true
 toc_sticky: true
-tag: ['해쉬맵']
 ---
 
 

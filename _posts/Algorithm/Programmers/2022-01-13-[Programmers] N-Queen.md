@@ -1,10 +1,9 @@
 ---
 layout: single
 title: "[Programmers] N-Queen"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Backtracking']
 toc: true
 toc_sticky: true
-tag: ['백트래킹']
 ---
 
 

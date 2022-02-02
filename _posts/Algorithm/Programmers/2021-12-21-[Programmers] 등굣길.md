@@ -1,10 +1,9 @@
 ---
 layout: single
 title: "[Programmers] 등굣길"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'DFSBFS', 'DynamicProgramming']
 toc: true
 toc_sticky: true
-tag: ['BFS','동적계획법']
 ---
 
 

@@ -1,10 +1,9 @@
 ---
 layout: single
 title: "[Programmers] 자물쇠와 열쇠"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Bruteforce', 'HashMap']
 toc: true
 toc_sticky: true
-tag: ['완전탐색', '해쉬맵']
 ---
 
 

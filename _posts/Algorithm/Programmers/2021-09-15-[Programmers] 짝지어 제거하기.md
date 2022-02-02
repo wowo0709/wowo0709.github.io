@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 짝지어 제거하기"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'SequentialSearch', 'Stack']
 toc: true
 toc_sticky: true
 tag: ['반복', '스택', '순차 탐색']

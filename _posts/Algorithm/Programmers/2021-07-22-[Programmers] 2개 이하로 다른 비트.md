@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 2개 이하로 다른 비트"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Implementation']
 ---
 
 # 2개 이하로 다른 비트

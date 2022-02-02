@@ -1,10 +1,9 @@
 ---
 layout: single
 title: "[Programmers] 정수 삼각형"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'DynamicProgramming']
 toc: true
 toc_sticky: true
-tag: ['동적계획법']
 ---
 
 

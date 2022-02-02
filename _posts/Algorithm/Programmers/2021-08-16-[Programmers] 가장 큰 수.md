@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 가장 큰 수"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Sorting', 'Implementation']
 ---
 
 # 가장 큰 수

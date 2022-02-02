@@ -1,7 +1,8 @@
 ---
 layout: single
 title: "[Programmers] 다리를 지나는 트럭"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Queue']
+tag: ['Deque']
 ---
 
 # 다리를 지나는 트럭

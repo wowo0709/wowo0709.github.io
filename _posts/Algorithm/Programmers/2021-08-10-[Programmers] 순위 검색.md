@@ -1,7 +1,8 @@
 ---
 layout: single
 title: "[Programmers] 순위 검색"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'HashMap']
+tag: ['Combinations', 'Bisection']
 ---
 
 # 순위 검색

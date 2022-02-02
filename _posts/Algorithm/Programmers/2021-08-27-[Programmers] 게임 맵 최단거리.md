@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 게임 맵 최단거리"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'ShortestPath', 'DFSBFS']
 ---
 
 

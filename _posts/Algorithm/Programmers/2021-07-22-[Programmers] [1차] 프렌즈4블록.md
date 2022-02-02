@@ -1,7 +1,8 @@
 ---
 layout: single
 title: "[Programmers] [1차] 프렌즈4블록"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Implementation']
+tag: ['Set']
 ---
 
 # [1차] 프렌즈4블록
@@ -79,7 +80,7 @@ TMMTTJ
 이 문제에서는 크게 2가지를 고려해야 한다. 
 
 	1. 2x2 크기의 정사각형을 어떻게 찾고, 그 위치를 어떻게 저장할 것인가?
- 	2. 저장된 위치의 블록들을 어떻게 없앨 것인가?
+	2. 저장된 위치의 블록들을 어떻게 없앨 것인가?
 
 
 

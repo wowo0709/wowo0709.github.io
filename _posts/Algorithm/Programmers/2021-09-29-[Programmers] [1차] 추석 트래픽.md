@@ -1,10 +1,9 @@
 ---
 layout: single
 title: "[Programmers] [1차] 추석 트래픽"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Implementation', 'Bruteforce']
 toc: true
 toc_sticky: true
-tag: ['완전탐색']
 ---
 
 

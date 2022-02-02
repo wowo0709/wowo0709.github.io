@@ -1,10 +1,9 @@
 ---
 layout: single
 title: "[Programmers] 양과 늑대"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Tree', 'Graph', 'DFSBFS']
 toc: true
 toc_sticky: true
-tag: ['Tree','Graph', 'DFS']
 ---
 
 

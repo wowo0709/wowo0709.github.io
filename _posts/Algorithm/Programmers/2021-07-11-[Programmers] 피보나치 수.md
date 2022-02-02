@@ -1,7 +1,8 @@
 ---
 layout: single
 title: "[Programmers] 피보나치 수"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'DynamicProgramming']
+tag: ['Fibonacci']
 ---
 
 # 피보나치 수

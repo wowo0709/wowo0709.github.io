@@ -1,10 +1,10 @@
 ---
 layout: single
 title: "[Programmers] [카카오 인턴] 경주로 건설"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'DFSBFS', 'ShortestPath']
 toc: true
 toc_sticky: true
-tag: ['BFS', '다익스트라']
+tag: ['Dijkstra']
 ---
 
 

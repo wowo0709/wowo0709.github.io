@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 땅따먹기"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'DynamicProgramming']
 ---
 
 # 땅따먹기

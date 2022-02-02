@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 행렬의 곱셈"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Implementation']
 ---
 
 # 행렬의 곱셈

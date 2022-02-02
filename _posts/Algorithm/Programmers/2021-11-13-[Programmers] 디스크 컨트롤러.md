@@ -1,10 +1,9 @@
 ---
 layout: single
 title: "[Programmers] 디스크 컨트롤러"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Heap']
 toc: true
 toc_sticky: true
-tag: ['힙']
 ---
 
 

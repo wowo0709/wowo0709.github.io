@@ -1,10 +1,9 @@
 ---
 layout: single
 title: "[Programmers] 섬 연결하기"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Graph', 'DFSBFS', 'UnionFind']
 toc: true
 toc_sticky: true
-tag: ['BFS','유니온파인드']
 ---
 
 

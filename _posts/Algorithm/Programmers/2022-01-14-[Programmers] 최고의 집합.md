@@ -1,10 +1,10 @@
 ---
 layout: single
 title: "[Programmers] 최고의 집합"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Implementation']
 toc: true
 toc_sticky: true
-tag: []
+tag: ['Number']
 ---
 
 

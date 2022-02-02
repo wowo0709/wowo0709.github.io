@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 숫자의 표현"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'TwoPointer']
 ---
 
 # 숫자의 표현

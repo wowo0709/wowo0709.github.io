@@ -1,10 +1,10 @@
 ---
 layout: single
 title: "[Programmers] 합승 택시 요금"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'ShortestPath']
 toc: true
 toc_sticky: true
-tag: ['플로이드워셜']
+tag: ['FloydWarshall']
 ---
 
 

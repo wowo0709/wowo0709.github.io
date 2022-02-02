@@ -1,7 +1,8 @@
 ---
 layout: single
 title: "[Programmers] 삼각 달팽이"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'DynamicProgramming']
+tag: ['reduce', 'chain']
 ---
 
 # 삼각 달팽이

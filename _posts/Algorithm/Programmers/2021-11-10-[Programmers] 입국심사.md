@@ -1,10 +1,9 @@
 ---
 layout: single
 title: "[Programmers] 입국심사"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'BinarySearch']
 toc: true
 toc_sticky: true
-tag: ['이분탐색']
 ---
 
 

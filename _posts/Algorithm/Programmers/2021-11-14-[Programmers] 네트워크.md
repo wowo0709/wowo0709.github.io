@@ -1,10 +1,9 @@
 ---
 layout: single
 title: "[Programmers] 네트워크"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'DFSBFS']
 toc: true
 toc_sticky: true
-tag: ['DFS/BFS']
 ---
 
 
@@ -47,7 +46,7 @@ tag: ['DFS/BFS']
 
 ## 문제 풀이
 
-### \# 동적계획법
+### \# DFS/BFS
 
 <br>
 

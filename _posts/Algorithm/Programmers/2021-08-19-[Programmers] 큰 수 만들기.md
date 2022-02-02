@@ -1,7 +1,8 @@
 ---
 layout: single
 title: "[Programmers] 큰 수 만들기"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Stack']
+tag: ['Greedy']
 ---
 
 # 큰 수 만들기
@@ -76,7 +77,7 @@ def solution(number, k):
   return number
 ```
 
-각 자릿수를 제외한 숫자들 중 가장 큰 수를 찾아 풀어보려 했지만 ... O(n^2^)의 시간 복잡도로 성공할리가 없죠. 
+각 자릿수를 제외한 숫자들 중 가장 큰 수를 찾아 풀어보려 했지만 ... O(n^2)의 시간 복잡도로 성공할리가 없죠. 
 
 <br>
 

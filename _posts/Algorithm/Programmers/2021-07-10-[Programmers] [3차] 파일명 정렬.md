@@ -1,24 +1,14 @@
 ---
 layout: single
 title: "[Programmers] [3차] 파일명 정렬"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Implementation']
 ---
 
 # [3차] 파일명 정렬
 
 ### 문제 설명
 
----
-
-**#** **[****3차****]** **파일명 정렬**
-
-
-
-**###### 문제 설명**
-
-
-
-**## 파일명 정렬**
+## 파일명 정렬
 
 
 
@@ -82,7 +72,7 @@ categories: ['Algorithm', 'Programmers']
 
 
 
-**### 입력 형식**
+### 입력 형식
 
 
 
@@ -98,7 +88,7 @@ categories: ['Algorithm', 'Programmers']
 
 
 
-**### 출력 형식**
+### 출력 형식
 
 
 
@@ -106,7 +96,7 @@ categories: ['Algorithm', 'Programmers']
 
 
 
-**### 입출력 예제**
+### 입출력 예제
 
 
 

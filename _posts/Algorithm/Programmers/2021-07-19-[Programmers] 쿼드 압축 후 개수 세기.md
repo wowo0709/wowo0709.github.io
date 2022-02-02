@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 쿼드 압축 후 개수 세기"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'DivideConquer']
 ---
 
 # 쿼드 압축 후 개수 세기

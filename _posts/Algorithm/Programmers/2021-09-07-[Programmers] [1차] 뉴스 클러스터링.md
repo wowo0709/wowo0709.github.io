@@ -1,9 +1,10 @@
 ---
 layout: single
 title: "[Programmers] [1차] 뉴스 클러스터링"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Implementation']
 toc: true
 toc_sticky: true
+tag: ['Counter', 'Set']
 ---
 
 

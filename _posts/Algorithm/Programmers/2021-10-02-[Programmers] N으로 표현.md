@@ -1,10 +1,10 @@
 ---
 layout: single
 title: "[Programmers] N으로 표현"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'DynamicProgramming']
 toc: true
 toc_sticky: true
-tag: ['동적계획법']
+tag: ['Product']
 ---
 
 

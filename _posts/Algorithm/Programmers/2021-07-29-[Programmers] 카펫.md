@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 카펫"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Implementation', 'Bruteforce']
 ---
 
 # 카펫

@@ -1,10 +1,10 @@
 ---
 layout: single
 title: "[Programmers] 가장 먼 노드"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Graph', 'ShortestPath']
 toc: true
 toc_sticky: true
-tag: ['그래프', '최단거리', '다익스트라']
+tag: ['Dijkstra', 'BellmanFord', 'FloydWarshall']
 ---
 
 

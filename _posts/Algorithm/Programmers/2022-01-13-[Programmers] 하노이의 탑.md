@@ -1,10 +1,10 @@
 ---
 layout: single
 title: "[Programmers] 하노이의 탑"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Implementation']
 toc: true
 toc_sticky: true
-tag: ['재귀']
+tag: ['Recursive']
 ---
 
 

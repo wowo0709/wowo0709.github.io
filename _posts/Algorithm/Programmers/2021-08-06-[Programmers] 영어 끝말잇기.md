@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 영어 끝말잇기"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Implementation']
 ---
 
 # 영어 끝말잇기

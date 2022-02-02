@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 배달"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Graph', 'ShortestPath']
 ---
 
 # 배달

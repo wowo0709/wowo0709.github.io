@@ -1,10 +1,9 @@
 ---
 layout: single
 title: "[Programmers] 기능 개발"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'SequentialSearch']
 toc: true
 toc_sticky: true
-tag: ['스택/큐']
 ---
 
 
@@ -55,7 +54,7 @@ tag: ['스택/큐']
 
 ## 문제 풀이
 
-### \# 스택/큐
+### \# 순차탐색
 
 <br>
 

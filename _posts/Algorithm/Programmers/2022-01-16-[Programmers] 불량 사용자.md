@@ -1,10 +1,10 @@
 ---
 layout: single
 title: "[Programmers] 불량 사용자"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Bruteforce']
 toc: true
 toc_sticky: true
-tag: ['완전탐색','중복순열']
+tag: ['Product']
 ---
 
 

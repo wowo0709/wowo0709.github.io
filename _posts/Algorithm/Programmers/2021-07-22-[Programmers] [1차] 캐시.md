@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] [1차] 캐시"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'SequentialSearch', 'Queue']
 ---
 
 # [1차] 캐시

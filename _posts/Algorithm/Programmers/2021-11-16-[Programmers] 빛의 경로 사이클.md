@@ -1,10 +1,9 @@
 ---
 layout: single
 title: "[Programmers] 빛의 경로 사이클"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Bruteforce', 'Implementation']
 toc: true
 toc_sticky: true
-tag: ['탐색']
 ---
 
 

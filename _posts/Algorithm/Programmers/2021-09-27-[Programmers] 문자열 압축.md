@@ -1,10 +1,9 @@
 ---
 layout: single
 title: "[Programmers] 문자열 압축"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'SequentialSearch', 'Stack']
 toc: true
 toc_sticky: true
-tag: ['문자열']
 ---
 
 

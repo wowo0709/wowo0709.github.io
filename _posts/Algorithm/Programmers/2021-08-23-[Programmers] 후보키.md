@@ -1,7 +1,8 @@
 ---
 layout: single
 title: "[Programmers] 후보키"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Implementation', 'HashMap']
+tag: ['Combinations', 'Counter']
 ---
 
 # 후보키

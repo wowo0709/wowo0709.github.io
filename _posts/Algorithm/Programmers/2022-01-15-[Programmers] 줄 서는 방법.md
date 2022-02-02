@@ -1,10 +1,10 @@
 ---
 layout: single
 title: "[Programmers] 줄 서는 방법"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Implementation']
 toc: true
 toc_sticky: true
-tag: ['몫과나머지']
+tag: ['Divmod']
 ---
 
 

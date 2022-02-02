@@ -1,10 +1,9 @@
 ---
 layout: single
-title: "[Programmers] [카카오 인턴]보석 쇼핑"
-categories: ['Algorithm', 'Programmers']
+title: "[Programmers] [카카오 인턴] 보석 쇼핑"
+categories: ['Algorithm', 'TwoPointer']
 toc: true
 toc_sticky: true
-tag: ['투포인터']
 ---
 
 

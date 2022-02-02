@@ -1,10 +1,9 @@
 ---
 layout: single
 title: "[Programmers] 전력망을 둘로 나누기"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Bruteforce', 'DFSBFS', 'UnionFind']
 toc: true
 toc_sticky: true
-tag: ['BruteForce',BFS','UnionFind']
 ---
 
 

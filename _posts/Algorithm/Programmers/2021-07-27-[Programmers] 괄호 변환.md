@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 괄호 변환"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Implementation', 'Stack']
 ---
 
 # 괄호 변환

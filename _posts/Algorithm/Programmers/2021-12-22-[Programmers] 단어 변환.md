@@ -1,10 +1,9 @@
 ---
 layout: single
 title: "[Programmers] 단어 변환"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'DFSBFS']
 toc: true
 toc_sticky: true
-tag: ['DFS/BFS']
 ---
 
 

@@ -1,10 +1,9 @@
 ---
 layout: single
 title: "[Programmers] 더 맵게"
-categories: ['Algorithm', 'Programmers']
+categories: ['Algorithm', 'Heap']
 toc: true
 toc_sticky: true
-tag: ['힙']
 ---
 
 
