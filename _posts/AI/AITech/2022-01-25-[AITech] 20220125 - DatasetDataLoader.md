@@ -1,10 +1,10 @@
 ---
 layout: single
-title: "[AITech] 2022년 1월 25일 학습 내용 정리"
+title: "[AITech] 20220125 - Dataset&DataLoader"
 categories: ['AI', 'AITech']
 toc: true
 toc_sticky: true
-tag: ['파이토치','AutoGrad','DataLoader']
+tag: []
 ---
 
 
@@ -12,95 +12,6 @@ tag: ['파이토치','AutoGrad','DataLoader']
 <br>
 
 ## 학습 내용 정리
-
-### AutoGrad & Optimizer
-
-딥러닝 모델의 구조는 **블록들의 연속**이다. 해당 블록은 하나의 연산을 수행하는 단일 층일 수도 있고, 여러 단일 층들이 모인 하나의 블록일 수도 있다. 
-
-모델의 반복 구조를 설계하기 쉽게 하기 위하여, 파이토치에서는 여러 모듈을 제공한다. 
-
-#### torch.nn.Module
-
-* 딥러닝을 구성하는 Layer의 base class
-* **Input, Output, Forward, Backward** 정의
-* 학습의 대상이 되는 **parameter** 정의
-
-**nn.Parameter**
-
-* nn.Module 내에 attribute가 될 때는 **required_grad=True**로 지정하여 학습 대상으로 설정
-* 하지만 이를 직접 지정해 줄 일은 거의 없다. 
-  * 대부분의 layer에는 weights 값들이 지정되어 있음
-
-```python
-class MyLinear(nn.Module):
-    def __init__(self, in_features, out_features, bias=True):
-        super().__init__()
-        self.in_features = in_features # 입력 피쳐 개수(입력 노드 개수)
-        self.out_features = out_features # 출력 피쳐 개수(출력 노드 개수)
-        
-        self.weights = nn.Parameter( # 학습 parameter 설정(가중치)
-                torch.randn(in_features, out_features))
-        
-        self.bias = nn.Parameter(torch.randn(out_features)) # 학습 parameter 설정(편향)
-        
-    def forward(self, x: Tensor):
-        return x @ self.weights + self.bias # linear 연산
-```
-
-**Backward**
-
-* **Layer에 있는 parameter들의 미분을 수행(그래디언트 값 전달)**
-* Loss를 미분한 값으로 parameter 갱신
-
-```python
-for epoch in range(epochs):
-    ...
-    # 이전 그래디언트 값 초기화
-    optimizer.zero_grad()
-    # 모델 예측 값
-    output = model(inputs)
-    # 손실 함수 값 계산
-    loss = criterion(outputs, labels)
-    # 손실 함수 미분, 그래디언트 값 계산
-    loss.backward()
-    # 파라미터 갱신
-    optimizer.step()
-```
-
-* backward 함수와 optimizer는 Module 레벨에서 직접 오버라이딩 할 수 있고, 직접 미분 수식을 써야 하므로 실제로 할 일은 거의 없지만 순서를 이해할 필요는 있다. 
-
-```python
-class LogisticRegression(nn.Module):
-    def __init__(self, dim, lr=torch.scalar_tensor(0.01)):
-        super(LR, self).__init__()
-        # initialize parameters
-        self.w = torch.zeros(dim, 1, dtype=torch.float).to(device)
-        self.b = torch.scalar_tensor(0).to(device)
-        self.grads = {"dw": torch.zeros(dim, 1, dtype=torch.float).to(device), 
-                     "db": torch.scalar_tensor(0).to(device)}
-        self.lr = lr.to(device)
-        
-    def forward(self, x):
-        # compute forward
-        z = torch.mm(self.w.T, x)
-        a = self.sigmoid(z)
-        return a
-    
-    def sigmoid(self, z):
-        return 1/(1+torch.exp(-z))
-    
-    def backward(self, x, yhat, y):
-        # 미분 수식을 직접 작성
-        self.grads["dw"] = (1/x.shape[1])*torch.mm(x, (yhat-y).T)
-        self.grads["db"] = (1/x.shape[1])(torch.sum(yhat-y))
-        
-    def optimize(self):
-        # 파라미터 업데이트
-        self.w = self.w - self.lr*self.grads["dw"]
-        self.b = self.b - self.lr*self.grads["db"]
-```
-
-<br>
 
 ### Datasets & DataLoaders
 
@@ -201,35 +112,6 @@ DataLoader(dataset, batch_size=1, shuffle=False, sampler=None,
 
 <br>
 
-<br>
-
 ## 참고 자료
 
-* [Pytorch 설치 이후 Jupyter notebook에서 import torch 안 될 때](https://keepdev.tistory.com/51)
 * [torch.utils.data document](https://pytorch.org/docs/stable/data.html)
-
-
-
-
-
-
-
-<br>
-
-<br>
-
-## 회고
-
-오늘은 파이토치에서의 편리한 역전파를 가능하게 해주는 Autograd, Optimizer에 대한 내용과 편리한 데이터 로드를 가능하게 해주는 Dataset, DataLoader 클래스에 대한 내용을 학습하였습니다. 
-
-torch.nn.Module 단에서 intput, output, forward, backward에 대한 연산을 오버라이딩해서 커스터마이징할 수 있지만, 실제로 할 일은 거의 없고 메서드를 그대로 가져다 씁니다. 갱신이 필요한 파라미터들은 required_grad=True로 지정되어 있고 Tensor.backward() 로 미분을, optimizer.step()으로 파라미터 갱신을 수행합니다. 
-
-Dataset 클래스는 데이터의 입력 형태를 정의해주는 업무를 담당하며, 데이터의 형태에 따라 다른 정의가 필요합니다. 또한 init(), len(), get_item() 등의 메서드를 정의해주어야 합니다. DataLoader에서는 Dataset 클래스를 이용해 배치를 만들고, 데이터의 타입을 텐서로 변환해주는 업무를 주로 수행합니다. DataLoader에 있는 여러 파라미터들을 이용하여 이를 커스터마이징 할 수 있습니다. 
-
-
-
-
-
-<br>
-
-<br>

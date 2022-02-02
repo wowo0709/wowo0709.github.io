@@ -1,10 +1,10 @@
 ---
 layout: single
-title: "[AITech] 2022년 1월 24일 학습 내용 정리"
+title: "[AITech] 20220124 - PyTorch Basics"
 categories: ['AI', 'AITech']
 toc: true
 toc_sticky: true
-tag: ['파이토치', '파이토치기본', '프로젝트구조']
+tag: ['Introduction', 'Tensor', 'AutoGrad']
 ---
 
 
@@ -262,47 +262,10 @@ print(b.grad) # dQ/db = -2*b
 
 <br>
 
-### Pytorch 프로젝트 구조 이해하기
 
-* 개발 초기 단계에서는 대화식 개발 과정이 유리
-  * 학습과정과 디버깅 등 지속적인 확인
-* 배포 및 공유 단계에서는 notebook 공유의 어려움
-  * 쉬운 재현의 어려움, 실행순서 꼬임
-* DL 코드도 하나의 프로그램
-  * 개발 용이성 확보와 유지보수 향상 필요
-* 다양한 프로젝트 템플릿이 존재하며, 사용자 필요에 따라 선택 및 수정
-* 실행, 데이터, 모델, 설정, 로깅, 지표, 유틸리티 등 다양한 모듈들을 분리하여 프로젝트 템플릿 화
-
-> 프로젝트 템플릿: [GitHub - victoresque/pytorch-template: PyTorch deep learning projects made easy.](https://github.com/victoresque/pytorch-template)
->
-> 위 소스코드들에 주석을 달아가면서 공부하는 것이 많은 도움이 될 것이다. 
-
-![image-20220125153216945](https://user-images.githubusercontent.com/70505378/150939796-91052ae4-77ff-46e5-9d04-2b96f16db7f7.png)
-
-
-
-
-
-
-
-<br>
-
-<br>
 
 ## 참고 자료
 
 * [torch.Tensor.backward document](https://pytorch.org/docs/stable/generated/torch.Tensor.backward.html)
 
 <br>
-
-<br>
-
-## 회고
-
-지난 주 Python Basic과 AI Math에 대한 학습 이후 금주에는 파이토치에 대한 학습을 시작하였습니다. 
-
-딥러닝 프레임워크로서 주로 쓰이는 텐서플로와 파이토치에 대한 오버뷰를 가졌으며, 각각이 가지는 장점에 대해 확인하였습니다. 
-
-또한 파이토치가 가지는 두 가지 큰 특징인 **numpy와 비슷한 연산**과 **AutoGrad**에 대해 학습하였습니다. 텐서 생성 법, view와 reshape의 차이, squeeze와 unsqueeze, mm과 matmul의 차이 등 중요 개념들을 훑었고 AutoGrad를 가능하게 해주는 tensor.backward(gradient)가 동작하는 방식과 파라미터에 대한 개념을 코드를 위주로 이해하였습니다. 
-
-마지막으로는 앞으로 프로젝트를 개발하고 배포하는 데 있어서 필요한 소양인 프로젝트 구조를 템플릿을 사용하여 학습하였습니다. 이 프로젝트 템플릿에 있는 소스 코드들을 천천히 분석하며 주석을 다는 과정을 거쳐서 이해를 심화할 예정입니다. 
