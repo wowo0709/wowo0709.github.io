@@ -77,6 +77,13 @@
             </ul>
             <ul>
                 {% for category in site.categories %}
+                    {% if category[0] == "SequentialSearch" %}
+                        <li><a href="/categories/sequentialsearch" class="">SequentialSearch ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
                     {% if category[0] == "Stack" %}
                         <li><a href="/categories/stack" class="">Stack ({{category[1].size}})</a></li>
                     {% endif %}
@@ -121,6 +128,13 @@
                 {% for category in site.categories %}
                     {% if category[0] == "TwoPointer" %}
                         <li><a href="/categories/twopointer" class="">TwoPointer ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "HashMap" %}
+                        <li><a href="/categories/hashmap" class="">HashMap ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
