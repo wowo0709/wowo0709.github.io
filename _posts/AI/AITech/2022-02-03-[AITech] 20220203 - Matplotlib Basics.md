@@ -77,6 +77,14 @@ plt.show() # 팔레트 출력
 
 * `plt.show()`: 현재 생성된 figure를 출력하기 위해서는 항상 plt.show() 함수를 호출해야 합니다. 
 
+또는, 아래와 같이 `plt.subplots()`를 이용해 fig와 axex를 동시에 생성할 수 있습니다. 
+
+```python
+fig, axes = plt.subplots(2, 2, figsize=(12, 12))
+```
+
+이 경우, axes\[0\]\[0\], axes\[0\]\[1\], axes\[1\]\[0\], axes\[1\]\[1\] 에 ax 객체들이 저장됩니다. 
+
 #### plt로 선 그래프 그리기
 
 `plt.plot(x, y)`를 사용하면 선 그래프를 그릴 수 있습니다. 
@@ -240,7 +248,7 @@ plt.show()
 * `ax.text(x, y, x)`: 해당 위치에 텍스트를 적는 느낌
 * `ax.annotate(text, xy, [arrowprops, xytext])`: 해당 포인트를 지정하는 느낌
 
-x, y는 텍스트의 좌측 하단을 기준으로 합니다. 
+x, y는 텍스트의 좌측 하단을 기준으로 합니다. `ha` 파라미터(center, right, ...)로 그 기준을 변경할 수 있습니다. 
 
 ```python
 fig = plt.figure(figsize=(12, 7))
