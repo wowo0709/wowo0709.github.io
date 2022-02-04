@@ -80,7 +80,7 @@ Scatter plot을 통해 다음의 것들을 확인할 수 있습니다.
 
 * 군집 관계
 
-  ![image-20220204151826847](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220204151826847.png)
+  ![image-20220204151826847](https://user-images.githubusercontent.com/70505378/152541925-14b0c499-ba6c-4014-8374-f8165718b4d8.png)
 
 
 
