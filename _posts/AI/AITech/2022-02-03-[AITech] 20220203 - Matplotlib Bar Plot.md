@@ -145,11 +145,74 @@ plt.show()
 
 **Percentage Stack Bar Plot**은 Stacked bar plot을 응용하여 전체에서 비율을 나타냅니다. 
 
+```python
+fig, ax = plt.subplots(1, 1, figsize=(12, 7))
+
+group = group.sort_index(ascending=False) # 역순 정렬
+total=group['male']+group['female'] # 각 그룹별 합
 
 
+ax.barh(group['male'].index, group['male']/total, 
+        color='royalblue')
+
+ax.barh(group['female'].index, group['female']/total, 
+        left=group['male']/total, 
+        color='tomato')
+
+ax.set_xlim(0, 1)
+for s in ['top', 'bottom', 'left', 'right']:
+    ax.spines[s].set_visible(False)
+# percentage 표기
+for group_idx in group.index:
+
+    gender = group_idx[0]
+    group_cat = group_idx[1]
+    val = (group / total)[group_idx]
+
+    if gender == 'male':
+        ax.text((val) / 2, group_cat, 
+                s=f'{val * 100:.1f}%',
+                ha='center',
+                fontweight='bold'
+                )
+    else:
+        ax.text(((1-val) + (val/2)), group_cat, 
+                s=f'{val * 100:.1f} %',
+                ha='center', 
+                fontweight='bold'
+                )
+
+plt.show()
+```
+
+![image-20220204225431702](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220204225431702.png)
+
+✋ `ax.bar_label(plot, label_type='center')`을 이용해 그 비율을 표시할 수도 있습니다. 
+
+```python
+fig, ax = plt.subplots(1, 1, figsize=(12, 7))
+
+group = group.sort_index(ascending=False) # 역순 정렬
+total=group['male']+group['female'] # 각 그룹별 합
 
 
+rects1 = ax.barh(group['male'].index, group['male']/total, 
+        color='royalblue')
+ax.bar_label(rects1, label_type='center')
+rects2 = ax.barh(group['female'].index, group['female']/total, 
+        left=group['male']/total, 
+        color='tomato')
+ax.bar_label(rects2, label_type='center')
 
+
+ax.set_xlim(0, 1)
+for s in ['top', 'bottom', 'left', 'right']:
+    ax.spines[s].set_visible(False)
+
+plt.show()
+```
+
+![image-20220204225658995](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220204225658995.png)
 
 
 
