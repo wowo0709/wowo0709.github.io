@@ -185,7 +185,7 @@ for group_idx in group.index:
 plt.show()
 ```
 
-![image-20220204225431702](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220204225431702.png)
+![image-20220204225431702](https://user-images.githubusercontent.com/70505378/152631441-c88f1ac4-a7e4-45e7-9eaf-4d19b1376049.png)
 
 ✋ `ax.bar_label(plot, label_type='center')`을 이용해 그 비율을 표시할 수도 있습니다. 
 
@@ -212,7 +212,7 @@ for s in ['top', 'bottom', 'left', 'right']:
 plt.show()
 ```
 
-![image-20220204225658995](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220204225658995.png)
+![image-20220204225658995](https://user-images.githubusercontent.com/70505378/152631443-2f73d9a8-4a2e-437d-9f00-3ec9a8e7661c.png)
 
 
 
