@@ -249,6 +249,94 @@ BN층은 바로 **2번 과정**에서 이 문제를 해결하기 위해 **여러
 
 <br>
 
+### Optimizer 실습
+
+이번에는 마지막으로 pytorch에서 optmizer를 어떻게 사용할 수 있는지 code level에서 간단히 살펴보도록 하겠습니다. 
+
+* Define Optimizer
+
+  * 모델로는 간단한 MLP 모델을 사용했습니다. 
+  * `torch.optim` 모듈에는 옵티마이저 클래스들이 정의되어 있습니다. 
+  * 옵티마이저 API에 **모델 파라미터, 학습율, 기타 인자**를 전달하면 간단하게 옵티마이저를 사용할 수 있습니다. 
+
+  ```python
+  LEARNING_RATE = 1e-2
+  # Instantiate models
+  model_sgd = Model(name='mlp_sgd',xdim=1,hdims=[64,64],ydim=1).to(device)
+  model_momentum = Model(name='mlp_momentum',xdim=1,hdims=[64,64],ydim=1).to(device)
+  model_adam = Model(name='mlp_adam',xdim=1,hdims=[64,64],ydim=1).to(device)
+  # Loss function
+  loss = nn.MSELoss()
+  ### Optimizers
+  # SGD
+  optm_sgd = optim.SGD(
+      model_sgd.parameters(), 
+      lr=LEARNING_RATE
+  )
+  # Momentum
+  optm_momentum = optim.SGD(
+      model_momentum.parameters(), 
+      lr=LEARNING_RATE, 
+      momentum=0.9
+  )
+  # Adam
+  optm_adam = optim.Adam(
+      model_adam.parameters(), 
+      lr=LEARNING_RATE
+  )
+  ```
+
+* Training
+
+  * Training 코드는 동일합니다. 모델의 동작 방식은 클래스 내에 정의하고 학습 코드는 동일합니다. 
+
+  ```python
+  MAX_ITER,BATCH_SIZE,PLOT_EVERY = 1e4,64,500
+  # initialize params
+  model_sgd.init_param()
+  model_momentum.init_param()
+  model_adam.init_param()
+  # train mode
+  model_sgd.train()
+  model_momentum.train()
+  model_adam.train()
+  
+  for it in range(int(MAX_ITER)):
+      r_idx = np.random.permutation(n_data)[:BATCH_SIZE]
+      batch_x,batch_y = x_torch[r_idx],y_torch[r_idx]
+      
+      # Update with Adam
+      y_pred_adam = model_adam.forward(batch_x)
+      loss_adam = loss(y_pred_adam,batch_y)
+      optm_adam.zero_grad()
+      loss_adam.backward()
+      optm_adam.step()
+  
+      # Update with Momentum
+      y_pred_momentum = model_momentum.forward(batch_x)
+      loss_momentum = loss(y_pred_momentum,batch_y)
+      optm_momentum.zero_grad()
+      loss_momentum.backward()
+      optm_momentum.step()
+  
+      # Update with SGD
+      y_pred_sgd = model_sgd.forward(batch_x)
+      loss_sgd = loss(y_pred_sgd,batch_y)
+      optm_sgd.zero_grad()
+      loss_sgd.backward()
+      optm_sgd.step()
+  ```
+
+아래 그림은 전체 iteration 10,000번 중 5,000번, 10,000번이 진행되었을 때의 추측 값을 나타낸 것입니다. 
+
+![image-20220207212351500](https://user-images.githubusercontent.com/70505378/152788063-6dc1bbc1-af3c-4385-8844-0d95ef0f1489.png)
+
+수렴 속도가 **Adam > Momentum > SGD** 순인 것을 확인할 수 있습니다. 
+
+
+
+<br>
+
 <br>
 
 ## 참고 자료
