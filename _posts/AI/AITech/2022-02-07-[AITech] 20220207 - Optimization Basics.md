@@ -229,7 +229,7 @@ BN 층에서 각 뉴런은 개별적인 `beta`와 `gamma`를 하이퍼파라미�
 
 우리 시그모이드 함수를 생각해봅시다. 
 
-![image-20220207182050923](https://user-images.githubusercontent.com/70505378/152760190-cbb21ff1-75ff-45e4-8f49-a6a9241912c2.png)
+![image-20220207182050923](https://user-images.githubusercontent.com/70505378/152788313-0cf7f5a9-919f-4077-b3d0-ccc0455d792b.png)
 
 위와 같은 시그모이드 함수가 활성화 함수로서 그 사용 빈도가 낮아진 것은 바로 **양 끝에서는 그래디언트 값이 거의 없기 때문**입니다. 이 때문에 학습이 제대로 되지 못하죠. 
 
