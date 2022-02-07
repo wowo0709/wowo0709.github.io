@@ -1,7 +1,7 @@
 ---
 
 layout: single
-title: "[AITech] 20220204 - Seaborn"
+title: "[AITech] 20220204 - Seaborn Basics"
 categories: ['AI', 'AITech']
 toc: true
 toc_sticky: true
