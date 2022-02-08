@@ -233,15 +233,15 @@
         <span class="nav__sub-title">👨‍💻 HCI</span>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "HCI/Books" %}
-                        <li><a href="/categories/hci/books" class="">Books ({{category[1].size}})</a></li>
+                    {% if category[0] == "HCI-Books" %}
+                        <li><a href="/categories/hci-books" class="">Books ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "HCI/Papers" %}
-                        <li><a href="/categories/hci/papers" class="">Papers ({{category[1].size}})</a></li>
+                    {% if category[0] == "HCI-Papers" %}
+                        <li><a href="/categories/hci-papers" class="">Papers ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
