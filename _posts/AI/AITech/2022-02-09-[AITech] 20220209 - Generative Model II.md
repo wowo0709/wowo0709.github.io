@@ -5,7 +5,7 @@ title: "[AITech] 20220209 - Generative Model II"
 categories: ['AI', 'AITech']
 toc: true
 toc_sticky: true
-tag: []
+tag: ['VAE', 'GAN']
 ---
 
 
