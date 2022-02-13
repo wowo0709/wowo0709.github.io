@@ -1,8 +1,8 @@
 ---
 layout: single
 title: "[Programmers] 큰 수 만들기"
-categories: ['Algorithm', 'Stack']
-tag: ['Greedy']
+categories: ['Algorithm', 'Stack', 'Greedy']
+tag: []
 ---
 
 # 큰 수 만들기

@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 조이스틱"
-categories: ['Algorithm', 'Implementation']
+categories: ['Algorithm', 'Implementation', 'Greedy']
 ---
 
 # 조이스틱

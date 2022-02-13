@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 섬 연결하기"
-categories: ['Algorithm', 'Graph', 'DFSBFS', 'UnionFind']
+categories: ['Algorithm', 'Graph', 'DFSBFS', 'UnionFind', 'Greedy']
 toc: true
 toc_sticky: true
 ---

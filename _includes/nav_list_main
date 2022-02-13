@@ -63,6 +63,13 @@
             </ul>
             <ul>
                 {% for category in site.categories %}
+                    {% if category[0] == "Greedy" %}
+                        <li><a href="/categories/greedy" class="">Greedy ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
                     {% if category[0] == "DFSBFS" %}
                         <li><a href="/categories/dfsbfs" class="">DFS/BFS ({{category[1].size}})</a></li>
                     {% endif %}
