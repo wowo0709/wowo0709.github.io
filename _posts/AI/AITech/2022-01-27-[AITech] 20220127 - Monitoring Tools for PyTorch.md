@@ -61,6 +61,20 @@ tag: ['TensorBoard', 'Weight&Biases']
     %load_ext tensorboard
     %tensorboard --logdir "logs"
     ```
+    
+  * Terminal command
+  
+    * `--logdir`: log가 저장된 경로
+    * `--host`: 원격 서버에서 사용 시 0.0.0.0 (default: localhost)
+    * `-port`: 포트 번호
+  
+    ```bash
+    tensorboard --logdir PATH --host ADDR --port PORT
+    ```
+  
+    
+
+![image-20220226181054271](https://user-images.githubusercontent.com/70505378/155837514-30f45b04-a373-438d-8fa4-d8e8e7d638f7.png)
 
 #### Weight & Biases
 
