@@ -37,6 +37,18 @@ tag: ['TensorBoard', 'Weight&Biases']
 
   * 예시 코드
 
+    1. 로그가 기록될 디렉토리(logs_base_dir)를 생성합니다. 
+
+       ![image-20220228150148561](https://user-images.githubusercontent.com/70505378/155932436-5b56607b-950b-43d4-b1b8-b269f756c7ef.png)
+
+    2. SummaryWriter를 import하고, 객체 생성 시 트래킹할 디렉토리(logs_base_dir)를 전달합니다. 
+
+    3. add_X 메서드로 여러 지표들을 기록합니다. 
+
+    4. (선택) flush() 메서드로 스트림 안에 혹시나 남아있을 수 있는 데이터들을 모두 내보냅니다. 
+
+    5. 터미널에서 tensorboard 명령어를 입력하고 실행한 후, 해당 웹으로 이동합니다. 
+
     ```python
     # Tensorboard 기록을 위한 directory 생성
     import os
@@ -49,7 +61,7 @@ tag: ['TensorBoard', 'Weight&Biases']
     # add_scalar: scalar 값을 기록
     # Loss/train: loss category에 train 값
     # n_iter: x 축의 값
-    writer = SummaryWriter(exp)
+    writer = SummaryWriter(logs_base_dir)
     for n_iter in range(100):
         writer.add_scalar('Loss/train', np.random.random(), n_iter)
         writer.add_scalar('Loss/test', np.random.random(), n_iter)
@@ -61,17 +73,17 @@ tag: ['TensorBoard', 'Weight&Biases']
     %load_ext tensorboard
     %tensorboard --logdir "logs"
     ```
-    
+
   * Terminal command
-  
+
     * `--logdir`: log가 저장된 경로
     * `--host`: 원격 서버에서 사용 시 0.0.0.0 (default: localhost)
     * `-port`: 포트 번호
-  
+
     ```bash
     tensorboard --logdir PATH --host ADDR --port PORT
     ```
-  
+
     
 
 ![image-20220226181054271](https://user-images.githubusercontent.com/70505378/155837514-30f45b04-a373-438d-8fa4-d8e8e7d638f7.png)
