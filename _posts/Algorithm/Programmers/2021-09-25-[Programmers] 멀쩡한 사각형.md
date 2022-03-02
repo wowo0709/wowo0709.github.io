@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 멀쩡한 사각형"
-categories: ['Algorithm', 'Implementation']
+categories: ['Algorithm', 'Math']
 toc: true
 toc_sticky: true
 tag: ['LCM']

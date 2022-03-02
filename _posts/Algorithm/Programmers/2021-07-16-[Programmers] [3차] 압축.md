@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] [3차] 압축"
-categories: ['Algorithm', 'Implementation']
+categories: ['Algorithm', 'Implementation', 'HashMap']
 ---
 
 # [3차] 압축

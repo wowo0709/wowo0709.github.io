@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 점프와 순간 이동"
-categories: ['Algorithm', 'Implementation']
+categories: ['Algorithm', 'Math']
 ---
 
 # 점프와 순간 이동

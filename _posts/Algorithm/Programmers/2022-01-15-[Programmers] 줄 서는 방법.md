@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 줄 서는 방법"
-categories: ['Algorithm', 'Implementation']
+categories: ['Algorithm', 'Implementation', 'Math']
 toc: true
 toc_sticky: true
 tag: ['Divmod']

@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 최고의 집합"
-categories: ['Algorithm', 'Implementation']
+categories: ['Algorithm', 'Implementation', 'Math']
 toc: true
 toc_sticky: true
 tag: ['Number']

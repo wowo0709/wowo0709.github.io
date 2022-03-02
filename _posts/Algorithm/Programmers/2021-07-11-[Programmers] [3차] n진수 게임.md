@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] [3차] n진수 게임"
-categories: ['Algorithm', 'Implementation']
+categories: ['Algorithm', 'Implementation', 'Math']
 tag: ['n진수변환']
 ---
 

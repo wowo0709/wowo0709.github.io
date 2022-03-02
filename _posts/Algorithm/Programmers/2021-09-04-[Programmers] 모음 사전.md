@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 모음 사전"
-categories: ['Algorithm', 'Implementation', 'Sorting']
+categories: ['Algorithm', 'Bruteforce']
 tag: ['Product']
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] JadenCase 문자열 만들기"
-categories: ['Algorithm', 'Implementation']
+categories: ['Algorithm', 'String']
 ---
 
 # JadenCase 문자열 만들기

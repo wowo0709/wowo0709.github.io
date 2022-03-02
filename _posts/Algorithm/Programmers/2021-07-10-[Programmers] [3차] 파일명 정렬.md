@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] [3차] 파일명 정렬"
-categories: ['Algorithm', 'Implementation']
+categories: ['Algorithm', 'Implementation', 'String']
 ---
 
 # [3차] 파일명 정렬

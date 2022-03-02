@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 이진 변환 반복하기"
-categories: ['Algorithm', 'Implementation']
+categories: ['Algorithm', 'Implementation', 'String']
 ---
 
 # 이진 변환 반복하기

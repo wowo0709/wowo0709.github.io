@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] N개의 최소공배수"
-categories: ['Algorithm', 'Implementation']
+categories: ['Algorithm', 'Math']
 tag: ['GCD', 'LCM']
 ---
 

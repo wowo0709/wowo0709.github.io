@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Programmers] 다음 큰 숫자"
-categories: ['Algorithm', 'Implementation']
+categories: ['Algorithm', 'Implementation', 'Math']
 ---
 
 
