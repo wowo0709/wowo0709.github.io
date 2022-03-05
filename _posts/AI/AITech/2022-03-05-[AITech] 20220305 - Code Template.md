@@ -69,7 +69,7 @@ Loss 클래스를 불러와 객체를 생성하는 경우 인자를 전달해야
 
 ### train.py
 
-실질적인 학습/검증 코드가 구현되어 있는 `train.py` 파일입니다. Logging, Visualization, Dataset/DataLoader 불러오기 ~ 학습한 모델 save까지 일련의 과정들이 모두 이 파일에 들어있습니다. 
+실질적인 학습/검증 코드가 구현되어 있는 `train.py` 파일입니다. Logging, Visualization 코드나 Dataset/DataLoader 불러오기 ~ 학습한 모델 save까지 일련의 코드들이 모두 이 파일에 들어있습니다. 
 
 또한 터미널에서 실질적으로 호출하여 실행하는 코드이기도 합니다. 따라서 argparse 모듈을 이용해 다양한 argument들을 선언하고, 터미널에서 지정하여 전달할 수 있도록 합니다. 
 
@@ -84,6 +84,10 @@ Loss 클래스를 불러와 객체를 생성하는 경우 인자를 전달해야
 ### utils.py
 
 이외의 편의를 위한 클래스들이 선언되어 있는 `utils.py` 파일입니다. 대표적으로 EarlyStopping 등과 같은 편의 코드들이 여기에 정의되어 있습니다. 
+
+### requirements.txt
+
+마지막으로 `requirements.txt`입니다. 이 텍스트 파일도 PyTorch Project에 직접적으로 관여하는 파일은 아니고, 환경 구축을 위해 필요한 파일입니다. 필요한 라이브러리와 버전들을 명시하고, 다른 사용자가 `pip install -r requirements.txt` 명령어로 환경 구축을 할 수 있도록 도와줍니다. 
 
 <br>
 
