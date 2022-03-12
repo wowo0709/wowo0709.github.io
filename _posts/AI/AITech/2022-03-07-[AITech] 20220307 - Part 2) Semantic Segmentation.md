@@ -7,9 +7,11 @@ toc_sticky: true
 tag: ['FCN', 'U-Net', 'DeepLab']
 ---
 
-_**본 포스팅은 POSTECH '오태현' 강사 님의 강의를 바탕으로 작성되었습니다. **_
+
 
 <br>
+
+_**본 포스팅은 POSTECH '오태현' 강사 님의 강의를 바탕으로 작성되었습니다. **_
 
 # Semantic Segmentation
 
@@ -17,7 +19,9 @@ _**본 포스팅은 POSTECH '오태현' 강사 님의 강의를 바탕으로 작
 
 ## Semantic segmentation
 
-앞선 포스팅에서는 CNN 구조를 이용해 이미지를 분류하는 Image classification task에 대해 살펴보았었습니다. 이번 포스팅에서 다룰 semantic segmentation은 간단히 **픽셀 단위 분류**라고 생각하면 쉽습니다. Segmentation에는 여러 종류가 있는데(semantic, instance, panoptic), 그 중 semantic segmentation은 클래스 단위로 픽셀을 분류합니다. 즉, 다른 사람이어도 하나의 클래스로 분류합니다.
+앞선 포스팅에서는 CNN 구조를 이용해 이미지를 분류하는 Image classification task에 대해 살펴보았었습니다. 이번 포스팅에서 다룰 semantic segmentation은 간단히 **픽셀 단위 분류**라고 생각하면 쉽습니다. Segmentation에는 여러 종류가 있는데(semantic, instance, panoptic), 그 중 semantic segmentation은 클래스 단위로 픽셀을 분류합니다. 즉, 다른 사람이어도 하나의 '사람' 클래스로 분류합니다.
+
+![image-20220312150739539](https://user-images.githubusercontent.com/70505378/158006303-97ce7dbb-36b7-42bb-a9fd-30699db48d47.png)
 
 의료나 자율 주행 등의 분야에 활용 가능성이 높은 기술입니다. 
 
@@ -177,23 +181,225 @@ D<sub>K</sub>를 kernel size, M을 input channels, N을 output channels라고 �
 
 
 
+<br>
+
+## 실습) Classification to Segmentation
+
+이번 포스팅에서의 실습은 Classification model에서 Segmentation model로의 발전 방법에 대한 실습입니다. 
+
+앞서 이론에서 semantic segmentation model은 기존의 classification model의 마지막 FC layer를 1x1 convolution layer로 교체함으로써 생성할 수 있다고 했습니다. 
+
+이 때 우리가 알아갈 것은 **Classifier의 FC layer parameter를 Segmentation 모델의 1x1 convolution layer parameter로 그대로 사용할 수 있다는 것**입니다. FC layer는 **in_channels * out_classes** 개의 paramter를 갖고, 1x1 convolution layer는 **(1x1xin_channels) 개의 kernel을 out_classes 개** 갖게 되어 두 layer에서 parameter의 수가 같습니다. 
+
+따라서 FC layer의 paramter를 적절히 reshaping하여 1x1 convolution layer의 parameter로 사용할 수 있습니다. 
+
+여기서는 다음 3개의 코드를 보도록 하겠습니다. 
+
+*  **VGG11Backbone**: VGG-11의 backbone에 해당하는 코드
+* **VGG11Classification**: VGG11Backbone의 출력값을 받아 glabal average pooling을 거친 다음 FC layer를 통과시켜 최종 classification을 수행하는 코드
+* **VGG11Segmentation**: VGG11Backbone의 출력값을 받아 1x1 convolution layer를 통과시켜 semantic segmentation을 수행하는 코드. 이때, VGG11Classification의 FC layer의 weights를 가져와 1x1 convolution layer의 weights 값으로 사용하기 위해 **copy_last_layer** 메서드를 구현합니다. 
+
+ **VGG11Backbone**
+
+```python
+import torch
+import torch.nn as nn
+
+class VGG11BackBone(nn.Module):
+  '''
+  VGG-11의 backbone에 해당하는 부분입니다.
+  총 8개의 convolution layer로 구성되어 있습니다.
+  '''
+  def __init__(self):
+    super(VGG11BackBone, self).__init__()
+
+    self.relu = nn.ReLU(inplace=True)
+    
+    # Convolution Feature Extraction Part
+    self.conv1 = nn.Conv2d(3, 64, kernel_size=3, padding=1)
+    self.bn1   = nn.BatchNorm2d(64)
+    self.pool1 = nn.MaxPool2d(kernel_size=2, stride=2)
+
+    self.conv2 = nn.Conv2d(64, 128, kernel_size=3, padding=1)
+    self.bn2   = nn.BatchNorm2d(128)
+    self.pool2 = nn.MaxPool2d(kernel_size=2, stride=2)
+
+    self.conv3_1 = nn.Conv2d(128, 256, kernel_size=3, padding=1)
+    self.bn3_1   = nn.BatchNorm2d(256)
+    self.conv3_2 = nn.Conv2d(256, 256, kernel_size=3, padding=1)
+    self.bn3_2   = nn.BatchNorm2d(256)
+    self.pool3   = nn.MaxPool2d(kernel_size=2, stride=2)
+
+    self.conv4_1 = nn.Conv2d(256, 512, kernel_size=3, padding=1)
+    self.bn4_1   = nn.BatchNorm2d(512)
+    self.conv4_2 = nn.Conv2d(512, 512, kernel_size=3, padding=1)
+    self.bn4_2   = nn.BatchNorm2d(512)
+    self.pool4   = nn.MaxPool2d(kernel_size=2, stride=2)
+
+    self.conv5_1 = nn.Conv2d(512, 512, kernel_size=3, padding=1)
+    self.bn5_1   = nn.BatchNorm2d(512)
+    self.conv5_2 = nn.Conv2d(512, 512, kernel_size=3, padding=1)
+    self.bn5_2   = nn.BatchNorm2d(512)
+  
+  def forward(self, x):
+    x = self.conv1(x)
+    x = self.bn1(x)
+    x = self.relu(x)
+    x = self.pool1(x)
+
+    x = self.conv2(x)
+    x = self.bn2(x)
+    x = self.relu(x)
+    x = self.pool2(x)
+
+    x = self.conv3_1(x)
+    x = self.bn3_1(x)
+    x = self.relu(x)
+    x = self.conv3_2(x)
+    x = self.bn3_2(x)
+    x = self.relu(x)
+    x = self.pool3(x)
+
+    x = self.conv4_1(x)
+    x = self.bn4_1(x)
+    x = self.relu(x)
+    x = self.conv4_2(x)
+    x = self.bn4_2(x)
+    x = self.relu(x)
+    x = self.pool4(x)
+
+    x = self.conv5_1(x)
+    x = self.bn5_1(x)
+    x = self.relu(x)
+    x = self.conv5_2(x)
+    x = self.bn5_2(x)
+    x = self.relu(x)
+
+    return x
+```
 
 
 
 
 
+**VGG11Classification**
+
+```python
+class VGG11Classification(nn.Module):
+  def __init__(self, num_classes = 7):
+    '''
+    VGG-11의 classifier에 해당하는 부분입니다.
+    VGG11BackBone의 출력값을 받아 max pooling - global average pooling - fully connected를 통과하여 최종 prediction logits를 출력합니다.
+    '''
+    super(VGG11Classification, self).__init__()
+
+    self.backbone = VGG11BackBone()
+    self.pool5   = nn.MaxPool2d(kernel_size=2, stride=2)
+    self.gap      = nn.AdaptiveAvgPool2d(1)
+    self.fc_out   = nn.Linear(512, num_classes)
+
+  def forward(self, x):
+    x = self.backbone(x)
+    x = self.pool5(x)
+    x = self.gap(x)
+    x = torch.flatten(x, 1)
+    x = self.fc_out(x)
+
+    return x
+```
 
 
 
 
 
+**VGG11Segmentation**
+
+```python
+class VGG11Segmentation(nn.Module):
+  def __init__(self, num_classes = 7):
+    '''
+    VGG-11를 재구성하여 semantic segmentation을 해결하기 위한 모델에 해당하는 부분입니다.
+    VGG11BackBone의 출력값을 받아 1x1 convolution을 통과하여 픽셀별 classification을 수행한 다음,
+    max pooling으로 인하여 줄어든 resolution을 bilinear upsampling을 통해 입력 이미지의 크기로 확장합니다.
+    '''
+    super(VGG11Segmentation, self).__init__()
+
+    self.backbone = VGG11BackBone()
+    
+    '''==========================================================='''
+    '''======================== TO DO (1) ========================'''
+    ### 모델의 마지막 layer의 in_features 값을 어떻게 가져올까??
+
+    in_features=512
+
+    with torch.no_grad():
+      self.conv_out = nn.Conv2d(in_features, num_classes, 1)
+
+    self.fc_out = VGG11Classification().fc_out
+    self.copy_last_layer(self.fc_out)
+    '''======================== TO DO (1) ========================'''
+    '''==========================================================='''
+  
+    self.upsample = torch.nn.Upsample(scale_factor=16, mode='bilinear', align_corners=False)
 
 
+  def forward(self, x):
+    x = self.backbone(x)
+    x = self.conv_out(x)
+    x = self.upsample(x)
+    assert x.shape == (1, 7, 224, 224)
+
+    return x
 
 
+  def copy_last_layer(self, fc_out):
+    """
+    VGG-11 classifier의 마지막 fully-connected layer인 'fc_out'을 입력으로 받아,
+    해당 'fc_out'의 weights를 __init__에서 구현한 1x1 convolution filter의 weights로 copy하는 method입니다.
+    """
 
+    '''==========================================================='''
+    '''======================== TO DO (2) ========================'''
+    
+    reshaped_fc_out = fc_out.weight.detach()
+    reshaped_fc_out = torch.reshape(reshaped_fc_out, self.conv_out.weight.size())
+    self.conv_out.weight = nn.Parameter(reshaped_fc_out)
 
+    '''======================== TO DO (2) ========================'''
+    '''==========================================================='''
+    assert self.conv_out.weight[0][0] == fc_out.weight[0][0]
+    
+    return 
+```
 
+**Check output size**
+
+```python
+test_input = torch.randn((1, 3, 224, 224))
+
+modelC = VGG11Classification()
+out = modelC(test_input)
+print('The output shape of the classification network:', out.shape)
+
+modelS = VGG11Segmentation()
+out = modelS(test_input)
+print('The output shape of the segmentation network:', out.shape)
+
+'''
+The output shape of the classification network: torch.Size([1, 7])
+The output shape of the segmentation network: torch.Size([1, 7, 224, 224])
+'''
+```
+
+<br>
+
+Segmentation 모델을 추가적으로 학습시키지 않고 Pre-trained Classification model의 FC layer parameter들을 copy해오는 것 만으로 아래와 같은 결과를 얻을 수 있습니다. Classification model은 사람이 마스크를 어떤 식으로 착용하고 있는지에 대한 데이터셋으로 학습된 상태입니다. 따라서 segmentation 결과가 마스크 주위에 집중되어 있는 것을 볼 수 있습니다. 
+
+아래 결과가 정확하지는 않은데, 이는 마스크 영역에 해당하는 픽셀별 ground truth가 주어지지 않았기 때문이며 또한 입력 이미지에 비해 16분의 1 사이즈의 feature map에서 픽셀별 예측을 진행하고 단순히 bilinear interpolation을 진행했기 때문입니다. 
+
+더 정확한 결과를 위해서는 segmentation model을 ground truth와 함께 학습시키고, 최종 단에서 upsampling 시 단순한 bilinear interpolation이 아니라 더 나은 기법을 사용해 볼 수 있습니다. 
+
+![image-20220312175452680](https://user-images.githubusercontent.com/70505378/158011514-df6bce16-a1b1-438d-a582-51529a1b90e0.png)
 
 
 

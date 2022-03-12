@@ -7,9 +7,9 @@ toc_sticky: true
 tag: ['CNN Architectures', 'Data Efficient Learning', 'ResNet34 구현']
 ---
 
-_**본 포스팅은 POSTECH '오태현' 강사 님의 강의를 바탕으로 작성되었습니다. **_
-
 <br>
+
+_**본 포스팅은 POSTECH '오태현' 강사 님의 강의를 바탕으로 작성되었습니다. **_
 
 # Image Classification
 
