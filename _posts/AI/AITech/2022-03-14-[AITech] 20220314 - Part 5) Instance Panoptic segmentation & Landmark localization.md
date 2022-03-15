@@ -220,9 +220,400 @@ CornerNet은 아주 빠른 추론 속도를 보이기는 하지만, 정확도가
 * 새로운 모델을 만들 때, 밑바닥부터 새로 만들기보다는 기존에 있는 모델들을 활용하는 디자인 패턴을 따르는 것이 더 쉽고, 성능을 보장해준다. 
 * 데이터의 표현, 출력 표현을 바꾸는 것이 모델 성능의 큰 향상을 일으킬 수 있다. 
 
+<br>
+
+## 실습) Pose Estimation
+
+이번 강의의 실습은 Hourglass network로 Pose estimation을 수행하는 모델을 구현해보는 것입니다. 
+
+**Hourglass module 커스텀 구현**
+
+먼저 Hourglass module 하나를 직접 구현해보면서 그 흐름을 파악 해보겠습니다. 
+
+```python
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+class ResidualBlock(nn.Module):
+  def __init__(self, num_channels=256):
+    super(ResidualBlock, self).__init__()
+    # 입출력 간 (c, h, w)가 변하지 않음
+    self.bn1 = nn.BatchNorm2d(num_channels)
+    self.conv1 = nn.Conv2d(num_channels, num_channels//2, kernel_size=1, bias=True)
+
+    self.bn2 = nn.BatchNorm2d(num_channels//2)
+    self.conv2 = nn.Conv2d(num_channels//2, num_channels//2, kernel_size=3, stride=1,
+                              padding=1, bias=True)
+
+    self.bn3 = nn.BatchNorm2d(num_channels//2)
+    self.conv3 = nn.Conv2d(num_channels//2, num_channels, kernel_size=1, bias=True)
+
+    self.relu = nn.ReLU(inplace=True)
+
+  def forward(self, x):
+    residual = x
+
+    out = self.bn1(x)
+    out = self.relu(out)
+    out = self.conv1(out)
+
+    out = self.bn2(out)
+    out = self.relu(out)
+    out = self.conv2(out)
+
+    out = self.bn3(out)
+    out = self.relu(out)
+    out = self.conv3(out)
+
+    out += residual
+
+    return out
 
 
+class Hourglass(nn.Module):
+  def __init__(self, block, num_channels=256):
+    super(Hourglass, self).__init__()
 
+    self.downconv_1 = block(num_channels)
+    self.pool_1 = nn.MaxPool2d(kernel_size=2)
+    self.downconv_2 = block(num_channels)
+    self.pool_2 = nn.MaxPool2d(kernel_size=2)
+    self.downconv_3 = block(num_channels)
+    self.pool_3 = nn.MaxPool2d(kernel_size=2)
+    self.downconv_4 = block(num_channels)
+    self.pool_4 = nn.MaxPool2d(kernel_size=2)
+
+    self.midconv_1 = block(num_channels)
+    self.midconv_2 = block(num_channels)
+    self.midconv_3 = block(num_channels)
+    
+    self.skipconv_1 = block(num_channels)
+    self.skipconv_2 = block(num_channels)
+    self.skipconv_3 = block(num_channels)
+    self.skipconv_4 = block(num_channels)
+
+    self.upconv_1 = block(num_channels)
+    self.upconv_2 = block(num_channels)
+    self.upconv_3 = block(num_channels)
+    self.upconv_4 = block(num_channels)
+
+  def forward(self, x):
+    x1 = self.downconv_1(x)
+    x  = self.pool_1(x1)
+
+    '''======================================================='''
+    '''======================== TO DO ========================'''
+    x2 = self.downconv_2(x)
+    x = self.pool_2(x2)
+
+    x3 = self.downconv_3(x)
+    x = self.pool_3(x3)
+
+    x4 = self.downconv_4(x)
+    x = self.pool_4(x4)
+
+    x = self.midconv_1(x)
+    x = self.midconv_2(x)
+    x = self.midconv_3(x)
+
+    x4 = self.skipconv_1(x4)
+    x = F.upsample(x, scale_factor=2)
+    x = x + x4
+    x = self.upconv_1(x)
+
+    x3 = self.skipconv_1(x3)
+    x = F.upsample(x, scale_factor=2)
+    x = x + x3
+    x = self.upconv_1(x)
+
+    x2 = self.skipconv_1(x2)
+    x = F.upsample(x, scale_factor=2)
+    x = x + x2
+    x = self.upconv_1(x)
+
+    x1 = self.skipconv_1(x1)
+    x = F.upsample(x, scale_factor=2)
+    x = x + x1
+    x = self.upconv_1(x)
+    '''======================== TO DO ========================'''
+    '''======================================================='''
+
+    return x
+```
+
+<br>
+
+**Stacked Hourglass Network 공식 깃허브 구현**
+
+`Stacked Hourglass Network`의 공식 깃허브 구현 코드입니다. 
+
+```python
+'''
+Hourglass network inserted in the pre-activated Resnet
+Use lr=0.01 for current version
+(c) YANG, Wei
+'''
+import torch.nn as nn
+import torch.nn.functional as F
+
+# from .preresnet import BasicBlock, Bottleneck
+
+
+__all__ = ['HourglassNet', 'hg']
+
+class Bottleneck(nn.Module):
+    expansion = 2
+
+    def __init__(self, inplanes, planes, stride=1, downsample=None):
+        super(Bottleneck, self).__init__()
+
+        self.bn1 = nn.BatchNorm2d(inplanes)
+        self.conv1 = nn.Conv2d(inplanes, planes, kernel_size=1, bias=True)
+        self.bn2 = nn.BatchNorm2d(planes)
+        self.conv2 = nn.Conv2d(planes, planes, kernel_size=3, stride=stride,
+                               padding=1, bias=True)
+        self.bn3 = nn.BatchNorm2d(planes)
+        self.conv3 = nn.Conv2d(planes, planes * 2, kernel_size=1, bias=True)
+        self.relu = nn.ReLU(inplace=True)
+        self.downsample = downsample
+        self.stride = stride
+
+    def forward(self, x):
+        residual = x
+
+        out = self.bn1(x)
+        out = self.relu(out)
+        out = self.conv1(out)
+
+        out = self.bn2(out)
+        out = self.relu(out)
+        out = self.conv2(out)
+
+        out = self.bn3(out)
+        out = self.relu(out)
+        out = self.conv3(out)
+
+        if self.downsample is not None:
+            residual = self.downsample(x)
+
+        out += residual
+
+        return out
+
+
+class Hourglass(nn.Module):
+    def __init__(self, block, num_blocks, planes, depth):
+        super(Hourglass, self).__init__()
+        self.depth = depth
+        self.block = block
+        self.hg = self._make_hour_glass(block, num_blocks, planes, depth)
+
+    def _make_residual(self, block, num_blocks, planes):
+        layers = []
+        for i in range(0, num_blocks):
+            layers.append(block(planes*block.expansion, planes))
+        return nn.Sequential(*layers)
+
+    def _make_hour_glass(self, block, num_blocks, planes, depth):
+        hg = []
+        for i in range(depth):
+            res = []
+            for j in range(3):
+                res.append(self._make_residual(block, num_blocks, planes))
+            if i == 0:
+                res.append(self._make_residual(block, num_blocks, planes))
+            hg.append(nn.ModuleList(res))
+        return nn.ModuleList(hg)
+
+    def _hour_glass_forward(self, n, x):
+        up1 = self.hg[n-1][0](x)
+        low1 = F.max_pool2d(x, 2, stride=2)
+        low1 = self.hg[n-1][1](low1)
+
+        if n > 1:
+            low2 = self._hour_glass_forward(n-1, low1)
+        else:
+            low2 = self.hg[n-1][3](low1)
+        low3 = self.hg[n-1][2](low2)
+        up2 = F.interpolate(low3, scale_factor=2)
+        out = up1 + up2
+        return out
+
+    def forward(self, x):
+        return self._hour_glass_forward(self.depth, x)
+
+
+class HourglassNet(nn.Module):
+    '''Hourglass model from Newell et al ECCV 2016'''
+    def __init__(self, block, num_stacks=2, num_blocks=4, num_classes=16):
+        super(HourglassNet, self).__init__()
+
+        self.inplanes = 64
+        self.num_feats = 128
+        self.num_stacks = num_stacks
+        self.conv1 = nn.Conv2d(3, self.inplanes, kernel_size=7, stride=2, padding=3,
+                               bias=True)
+        self.bn1 = nn.BatchNorm2d(self.inplanes)
+        self.relu = nn.ReLU(inplace=True)
+        self.layer1 = self._make_residual(block, self.inplanes, 1)
+        self.layer2 = self._make_residual(block, self.inplanes, 1)
+        self.layer3 = self._make_residual(block, self.num_feats, 1)
+        self.maxpool = nn.MaxPool2d(2, stride=2)
+
+        # build hourglass modules
+        ch = self.num_feats*block.expansion
+        hg, res, fc, score, fc_, score_ = [], [], [], [], [], []
+        for i in range(num_stacks):
+            hg.append(Hourglass(block, num_blocks, self.num_feats, 4))
+            res.append(self._make_residual(block, self.num_feats, num_blocks))
+            fc.append(self._make_fc(ch, ch))
+            score.append(nn.Conv2d(ch, num_classes, kernel_size=1, bias=True))
+            if i < num_stacks-1:
+                fc_.append(nn.Conv2d(ch, ch, kernel_size=1, bias=True))
+                score_.append(nn.Conv2d(num_classes, ch, kernel_size=1, bias=True))
+        self.hg = nn.ModuleList(hg)
+        self.res = nn.ModuleList(res)
+        self.fc = nn.ModuleList(fc)
+        self.score = nn.ModuleList(score)
+        self.fc_ = nn.ModuleList(fc_)
+        self.score_ = nn.ModuleList(score_)
+
+    def _make_residual(self, block, planes, blocks, stride=1):
+        downsample = None
+        if stride != 1 or self.inplanes != planes * block.expansion:
+            downsample = nn.Sequential(
+                nn.Conv2d(self.inplanes, planes * block.expansion,
+                          kernel_size=1, stride=stride, bias=True),
+            )
+
+        layers = []
+        layers.append(block(self.inplanes, planes, stride, downsample))
+        self.inplanes = planes * block.expansion
+        for i in range(1, blocks):
+            layers.append(block(self.inplanes, planes))
+
+        return nn.Sequential(*layers)
+
+    def _make_fc(self, inplanes, outplanes):
+        bn = nn.BatchNorm2d(inplanes)
+        conv = nn.Conv2d(inplanes, outplanes, kernel_size=1, bias=True)
+        return nn.Sequential(
+                conv,
+                bn,
+                self.relu,
+            )
+
+    def forward(self, x):
+        out = []
+        x = self.conv1(x)
+        x = self.bn1(x)
+        x = self.relu(x)
+
+        x = self.layer1(x)
+        x = self.maxpool(x)
+        x = self.layer2(x)
+        x = self.layer3(x)
+
+        for i in range(self.num_stacks):
+            y = self.hg[i](x)
+            y = self.res[i](y)
+            y = self.fc[i](y)
+            score = self.score[i](y)
+            out.append(score)
+            if i < self.num_stacks-1:
+                fc_ = self.fc_[i](y)
+                score_ = self.score_[i](score)
+                x = x + fc_ + score_
+
+        return out
+```
+
+<br>
+
+**(x, y) keypoint를 heatmap 형태로 변환**
+
+(x, y) keypoint 형태로 되어있는 label을 모델을 학습시키기 위해 heapmap 형태로 변환해주는 과정이 필요합니다. 
+
+```python
+class BodyLandmarkDataset(Dataset):
+  def __init__(self, data_root, is_Train=True, input_size=224, transform=None):
+    super(BodyLandmarkDataset, self).__init__()
+
+    # ...
+
+  def __getitem__(self, index):
+    # ...
+
+  def __len__(self):
+    # ...
+  
+  def _load_img_list(self, data_root, is_Train):
+    # ...
+
+  def _load_img_ID(self, path):
+    # ...
+
+  def _get_heatmaps_from_json(self, anno_path, org_size):
+    # Parse point annotation
+    with open(anno_path, 'r') as json_file:
+      pts = json.load(json_file)
+    pts = np.array([(pt['pt_x'], pt['pt_y']) for pt in pts['DataList'][0]['coordinates']])
+
+    pts[:,0] = pts[:,0] / org_size[1] * self.hm_size
+    pts[:,1] = pts[:,1] / org_size[0] * self.hm_size
+
+    heatmap = np.zeros((self.n_landmarks, self.hm_size, self.hm_size), dtype=np.float32)
+    for i, pt in enumerate(pts):
+      heatmap[i] = self._draw_labelmap(heatmap[i], org_size, pt, self.sigma)
+    
+    return heatmap
+
+  def _draw_labelmap(self, heatmap, org_size, pt, sigma):
+    # Draw a 2D gaussian
+    # Adopted from https://github.com/anewell/pose-hg-train/blob/master/src/pypose/draw.py
+    H, W = heatmap.shape[:2]
+
+    # Check that any part of the gaussian is in-bounds
+    ul = [int(pt[0] - 3 * sigma), int(pt[1] - 3 * sigma)]
+    br = [int(pt[0] + 3 * sigma + 1), int(pt[1] + 3 * sigma + 1)]
+    if (ul[0] >= heatmap.shape[1] or ul[1] >= heatmap.shape[0] or
+            br[0] < 0 or br[1] < 0):
+        # If not, just return the image as is
+        return heatmap, 0
+
+    # Generate gaussian
+    size = 6 * sigma + 1
+    x = np.arange(0, size, 1, float)
+    y = x[:, np.newaxis]
+    x0 = y0 = size // 2
+    # The gaussian is not normalized, we want the center value to equal 1
+
+    '''======================================================='''
+    '''======================== TO DO ========================'''
+    g = np.exp(- ((x-x0) ** 2 + (y-y0) ** 2) / (2 * sigma ** 2))
+    '''======================== TO DO ========================'''
+    '''======================================================='''
+
+    # Usable gaussian range
+    g_x = max(0, -ul[0]), min(br[0], heatmap.shape[1]) - ul[0]
+    g_y = max(0, -ul[1]), min(br[1], heatmap.shape[0]) - ul[1]
+    # Image range
+    heatmap_x = max(0, ul[0]), min(br[0], heatmap.shape[1])
+    heatmap_y = max(0, ul[1]), min(br[1], heatmap.shape[0])
+
+    heatmap[heatmap_y[0]:heatmap_y[1], heatmap_x[0]:heatmap_x[1]] = g[g_y[0]:g_y[1], g_x[0]:g_x[1]]
+    return heatmap
+    
+    return anno_path
+```
+
+**Visualization**
+
+학습시킨 모델로 최종 출력을 시각화합니다. Hourglass network의 최종 출력은 heapmap 형태이기 때문에, 이를 다시 (x, y) keypoint 형태로 변환해주는 과정이 필요합니다. 
+
+```python
+```
 
 
 
