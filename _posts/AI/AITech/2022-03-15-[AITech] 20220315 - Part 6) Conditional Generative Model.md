@@ -13,7 +13,7 @@ tag: []
 
 _**본 포스팅은 POSTECH '오태현' 강사 님의 강의를 바탕으로 작성되었습니다. **_
 
-# Generative Model
+# Conditional Generative Model
 
 
 
