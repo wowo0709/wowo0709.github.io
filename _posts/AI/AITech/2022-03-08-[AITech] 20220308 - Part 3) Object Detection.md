@@ -4,7 +4,7 @@ title: "[AITech][CV] 20220308 - Part 3) Object Detection"
 categories: ['AI', 'AITech']
 toc: true
 toc_sticky: true
-tag: ['Single-stage detector', 'Single-stage detector', 'Focal loss', 'RetinaNet', 'DETR']
+tag: ['Single-stage detector', 'Two-stage detector', 'Focal loss', 'RetinaNet', 'DETR']
 ---
 
 
