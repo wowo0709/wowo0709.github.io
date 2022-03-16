@@ -179,23 +179,244 @@ GAN을 이용한 사례들에는 무엇이 있는지 보겠습니다.
 
 이번 강의의 실습은 cGAN 논문을 베이스로 Generator와 Discriminator를 간단하게 구현해보고, GAN을 학습시킨 후 출력 결과를 확인해보는 과정으로 이어집니다. 
 
+![image-20220316180528948](https://user-images.githubusercontent.com/70505378/158586420-8ab68fb6-de75-4ef7-8206-cb3666e14c00.png)
+
 **Generator**
 
+* `z`: random vector
+* `y`: condition label
+* return: G(concat(emb(z), emb(y)))
+* 과정
+  * z, y를 각각 임베딩
+  * 임베딩 된 z, y를 concat
+  * concat한 벡터를 포워딩하여 이미지(img_height * img_width) 차원에 mapping
+
 ```python
+class Generator(nn.Module):
+    # initializers
+    def __init__(self):
+        super(Generator, self).__init__()
+        ## fill ##
+        z_embed_dim = 200
+        y_embed_dim = 1000
+        out_dim = 1 * 28 * 28 # channels * height * width
+
+        # self.z_embed = nn.Embedding(100, z_embed_dim) # z
+        # self.y_embed = nn.Embedding(10, y_embed_dim) # y(condition)
+        self.z_embed = nn.Linear(100, z_embed_dim) # z
+        self.y_embed = nn.Linear(10, y_embed_dim) # y(condition)
+
+        self.main = nn.Sequential(
+            nn.Linear(z_embed_dim+y_embed_dim,128),
+            nn.LeakyReLU(negative_slope=0.2, inplace=True),
+
+            nn.Linear(128, 256),
+            nn.BatchNorm1d(256),
+            nn.LeakyReLU(negative_slope=0.2, inplace=True),
+
+            nn.Linear(256, 512),
+            nn.BatchNorm1d(512),
+            nn.LeakyReLU(negative_slope=0.2, inplace=True),
+
+            nn.Linear(512, 1024),
+            nn.BatchNorm1d(1024),
+            nn.LeakyReLU(negative_slope=0.2, inplace=True),
+
+            nn.Linear(1024, out_dim),
+            nn.Tanh()
+        )
+
+        self.weight_init(0,1)
+
+    # weight_init
+    def weight_init(self, mean, std):
+        for m in self.modules():
+            if isinstance(m, nn.Conv2d):
+                nn.init.kaiming_normal_(m.weight)
+                m.weight.data *= 0.1
+                if m.bias is not None:
+                    nn.init.constant_(m.bias, 0)
+            elif isinstance(m, nn.BatchNorm2d):
+                nn.init.normal_(m.weight, 1.0, 0.02)
+                m.weight.data *= 0.1
+                if m.bias is not None:
+                    nn.init.constant_(m.bias, 0)
+            elif isinstance(m, nn.Linear):
+                nn.init.kaiming_normal_(m.weight)
+                m.weight.data *= 0.1
+                if m.bias is not None:
+                    nn.init.constant_(m.bias, 0)
+
+    # forward method
+    def forward(self, input, label): # z, y(c)
+ 
+        ## fill ##
+        z = self.z_embed(input)
+        y = self.y_embed(label)
+        zy = torch.concat((z,y), dim=-1) # dim 0: batch
+
+        g_z = self.main(zy)
+
+        return g_z
 ```
 
 <br>
 
 **Discriminator**
 
+* `input`: generated image(g_z) or real image(x)
+* `label`: conditional label(y) or real label(x_y)
+* return: D(concat(emb(input), emb(label)))
+* 과정
+  * input, label을 각각 임배딩(*nn.Linear*).
+  * 임배딩 된 input, label을 concat.
+  * concat한 벡터를 포워딩하여 1차원에 mapping(*nn.Linear*).
+  * 마지막 layer에 sigmoid를 통해 확률 값으로 변환(real(1) or fake(0))
+
 ```python
+class Discriminator(nn.Module):
+    # initializers
+    def __init__(self):
+        super(Discriminator, self).__init__()
+        ## fill ##
+        input_embed_dim = 784
+        label_embed_dim = 10
+        out_dim = 1
+
+        # self.input_embed = nn.Embedding(784, input_embed_dim)
+        # self.label_embed = nn.Embedding(10, label_embed_dim)
+        self.input_embed = nn.Linear(784, input_embed_dim)
+        self.label_embed = nn.Linear(10, label_embed_dim)
+
+        self.main = nn.Sequential(
+            nn.Linear(input_embed_dim + label_embed_dim, 512),
+            nn.LeakyReLU(negative_slope=0.2, inplace=True),
+
+            nn.Linear(512, 256),
+            nn.LeakyReLU(negative_slope=0.2, inplace=True),
+
+            nn.Linear(256, out_dim),
+            nn.Sigmoid()
+        )
+
+        self.weight_init(0,1)
+
+    # weight_init
+    def weight_init(self, mean, std):
+        for m in self.modules():
+            if isinstance(m, nn.Conv2d):
+                nn.init.kaiming_normal_(m.weight)
+                m.weight.data *= 0.1
+                if m.bias is not None:
+                    nn.init.constant_(m.bias, 0)
+            elif isinstance(m, nn.BatchNorm2d):
+                nn.init.normal_(m.weight, 1.0, 0.02)
+                m.weight.data *= 0.1
+                if m.bias is not None:
+                    nn.init.constant_(m.bias, 0)
+            elif isinstance(m, nn.Linear):
+                nn.init.kaiming_normal_(m.weight)
+                m.weight.data *= 0.1
+                if m.bias is not None:
+                    nn.init.constant_(m.bias, 0)
+
+    # forward method
+    def forward(self, input, label):
+        ## fill ##
+        input = self.x_embed(input)
+        conditional = self.g_z_embed(label)
+        contitional_input = torch.cat((x,conditional), dim=-1) # dim 0: batch
+        
+        out = self.main(conditional_input)
+
+        return out
 ```
 
 <br>
 
 **Training**
 
+Training 코드가 쉽지 않아서, line by line으로 주석을 달아 보았습니다.  대략적인 흐름은 다음과 같습니다. 
+
+* generator 학습
+  * generator는 만들어낸 가짜 이미지가 discriminator를 얼마나 잘 속이는지에 의해 학습된다. 
+* discriminator 학습
+  * discriminator는 두 가지 손실 값의 평균에 의해 학습된다. 
+    * generator가 만들어낸 가짜 이미지를 얼마나 가짜라고 잘 구별하는지
+    * 실제 real image를 얼마나 실제라고 잘 구별하는지
+
 ```python
+# Train
+discriminator.train()
+
+g_loss = torch.Tensor([0])
+d_loss = torch.Tensor([0])
+
+for epoch in range(parser.n_epochs):
+  for batch_idx, (x, y) in enumerate(train_loader):
+    generator.train()
+    # linear layer 통과를 위해 이미지 차원 resize
+    x_flatten = x.view(x.shape[0], -1)
+    # 라벨 one-hot encoding
+    one_hot_label = torch.nn.functional.one_hot(y, num_classes=parser['n_classes'])
+    # to GPU
+    img_torch2vec = x_flatten.type(torch.FloatTensor).cuda()  
+    label_torch = one_hot_label.type(torch.FloatTensor).cuda()
+
+    # valid: generator가 만들어낸 이미지가 discriminator를 얼마나 잘 속일 수 있는지(generated image가 얼마나 real image라고 분류할 확률) 측정할 때 label로 사용. 1일 때 완벽하게 속인 것이므로 ones를 라벨로 사용.
+    # fake: discriminator가 generated image를 얼마나 잘 구별 하는지(generated image를 real image가 아니라고 분류할 확률) 측정할 때 label로 사용. 0일 때 잘 구별한 것이므로 zeros를 라벨로 사용. 
+    valid = torch.ones(parser.batch_size, 1).cuda()
+    fake = torch.zeros(parser.batch_size, 1).cuda()
+
+    # 실제 이미지, 실제 라벨 데이터
+    real_imgs = img_torch2vec
+    labels = label_torch
+
+    # === generator 학습 ===
+    optimizer_G.zero_grad()
+
+    # generator 입력 생성: z(random vector)와 gen_labels(y, conditional label)
+    z = torch.randn(parser.batch_size, parser.latent_dim).cuda()
+    gen_labels = []
+    for randpos in np.random.randint(0, parser.n_classes, parser.batch_size):
+      gen_labels.append(torch.eye(parser.n_classes)[randpos])
+    gen_labels = torch.stack(gen_labels).cuda()
+
+    # fake images 생성
+    gen_imgs = generator(z, gen_labels)
+    
+    # val_output: 각 fake images에 대해 real image일 확률을 반환, generator 손실값 계산
+    val_output = discriminator(gen_imgs, gen_labels)
+    # generator의 손실 함수 값은 fake image를 real image가 아니라고 예측되는 정도
+    g_loss = cross_entropy(val_output, valid)
+    g_loss.backward()
+    optimizer_G.step()
+
+    # === discriminator 학습 ===
+    optimizer_D.zero_grad()
+    
+    # validity_real: real images를 입력으로 주고 real image일 확률을 반환(높을수록 잘 구별)
+    validity_real = discriminator(real_imgs, labels)
+    try:
+        d_real_loss = cross_entropy(validity_real, valid)
+    except:
+        valid = torch.ones(validity_real.shape[0], 1).cuda()
+        d_real_loss = cross_entropy(validity_real, valid)
+
+    # validity_fake: fake image를 입력으로 주고 real image일 확률을 반환(낮을수록 잘 구별)
+    validity_fake = discriminator(gen_imgs.detach(), gen_labels)
+    d_fake_loss = cross_entropy(validity_fake, fake)
+	
+    # discriminator의 손실 함수 값은 d_real_loss와 d_fake_loss의 평균
+    d_loss = (d_real_loss + d_fake_loss) / 2
+    d_loss.backward()
+    optimizer_D.step()
+    
+    if batch_idx % 500 == 0:
+      print('{:<13s}{:<8s}{:<6s}{:<10s}{:<8s}{:<9.5f}{:<8s}{:<9.5f}'.format('Train Epoch: ', '[' + str(epoch) + '/' + str(parser['n_epochs']) + ']', 'Step: ', '[' + str(batch_idx) + '/' + str(len(train_loader)) + ']', 'G loss: ', g_loss.item(), 'D loss: ', d_loss.item()))
+
+  if epoch % parser.sample_interval == 0:
+    sample_image(n_row=10, epoch=epoch)
 ```
 
 <br>
@@ -203,9 +424,18 @@ GAN을 이용한 사례들에는 무엇이 있는지 보겠습니다.
 **Inference**
 
 ```python
+def show_image(condition: int):
+    generator.eval()
+
+    z = torch.randn(1, parser.latent_dim).type(torch.FloatTensor).cuda()
+    condition_vector = torch.eye(10)[condition].reshape(1,-1).cuda()
+    gen_imgs = generator(z, condition_vector)
+    plt.imshow(gen_imgs.view(1,1,28,28)[0][0].cpu().detach().numpy(), cmap='gray')
+    
+show_image(3)
 ```
 
-
+![image-20220316181515298](https://user-images.githubusercontent.com/70505378/158586416-a734967c-13a8-4b92-b224-287baa7f485d.png)
 
 
 
