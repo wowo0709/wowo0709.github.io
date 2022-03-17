@@ -346,7 +346,7 @@ class Hourglass(nn.Module):
 
 **Stacked Hourglass Network 공식 깃허브 구현**
 
-`Stacked Hourglass Network`의 공식 깃허브 구현 코드입니다. 
+`Stacked Hourglass Network`의 공식 깃허브 구현 코드입니다. HourglassNet의 최종 반환값은 각 stack(hourglass module)의 heapmap입니다. 
 
 ```python
 '''
@@ -505,7 +505,7 @@ class HourglassNet(nn.Module):
             )
 
     def forward(self, x):
-        out = []
+        out = [] # num_stacks만큼의 출력값을 담아서 out으로 반환
         x = self.conv1(x)
         x = self.bn1(x)
         x = self.relu(x)
