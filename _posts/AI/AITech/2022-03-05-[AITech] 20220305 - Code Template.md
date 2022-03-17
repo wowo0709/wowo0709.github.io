@@ -1,10 +1,10 @@
 ---
 layout: single
-title: "[AITech] 20220305 - Code Template"
+title: "[AITech][Image Classification][P stage] 20220305 - Code Template"
 categories: ['AI', 'AITech']
 toc: true
 toc_sticky: true
-tag: []
+tag: ['Image Classification']
 ---
 
 
