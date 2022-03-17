@@ -127,7 +127,7 @@ LSTM의 구조를 요약해서 나타내면 다음과 같습니다.
 
 ### GRU
 
-GRU(Gated Recurrent Unit)는 LSTM의 간소화된 형태라고 할 수 있습니다. 다만, 놀랍게도 **GRU는 더 적은 파라미터로 높은 학습 속도와 일반화 성능을 보이면서 LSTM보다 더 나은 성능을 지즈 보여줍니다.**
+GRU(Gated Recurrent Unit)는 LSTM의 간소화된 형태라고 할 수 있습니다. 다만, 놀랍게도 **GRU는 더 적은 파라미터로 높은 학습 속도와 일반화 성능을 보이면서 LSTM보다 더 나은 성능을 자주 보여줍니다.**
 
 ![image-20220208190144437](https://user-images.githubusercontent.com/70505378/152983149-67d746ac-fad8-4233-be3e-7bd8ddf4418e.png)
 
