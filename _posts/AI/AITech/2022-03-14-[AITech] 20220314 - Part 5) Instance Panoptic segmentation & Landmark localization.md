@@ -346,7 +346,7 @@ class Hourglass(nn.Module):
 
 **Stacked Hourglass Network 공식 깃허브 구현**
 
-`Stacked Hourglass Network`의 공식 깃허브 구현 코드입니다. HourglassNet의 최종 반환값은 각 stack(hourglass module)의 heapmap입니다. 
+`Stacked Hourglass Network`의 공식 깃허브 구현 코드입니다. HourglassNet의 최종 반환값은 각 stack(hourglass module)의 출력 heapmap입니다. 
 
 ```python
 '''
@@ -612,10 +612,56 @@ class BodyLandmarkDataset(Dataset):
 
 학습시킨 모델로 최종 출력을 시각화합니다. Hourglass network의 최종 출력은 heapmap 형태이기 때문에, 이를 다시 (x, y) keypoint 형태로 변환해주는 과정이 필요합니다. 
 
+Hourglass Network의 최종 출력 `model(imgs)[-1]` 히트맵에서 각 keypoint에 대한 (x, y)를 뽑아내 시각화 해보겠습니다. 
+
 ```python
+import matplotlib.pyplot as plt
+
+n_vis = 5
+
+# Visualize the result of validation dataset
+for iter, (imgs, hm_gt) in enumerate(train_loader):
+  '''============================================================'''
+  '''======================== TO DO Main ========================'''
+  # GPU 연산을 위해 이미지 tensor를 GPU로 보내기 (필요한 경우, 변수의 type도 수정해주세요)
+  imgs = imgs.float().to(device)
+  
+  # 모델에 이미지 forward (gradient 계산 X)
+  with torch.no_grad():
+    preds = model(imgs)[-1].cpu().numpy() # 마지막 결과(네트워크의 최종 출력) 가져오기
+  '''======================== TO DO Main ========================'''
+  '''============================================================'''
+
+
+  # for each sample in a batch
+  # print(imgs.size()) # (batch_size=8,channels=3,height=320,width=320)
+  # print(preds.size()) # (batch_size=8, channel(=num_classes)=22, height=80, width=80)
+  imgs = imgs.cpu().numpy()
+  for img, pred_hm in zip(imgs, preds):
+    # Re-convert pre-processed input image to original format
+    img = np.moveaxis(img, 0, -1)
+    img = (img * STD) + MEAN
+    img = (img*255).astype(np.uint8).copy()
+
+    for hm in pred_hm:
+      '''======================================================='''
+      '''==================== TO DO Decoding ==================='''
+      # 최댓값을 갖는 좌표점 추출
+      y, x = np.where(hm == hm.max())
+      '''==================== TO DO Decoding ==================='''
+      '''======================================================='''
+      # image, center(80*4=320), radius, color, thickness
+      cv2.circle(img, (x[0]*4, y[0]*4), 3, (255,0,0), -1)
+    
+    plt.imshow(img)
+    plt.show()
+  
+
+  if iter == (n_vis-1): # batch_size * n_vis 만큼 시각화 출력
+    break
 ```
 
-
+![image-20220317151815378](https://user-images.githubusercontent.com/70505378/158749606-c173c06b-6db8-4f69-add1-49ffdae722de.png)
 
 
 

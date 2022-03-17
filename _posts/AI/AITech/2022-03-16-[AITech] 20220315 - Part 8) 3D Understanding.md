@@ -120,6 +120,8 @@ _1. Set a depth threshold range [D<sub>min</sub>, D<sub>max</sub>] you want to f
 
 첫번째 단계에서는 focusing하고 싶은 거리 범위를 설정합니다. 우리가 사용할 depth map의 depth 값은 보통 0~255 사이의 정수값으로 nomalize하여 사용합니다. 
 
+헷갈릴 수 있는데, **depth map의 값은 0에 가까울수록 어둡고(멀고) 255에 가까울수록 밝습니다(가깝습니다).**
+
 ![image-20220317002254787](https://user-images.githubusercontent.com/70505378/158725316-1bd578a5-fca4-4ce3-b0a3-24d978514b7a.png)
 
 _2. Compute a mask of "focusing area" and "defocusing area" by depth map thresholding_
@@ -183,13 +185,78 @@ defocused_image = focused_with_mask + defocused_with_mask
 
 <br>
 
-## 실습) De-focusing Using Depth Map
+## 실습) Re-focusing Using Depth Map
+
+앞에서 살펴 본 **photo refocusing**에 대한 실습을 진행합니다. 
+
+**이미지 가져오기**
+
+Photo refucusing을 위해서는 original image와 그에 대응하는 depth map이 있어야 합니다. 
+
+![image-20220317153138793](https://user-images.githubusercontent.com/70505378/158752154-8b276193-5429-46f4-ad31-cfc75ce43592.png)
+
+**Depth map histogram**
+
+물체들의 거리 분포를 알고 싶을 때는 depth map을 histogram으로 표현하여 시각화하면 많은 도움이 됩니다. 
+
+```python
+plt.hist(depth_map.reshape(-1), bins=100)
+plt.ylabel('Frequency')
+plt.xlabel('Pixel intensity')
+plt.show()
+```
+
+![image-20220317153246627](https://user-images.githubusercontent.com/70505378/158752160-2ce6a7f9-9373-4781-be0e-640605364508.png)
+
+크게 [0, 50], [50, 150], [150, 255]의 세 구간으로 나눌 수 있습니다. 다시 한 번 말하지만, 값이 클수록 가까이에 있는 것입니다. 
+
+**Focusing the object in the middle of the image**
+
+이번 실습에서는 가운데 있는 물체에 focusing 해보겠습니다. 아래와 같은 코드로 [50, 150] 구간에 있는 물체를 나타내는 `object_mask`와 그 밖에 있는 물체를 나타내는 `background_mask`를 구합니다. 
+
+```python
+object_mask = np.where((50 < depth_map) & (depth_map < 150), 1, 0).astype("uint8")
+background_mask = (np.invert(object_mask) + 2).astype("uint8")
+# object_mask = (50 < depth_map) & (depth_map < 150)
+# background_mask = np.invert(object_mask)
+```
+
+그리고 아래와 같은 코드로 `refocused_image`를 얻을 수 있습니다. 
+
+```python
+refocused_image = (original_image*object_mask) + (blurred_image*background_mask)
+```
+
+![image-20220317153831383](https://user-images.githubusercontent.com/70505378/158752162-0d851614-ed46-4528-ad1f-23b51ff8de01.png)
 
 
 
 
 
+**Alpha-blending**
 
+앞서 만든 focusing 이미지는 단순히 각 영역에 대해 원본 이미지의 값을 사용할 지 혹은 blur 처리된 값을 사용할 지 양자택일한 결과이기 때문에 focusing 정도를 조절할 수 없습니다. 
+
+따라서 0~1 사이의 alpha 값을 이용하여 focusing 정도를 조절하고자 합니다 (1에 가까울수록 강하게 focusing).
+
+가장 앞에 있는 동상에 focusing 정도를 조절하도록 간단하게 아래와 같은 코드로 구현할 수 있습니다. 
+
+```python
+for alpha in [0.2, 0.4, 0.6, 0.8, 1]:
+  object_mask_w_alpha = alpha * (depth_map > 150).astype(np.float32)
+  background_mask_w_alpha = (1-object_mask_w_alpha)
+
+  defocused_image_w_alpha = (object_mask_w_alpha * original_image) + (background_mask_w_alpha * blurred_image)
+  defocused_image_w_alpha = defocused_image_w_alpha.astype(np.uint8)
+
+  show_image(defocused_image_w_alpha, 'Refocused Image with Alpha Blending (alpha=%s)' % alpha)
+```
+
+![image-20220317154330808](https://user-images.githubusercontent.com/70505378/158752165-f4ce366c-bb63-4439-b6e2-76aab001ea55.png)
+
+![image-20220317154341444](https://user-images.githubusercontent.com/70505378/158752168-ee52f751-3aa4-46d5-8596-767c79032c7c.png)
+
+![image-20220317154353244](https://user-images.githubusercontent.com/70505378/158752170-642f2366-76ca-4456-87be-252ff4d60c65.png)
 
 
 
