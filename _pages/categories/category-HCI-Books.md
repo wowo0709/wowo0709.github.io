@@ -1,14 +1,14 @@
 ---
-title: HCI-Books
+title: UX
 layout: archive
-permalink: categories/hci-books
+permalink: categories/ux
 author_profile: true
 sidebar_main: true
 ---
 
 
 
-{% assign posts = site.categories.HCI-Books %}
+{% assign posts = site.categories.UX %}
 
 {% for post in posts %} {% include archive-single.html type=page.entries_layout %}{% endfor %}
 

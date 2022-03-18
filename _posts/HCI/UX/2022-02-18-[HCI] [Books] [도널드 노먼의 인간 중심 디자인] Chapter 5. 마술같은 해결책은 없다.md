@@ -1,7 +1,7 @@
 ---
 layout: single
-title: "[HCI][Books][도널드 노먼의 인간 중심 디자인] Chapter 5. 마술같은 해결책은 없다"
-categories: ['HCI', 'HCI-Books']
+title: "[HCI][UX][도널드 노먼의 인간 중심 디자인] Chapter 5. 마술같은 해결책은 없다"
+categories: ['HCI', 'UX']
 tag: []
 toc: true
 toc_sticky: true

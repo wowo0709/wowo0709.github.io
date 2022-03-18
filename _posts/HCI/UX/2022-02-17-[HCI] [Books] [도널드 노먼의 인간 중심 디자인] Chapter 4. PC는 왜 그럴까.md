@@ -1,7 +1,7 @@
 ---
 layout: single
-title: "[HCI][Books][도널드 노먼의 인간 중심 디자인] Chapter 4. PC는 왜 그럴까?"
-categories: ['HCI', 'HCI-Books']
+title: "[HCI][UX][도널드 노먼의 인간 중심 디자인] Chapter 4. PC는 왜 그럴까?"
+categories: ['HCI', 'UX']
 tag: []
 toc: true
 toc_sticky: true

@@ -1,14 +1,14 @@
 ---
-title: HCI-Papers
+title: CognitiveScience
 layout: archive
-permalink: categories/hci-papers
+permalink: categories/cognitivescience
 author_profile: true
 sidebar_main: true
 ---
 
 
 
-{% assign posts = site.categories.HCI-Papers %}
+{% assign posts = site.categories.CognitiveScience %}
 
 {% for post in posts %} {% include archive-single.html type=page.entries_layout %}{% endfor %}
 
