@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[AITech][CV] 20220308 - Part 7) Multi-modal Learning"
+title: "[AITech][CV] 20220315 - Part 7) Multi-modal Learning"
 categories: ['AI', 'AITech']
 toc: true
 toc_sticky: true

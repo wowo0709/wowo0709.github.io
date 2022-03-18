@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[AITech][CV] 20220308 - Part 6) Conditional Generative Model"
+title: "[AITech][CV] 20220315 - Part 6) Conditional Generative Model"
 categories: ['AI', 'AITech']
 toc: true
 toc_sticky: true

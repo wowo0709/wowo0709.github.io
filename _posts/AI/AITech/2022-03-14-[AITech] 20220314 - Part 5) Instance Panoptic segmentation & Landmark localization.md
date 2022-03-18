@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[AITech][CV] 20220308 - Part 5) Instance/Panoptic segmentation & Landmark localization"
+title: "[AITech][CV] 20220314 - Part 5) Instance/Panoptic segmentation & Landmark localization"
 categories: ['AI', 'AITech']
 toc: true
 toc_sticky: true

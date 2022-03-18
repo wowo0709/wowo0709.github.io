@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[AITech][CV] 20220308 - Part 8) 3D Understanding"
+title: "[AITech][CV] 20220316 - Part 8) 3D Understanding"
 categories: ['AI', 'AITech']
 toc: true
 toc_sticky: true
