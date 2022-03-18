@@ -69,13 +69,11 @@ Encoder의 구조 내부는 아래와 같이 생겼습니다.
 Attention은 아래의 과정을 수행합니다. 
 
 > 1. _`x`의 Input feature를 embedding하여 Embedded vector로 변환_
->
 > 2. _각각의 embedded vector에 대해 **Query/Key/Value vector** 한 쌍을 생성_
 >
 > 3. _각 단어에 대해 자신을 포함한 모든 단어들과 Query vector와 Key vector를 내적_ 
 >    * 이 값을 Attention Score라고 함
 >    * 이 Attention Score가 해당 단어와 다른 단어들과의 관계성을 나타내는 지표라고 할 수 있음
->
 > 4. _각각의 score를 root(d<sub>k</sub>)로 나누고 Softmax를 적용_
 >    * 이 때의 d<sub>k</sub>는 dimension of key vector
 >    * 이 값을 Attention weight라고 함
@@ -122,7 +120,7 @@ Attention은 아래의 과정을 수행합니다.
 
 그래서 Self-Attention 모듈을 통과하는 과정은 아래와 같습니다. (Encoder에서는 Self-Attention 모듈 이후에 FC-layer를 지나야 함을 잊지 마세요!)
 
-![image-20220209154401681](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220209154401681.png)
+![image-20220209154401681](https://user-images.githubusercontent.com/70505378/159019796-4fc6ab16-3b7c-413a-ae33-05ee1b60c94b.png)
 
 #### Positional encoding & Residual connection
 
