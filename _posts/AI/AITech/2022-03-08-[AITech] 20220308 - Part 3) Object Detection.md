@@ -110,7 +110,7 @@ Single-Stage detector가 겪게 되는 필연적인 문제로 **Class imbalance 
 
 ![image-20220312181809720](https://user-images.githubusercontent.com/70505378/158012840-99025937-ee1a-46a0-beac-3b4f8a95d89c.png)
 
-이럴 때 사용할 수 있는 손실 함수로 **Focal loss**라는 것이 있습니다. Focal loss는 class imbalance problem을 완화하기 위한 식으로 구성되어 있고, 맞힐 확률을 높은 클래스에 대해서는 낮은 loss 값을, 맞힐 확률이 낮은 클래스에 대해서는 높은 loss 값을 발생시킵니다. 
+이럴 때 사용할 수 있는 손실 함수로 **Focal loss**라는 것이 있습니다. Focal loss는 class imbalance problem을 완화하기 위한 식으로 구성되어 있고, 맞힐 확률을 높은 클래스에 대해서는 낮은 loss gradient를, 맞힐 확률이 낮은 클래스에 대해서는 높은 loss gradient를 발생시킵니다. 
 
 ![image-20220312182006161](https://user-images.githubusercontent.com/70505378/158012842-336938ed-13d0-4e56-86a4-a3c8b5207456.png)
 
