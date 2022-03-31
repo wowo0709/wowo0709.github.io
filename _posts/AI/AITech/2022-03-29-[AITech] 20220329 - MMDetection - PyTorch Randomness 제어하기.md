@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[AITech][Object Detection] 20220329 - MMDetection - PyTorch Randomness 제어하기"
-categories: ['AI', 'AITech', 'PyTorch', 'ObjectDetection']
+categories: ['AI', 'AITech', 'PyTorch']
 toc: true
 toc_sticky: true
 tag: ['mmdetection']
