@@ -4,7 +4,7 @@ title: "[AITech][Object Detection] 20220330 - Advanced Object Detection 1"
 categories: ['AI', 'AITech']
 toc: true
 toc_sticky: true
-tag: []
+tag: ['Cascade RCNN', 'Deformable Convolution', 'DETR', Swin Transformer']
 ---
 
 
@@ -408,5 +408,14 @@ Swin transformer는 비교적 적은 양의 데이터로도 학습이 잘 이루
 
 # 참고 자료
 
-* 
+* Alexey Bochkovskiy, Chien-Yao Wang, Hong-Yuan Mark Liao, “YOLOv4: Optimal Speed and Accuracy of Object
+  Detection”
+* Zhaowei Cai, Nuno Vasconcelos, “Cascade R-CNN: Delving into High Quality Object Detection”
+* David G. Lowe, “Distinctive Image Features from Scale-Invariant Keypoints”
+* Jifeng Dai, Haozhi Qi, Yuwen Xiong, Yi Li, Guodong Zhang, Han Hu, Yichen Wei, “Deformable Convolutional Networks”
+* Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia
+  Polosukhin, “Attention Is All You Need”
+* Alexey Dosovitskiy, “AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE”
+* Nicolas Carion, Francisco Massa, Gabriel Synnaeve, Nicolas Usunier, Alexander Kirillov, Sergey Zagoruyko, “End-toEnd Object Detection with Transformers”
+* Ze Liu, “Swin Transformer: Hierarchical Vision Transformer using Shifted Windows”  
 
