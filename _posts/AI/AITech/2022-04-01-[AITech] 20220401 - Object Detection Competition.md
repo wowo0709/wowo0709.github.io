@@ -4,7 +4,7 @@ title: "[AITech][Object Detection] 20220401 - Object Detection Competition"
 categories: ['AI', 'AITech']
 toc: true
 toc_sticky: true
-tag: ['mAP', 'Pipeline', 'Validation', 'Augmentation', 'Ensemble&TTA', '대회로 학습하는 방법']
+tag: ['mAP', 'Pipeline', 'Validation', 'Augmentation', 'Ensemble&TTA', 'Kaggle']
 ---
 
 
@@ -260,6 +260,205 @@ WBF는 같은 클래스로 예측한 이웃한 bbox들을 confidence score에 �
 
 <br>
 
+## Kaggle Solutions
+
+### Global Wheat Detection
+
+![image-20220403131254322](https://user-images.githubusercontent.com/70505378/161415504-4ce41da1-6214-4da4-a8bc-9abfb3ff658c.png)
+
+**Overview**
+
+Global Wheat Detection 대회는 이미지에서 wheat head를 탐지하는 대회로, 1 class detection이라는 점이 특징적입니다. 
+
+또한 본 대회의 특징이자 중요한 부분은 아래와 같습니다. 
+
+* 이미지 내에 박스가 없는 경우도 있음
+* 매우 작은 크기의 객체도 탐지하려 할 것인가? 노이즈로 처리할 것인가?
+
+![image-20220403131320168](https://user-images.githubusercontent.com/70505378/161415508-29ec580a-7e73-4dd5-8eed-a8cd2b322966.png)
+
+**Solution**
+
+* Custom masiac data augmentation
+
+  * 4개의 image 이용
+  * 모서리를 포함한 일정 부분을 crop하여 concat
+
+  ![image-20220403131508707](https://user-images.githubusercontent.com/70505378/161415509-aa512303-e729-4949-85b7-4eaaf2926249.png)
+
+* Mixup
+
+* Heavy augmentation
+
+  * RandomCrop, HorizontalFlip, VerticalFlip, ToGray, GaussNoise, MotionBlur, MedianBlur, Blur, CLAHE, Sharpen, Emboss, RandomBrightnessContrast, HueSaturationValue  
+
+* Data cleaning
+
+  * 높이, 너비가 10px 이하인 작은 box 제거
+
+* Model
+
+  * 5 folds, stratified k-fold(splitted by source: usask_1, arvalis_1, arvalis_2, ...)
+  * Optimizer
+    * Adam with inital LR 5e-4 for EfficientDet
+    * SGD with initial LR 5e-3 for Faster RCNN with FPN
+  * LR Scheduler
+    * cosine-annelaing
+  * Mixed precision(16fp, 32fp) training with nvidia-apex
+
+* Ensemble multi-scale model through WBF
+
+* TTA 
+
+  * HorizontalFlip, VerticalFlip, Rotate90
+
+* Pseudo labeling
+
+  * 경진 대회에서만 사용이 가능한 강력한 기법
+    * Base model의 test data prediction을 다음 모델의 train data로 사용
+  * Round 1
+    * Base
+      * EfficientDet-d6 with image-size 640 Fold1 0.716 Valid AP  
+    * Training Data
+      * 기존 Trainset + Test data output
+    * 10 epoch
+    * Result : 0.7719 Public LB / 0.7175 Private LB  
+  * Round 2
+    * Base
+      * Round 1 model
+    * Training Data
+      * 기존 Trainset + Round1 model의 Test data output
+    * 6 epoch
+    * Result : 0.7754 Public LB / 0.7205 Private LB  
+
+* MultilabelStratifiedKFold with 5 folds
+
+  * https://github.com/trent-b/iterative-stratification
+  * Number of boxes, Median of box areas, Image source  
+
+### VinBigData Chest X-ray Abnormalities
+
+![image-20220403150221290](https://user-images.githubusercontent.com/70505378/161415510-2dcfdf86-a8db-41ec-983b-76315ef7a31f.png)
+
+**Overview**
+
+본 대회는 흉부 x-ray 사진으로부터 이상 부분을 검출해내는 대회입니다. 총 14개의 클래스가 존재하고, 성능지표로는 mAP40을 사용하며 박스가 없는 이미지도 있습니다. 
+
+본 대회의 특이한 점은 Train data 이미지를 5명의 전문가가 직접 labeling 했다는 것입니다. 따라서 한 위치에 여러 개 box가 존재하며, 다른 class로 labeling되어 있을 수도 있습니다. 이는 전처리가 필요한 부분일 것입니다. 
+
+또한 test data의 경우 3명의 전문가가 판별했을 때 겹치는 box만 labeling하였습니다. 
+
+![image-20220403150713874](https://user-images.githubusercontent.com/70505378/161415511-c2c68136-b727-47b2-a82f-d370f83b74bf.png)
+
+**Solution**
+
+* Use opened code(Baseline)
+
+  * Faster RCNN with FPN using Detectron2
+
+* WBF ensemble with yolov5
+
+* Ensemble with other yolo fold and other yolo hyperparameters
+
+* Pre processing
+
+  * 같은 객체를 가리키는 여러 개 박스를 하나의 박스로 WBF
+
+  ![image-20220403151346270](https://user-images.githubusercontent.com/70505378/161415512-cc126e7c-4001-462b-9d9e-7f65643da232.png)
+
+* CV strategy
+
+  * 각자 개인적으로 competition에 참여하다가 마지막에 team up 되어서 CV가 전부 다른 상태
+  * 하지만 이것으로 오히려 다양한 데이터셋으로 학습한 모델들을 앙상블 할 수 있게 되면서 엄청난 결과 향상
+
+* Team-up ensemble
+
+  ![image-20220403151641698](https://user-images.githubusercontent.com/70505378/161415514-40a5a02b-850b-4c58-a1eb-5ccca01c69a7.png)
+
+**Other solution**
+
+* Grid Search
+  * ATSS
+  * Cascade RFP
+    * ResNet 50
+  * GFL
+    * ResNet 101
+    * ResNext 101
+  * RetinaNet
+    * ResNext 101
+  * UniverseNet  
+* Training tricks
+  * Albumentation
+    * ShiftScaleRotate, IAAAffine, Blur/GaussianBlur/MedianBlur, RandomBrightnessContrast, IAAAdditiveGaussianNoise, GaussNoise, HorizontalFlip.
+  * 1024 x 1024로 모든 model을 학습 이후 작은 박스를 잘 잡기 위해서 2048 x 2048로 파인튜닝
+  * FP16을 사용하여 speed와 batch size 모두 늘림
+  * CosineAnnealing보다 stepLR 스케쥴러가 더 좋은 성능 향상
+  * Class Balanced Dataset을 사용 but 성능 향상은 없음  
+* 2-step training
+  * 모든 data를 활용해 30 epoch 동안 학습 후 best checkpoint를 저장
+  * 전문가 별로 박스를 몇 개 라벨링 했는 지 계산 가능
+  * 이때 박스를 적게 친 전문가(rare radiologists)들이 친 이미지를 학습 데이터로 파인튜닝  
+* Investigation mAP
+  * 여러 실험에도 더 이상 mAP 점수가 오르지 않았음
+  * OOF(out-of-folds)를 가지고, 각 클래스 별 AP를 계산 (local score)
+  * 이후, AP가 낮은 클래스에 대해 해당 클래스의 AP가 왜 낮은지 조사
+    * 조사 결과, 해당 클래스를 라벨링한 전문가 별로 AP가 극명하게 나뉘는 것을 확인
+    * 이에 전문가 별로 어떻게 라벨링 했는지 EDA후 결과 확인
+    * 확인 결과, AP가 낮은 전문가들이 실제 객체보다 더 큰 박스를 치는 습관이 있음을 확인  
+  * 이에 위 전문가들의 박스의 크기를 원래 박스보다 작게 변형 후 학습
+    * 성능에 큰 향상 !  
+  * 이에 특정 전문가의 박스만 모아서 매우 큰 resolution으로 모델 학습 후 결과 앙상블
+    * 성능에 매우 큰 향상 !  
+* CV strategy
+  * Class 비율
+  * object 개수
+  * object 크기
+
+### SIIM-FISABIO-RSNA 
+
+![image-20220403153534316](https://user-images.githubusercontent.com/70505378/161415515-44886a94-c851-4a0f-beb1-35aebd404740.png)
+
+본 대회는 코로나에 걸린 사람들의 이상 부분을 탐지/분류하는 대회로, 완벽히 detection 대회라고 할 수는 없지만(classification task가 더 많은 부분 차지) 가장 최근에 열린 대회라서 강의에서 소개되었습니다. 
+
+* Classification (4 class) + Object Detection (1 class) + None (1 class)  
+
+![image-20220403153701798](https://user-images.githubusercontent.com/70505378/161415516-bfff47b7-0f6e-49e3-a1bd-afbad6639b3d.png)
+
+**Solution**
+
+* Train masks from boxes
+  * Boxes를 각 마스크로 해서 segmentation pretraining 진행
+  * 모델이 박스에 대한 semantic을 좀 더 이해하기를 기대함
+* Augmentation
+  * Scale, RandomResizedCrop, Rotate(maximum 10 degrees), HorizontalFlip, VerticalFlip, Blur, CLAHE, IAASharpen, IAAEmboss, RandomBrightnessContrast, Cutout, Mosaic, Mixup
+* Focal Loss
+* TTA
+* Ensemble  
+* Models
+  * Yolo V5 (1stage detection) input size 768
+  * EfficientDet input size 768
+  * Faster RCNN resnet 101 input size 1024
+  * Faster RCNN resnet 200 input size 768  
+
+### Summary
+
+* 모델 다양성은 정말로 중요하다!
+  * Resolution, Model structure(Yolo, Effdet, CornerNet, FasterRCNN), Library, Dataset …
+* Heavy augmentations은 거의 필수적이다!
+  * 탑 솔루션들의 공통된 augmentations에는 무엇이 있을까?
+* CV Strategy(class proportion, box number, box size, ...)를 잘 세우는 것은 shake up 방지에 있어서 정말 중요하다!
+* 체계적인 실험 역시 정말 중요하다!
+* Team up은 성능향상의 엄청난 키가 될 수 있다!
+  * 단, 서로 다른 베이스라인을 갖는 경우!  
+
+
+
+
+
+<br>
+
+<br>
+
 ## 컴피티션으로 학습하는 방법
 
 모델의 최고 성능을 이끌어내야 하는 대회에서는 여러 토론과 실험이 매우 중요합니다. 이 과정에서, 모든 이론들을 from scratch로 직접 다 구현하는 것은 불가능에 가깝습니다. 
@@ -284,4 +483,11 @@ WBF는 같은 클래스로 예측한 이웃한 bbox들을 confidence score에 �
 
 # 참고 자료
 
-* 
+* https://www.kaggle.com/c/global-wheat-detection
+* Wheat 1st solutions, ” https://www.kaggle.com/c/global-wheat-detection/discussion/172418”
+* Wheat 9th solutions, “https://www.kaggle.com/c/global-wheat-detection/discussion/172569”
+* https://www.kaggle.com/c/vinbigdata-chest-xray-abnormalities-detection/overview
+* VinBig 1st solutions, “https://www.kaggle.com/c/vinbigdata-chest-xray-abnormalitiesdetection/discussion/231511”
+* VinBig 2nd solutions, “https://www.kaggle.com/c/vinbigdata-chest-xray-abnormalitiesdetection/discussion/229740”, “https://www.kaggle.com/c/vinbigdata-chest-xray-abnormalitiesdetection/discussion/229696”
+* https://www.kaggle.com/c/siim-covid19-detection
+* SIIM 1st solutions, “https://www.kaggle.com/c/siim-covid19-detection/discussion/263658”  
