@@ -156,17 +156,13 @@ def bellman_ford(s):
     dist = [INF] * (V+1) # V는 노드의 개수 
     dist[s] = 0 # 시작 노드의 거리는 0으로 설정 
     # 최단경로 갱신
-    for _ in range(V-1): # (정점개수 - 1) 번 반복
-        for u in range(1, V+1): # 모든 정점 탐색
-            for v, c in graph[u]: # 거리 계산 및 갱신 (모든 간선 탐색)
+    for i in range(V): # 정점개수(V) 만큼 반복
+        for u in range(1, V+1): # 모든 정점에서, 
+            for v, c in graph[u]: # 인접한 정점들의 거리 갱신
                 if dist[v] > dist[u] + c: 
                     dist[v] = dist[u] + c 
-    # 음수 사이클이 존재하는지 체크 
-    for u in range(1, V+1): 
-        for v, c in graph[u]: 
-            if dist[v] > dist[u] + c: 
-                return False 
-            
+                    if i == V-1: # V 번째에 갱신이 일어나면 음수 사이클 존재
+                        return False
     return dist
 ```
 
