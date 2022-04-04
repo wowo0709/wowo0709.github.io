@@ -135,8 +135,22 @@ Competition에서는 리더보드가 있습니다. 테스트 데이터셋(혹은
 
 **Group k-fold**
 
-* Group(Class)을 기준으로 validation set을 분리
-* 하나의 클래스는 전부 validation set, 나머지 클래스들은 전부 train set이 되는 K개(여기서 K는 클래스 개수) fold를 생성
+* Group을 기준으로 validation set을 분리
+  * 여기서 **Group**이란 train set과 validation set을 나눌 때 분리할 기준이며, 사용자가 직접 설정할 수 있고 class/label과는 다르다
+
+* 예를 들어, 여러 사람의 얼굴 사진을 모아 10개의 표정 클래스로 분류하는 일을 한다고 하자. 
+  * 이 때 class는 사람의 표정이다. 
+  * 사람의 얼굴로 train-validation set을 나누는 경우, 두 set에 같은 사람의 얼굴이 들어가 있으면 validation에 방해가 된다. 
+    * 즉, 새 얼굴에 대한 일반화 성능을 더 정확하게 평가하려면 train set과 validation set에는 서로 다른 사람의 사진이 들어가도록 해야 한다. 
+
+  * 따라서, 이 경우 '사람'을 group으로 설정한다. 
+  * 이를 위해 사진의 사람이 누구인지 기록한 배열을 groups 매개변수로 전달받을 수 있는 GroupKFold를 사용할 수 있다. 
+
+* 일반적인 적용 예시로 다음과 같은 경우가 있다. 
+  * 여러 환자로부터 얻은 여러 질병 샘플을 가지고 새로운 환자의 질병을 구분 싶을 때
+  * 여러 사람으로부터 여러 대화 샘플을 가지고 대화 주제를 구분하고 싶을 때
+
+* 참고: [https://woolulu.tistory.com/71](https://woolulu.tistory.com/71)
 
 ![image-20220402230930104](https://user-images.githubusercontent.com/70505378/161390027-bf3b57df-180f-42e4-9207-367e66505223.png)
 
