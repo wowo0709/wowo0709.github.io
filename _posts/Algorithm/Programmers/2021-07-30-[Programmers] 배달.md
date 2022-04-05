@@ -2,6 +2,7 @@
 layout: single
 title: "[Programmers] 배달"
 categories: ['Algorithm', 'Graph', 'ShortestPath']
+tag: ['Dijkstra']
 ---
 
 # 배달
