@@ -21,7 +21,9 @@ _'유니온 파인드'에 대해 새로운 부분을 발견할 때마다 업데�
 
 유니온 파인드에서는 말 그대로 **union**과 **find** 연산이 핵심 연산이다. 순서 상 find 연산이 앞서서 일어난다. 
 
-<br>
+---
+
+
 
 * `parent`: 자신의 루트 노드를 가리킴. 자신이 루트 노드라면 -(트리의 노드 수) 값을 가짐. 
 
@@ -39,15 +41,17 @@ Union 과정에서 집합들이 합쳐지면 값들이 갱신됩니다.
 
 * `find`: 인자로 임의의 노드 x를 전달하면 x의 루트 노드(최상위 부모 노드)를 반환한다. 
 
-  ```python
-  # find root node
-  def find(x):
-      if parent[x] < 0: # 루트 노드라면 본인을 return
-          return x
-      p = find(parent[x])
-      parent[x] = p
-      return p
-  ```
+```python
+# find root node
+def find(x):
+    if parent[x] < 0: # 루트 노드라면 본인을 return
+        return x
+    p = find(parent[x])
+    parent[x] = p
+    return p
+```
+
+
 
 <br>
 
@@ -55,23 +59,26 @@ Union 과정에서 집합들이 합쳐지면 값들이 갱신됩니다.
 
   * 일반적으로 연산의 효율성을 증대하기 위해 **더 작은 트리를 더 큰 트리에 합칩니다.**
 
-  ```python
-  # merge two tree
-  def union(x,y):
-      # 루트 노드 탐색
-      x = find(x)
-      y = find(y)
-      # 이미 같은 집합에 있는 경우
-      if x == y: return False
-      # 작은 트리를 큰 트리에 합침
-      if parent[x] < parent[y]:
-          parent[x] += parent[y]
-          parent[y] = x
-      else:
-          parent[y] += parent[x]
-          parent[x] = y
-      return True
-  ```
+
+```python
+# merge two tree
+def union(x,y):
+    # 루트 노드 탐색
+    x = find(x)
+    y = find(y)
+    # 이미 같은 집합에 있는 경우
+    if x == y: return False
+    # 작은 트리를 큰 트리에 합침
+    if parent[x] < parent[y]:
+        parent[x] += parent[y]
+        parent[y] = x
+    else:
+        parent[y] += parent[x]
+        parent[x] = y
+    return True
+```
+
+
 
 
 
