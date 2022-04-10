@@ -254,7 +254,7 @@
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "TensorflowKeras" %}
-                        <li><a href="/categories/tensorflow&keras" class="">Tensorflow&Keras ({{category[1].size}})</a></li>
+                        <li><a href="/categories/tensorflowkeras" class="">Tensorflow&Keras ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>

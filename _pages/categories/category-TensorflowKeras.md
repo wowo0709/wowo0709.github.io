@@ -1,7 +1,7 @@
 ---
-title: Tensorflow&Keras
+title: TensorflowKeras
 layout: archive
-permalink: categories/tensorflow&keras
+permalink: categories/tensorflowkeras
 author_profile: true
 sidebar_main: true
 ---
