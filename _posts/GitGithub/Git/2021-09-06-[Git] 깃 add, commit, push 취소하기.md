@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Git] 깃허브 add, commit, push 취소하기"
-categories: ['Git&Github','Git']
+categories: ['GitGithub','Git']
 toc: true
 toc_sticky: true
 ---
