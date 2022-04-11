@@ -1,7 +1,7 @@
 ---
 layout: single
-title: "[Computer Vision] RCNN 시리즈 논문 분석"
-categories: ['AI', 'ComputerVision']
+title: "[Papers][CV][Object Detection] RCNN 시리즈 논문 분석"
+categories: ['AI', 'ComputerVision', 'AI-Papers']
 toc: true
 toc_sticky: true
 ---

@@ -190,6 +190,13 @@
         <span class="nav__sub-title">💡 AI</span>
             <ul>
                 {% for category in site.categories %}
+                    {% if category[0] == "AI-Papers" %}
+                        <li><a href="/categories/ai-papers" class="">Papers ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
                     {% if category[0] == "AITech" %}
                         <li><a href="/categories/aitech" class="">AI Tech ({{category[1].size}})</a></li>
                     {% endif %}
