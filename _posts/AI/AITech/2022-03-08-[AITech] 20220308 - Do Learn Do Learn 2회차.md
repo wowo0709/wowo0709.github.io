@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[AITech] 20220308 - Do Learn Do Learn"
+title: "[AITech] 20220308 - Do Learn Do Learn 2회차"
 categories: ['AI', 'AITech']
 toc: true
 toc_sticky: true
