@@ -36,7 +36,7 @@ toc_sticky: true
 
 ![image-20220411153448718](https://user-images.githubusercontent.com/70505378/162919007-970298b5-0623-4a5e-8011-7767a84fe5f4.png)
 
-Face Clustering을 위해서 여러 방법론들이 연구되어 왔고, 이는 크게 supervised learning과 unsupervised learning으로 나눌 수 있습니다. 이번 포스팅에서는 크게 GCN, Ball Clustering, Map Equation을 사용한 방법에 대해 알아봅니다. 
+Face Clustering을 위해서 여러 방법론들이 연구되어 왔고, 이는 크게 supervised learning과 unsupervised learning으로 나눌 수 있습니다. 이번 포스팅에서는 크게 supervised learning에 해당하는 GCN과 Ball Clustering을 사용한 방법, 그리고 unsupervised learning에 해당하는 Map Equation을 사용한 방법에 대해 알아봅니다. 
 
 <br>
 
