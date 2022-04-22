@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[AITech][Data Annotation] 20220412 - Text Detection 1"
+title: "[AITech][Data Annotation] 20220412 - Text Detection"
 categories: ['AI', 'AITech']
 toc: true
 toc_sticky: true
@@ -13,11 +13,9 @@ tag: ['Regression/Segmentation', 'Character/Word', 'EAST model']
 
 _**본 포스팅은 Upstage의 '이활석' 마스터 님의 강의를 바탕으로 작성되었습니다.**_
 
-# Text Detection 1
+# Text Detection
 
-이번 포스팅은 `Text Detection`에 대한 첫번째 포스팅입니다. 
-
-추후에 두번째 Text Detection 포스팅도 작성할 예정입니다. 
+이번 포스팅은 `Text Detection`에 대한 포스팅입니다.  
 
 ## Basics
 
