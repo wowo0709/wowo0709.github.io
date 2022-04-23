@@ -1,10 +1,10 @@
 ---
 layout: single
-title: "[AITech][Data Annotation] 20220414 - Advanced Text Detection Models"
+title: "[AITech][Data Annotation] 20220418 - Advanced Text Detection Models"
 categories: ['AI', 'AITech']
 toc: true
 toc_sticky: true
-tag: []
+tag: ['DBNet', 'MOST', 'TextFuseNet']
 ---
 
 
