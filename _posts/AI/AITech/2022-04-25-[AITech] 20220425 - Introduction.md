@@ -101,7 +101,9 @@ Semantic segmentation에서는 object detection과 동일하게 COCO dataset 포
 
 ![image-20220425101932027](https://user-images.githubusercontent.com/70505378/165006463-54ea5144-73e4-42ce-90b5-42b214cdce94.png)
 
+또는 단순히 pixel accuracy 또한 metric으로 사용할 수 있습니다. 
 
+![image-20220425113951455](https://user-images.githubusercontent.com/70505378/165011936-eb6f1b21-bd3d-435e-a36a-786fef1f057b.png)
 
 
 
