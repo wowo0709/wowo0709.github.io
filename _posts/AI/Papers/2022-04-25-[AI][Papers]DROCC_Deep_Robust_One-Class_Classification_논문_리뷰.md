@@ -39,11 +39,11 @@ toc_sticky: true
 
 먼저 training data에 따른 분류입니다. 
 
-Supervised anomaly detection은 정상 sample과 비정상 sample의 label이 모두 존재하는 경우를 말합니다. 정확도가 비교적 높다는 장점이 있지만, labeling 시간이나 비정상 sample 취득의 어려움, class-imbalance 문제 등 해결해야 하는 문제들이 존재합니다. 
+**Supervised anomaly detection**은 정상 sample과 비정상 sample의 label이 모두 존재하는 경우를 말합니다. 정확도가 비교적 높다는 장점이 있지만, labeling 시간이나 비정상 sample 취득의 어려움, class-imbalance 문제 등 해결해야 하는 문제들이 존재합니다. 
 
-Semi-supervised anomaly detection은 One-class classification이라고도 하며, 정상 sample로만 학습을 진행하는 경우를 말합니다. Semi-supervised learning에서는 학습한 정상 boundary 밖에 있는 sample들을 모두 비정상 sample로 간주합니다. 이 경우에도 비정상 sample 없이 정상 sample들만을 최대한 다양하게 모아야 한다는 문제점이 있을 수 있습니다. 
+**Semi-supervised anomaly detection**은 One-class classification이라고도 하며, 정상 sample로만 학습을 진행하는 경우를 말합니다. Semi-supervised learning에서는 학습한 정상 boundary 밖에 있는 sample들을 모두 비정상 sample로 간주합니다. 이 경우에도 비정상 sample 없이 정상 sample들만을 최대한 다양하게 모아야 한다는 문제점이 있을 수 있습니다. 
 
-Unsupervised anomaly detection은 labeling 없이 다량의 sample로 학습시키는 방법입니다. 이는 주로 GAN이나 auto encoder 등 데이터의 주성분을 학습할 수 있는 모델을 사용합니다. 
+**Unsupervised anomaly detection**은 labeling 없이 다량의 sample로 학습시키는 방법입니다. 이는 주로 GAN이나 auto encoder 등 데이터의 주성분을 학습할 수 있는 모델을 사용합니다. 
 
 Unsupervised anomaly detection은 다량의 sample에서 비정상적인 sample은 매우 소량이기 때문에 이에 대한 특징을 학습시키는 것 만으로 정상 sample들에 대한 특징을 추출할 수 있다는 주장에 기반합니다. 따라서 unlabeled data로 학습을 진행한 후, input과 복원된 output 간의 차이로 비정상 sample을 구별합니다. 
 
@@ -55,9 +55,9 @@ Unsupervised anomaly detection은 다량의 sample에서 비정상적인 sample�
 
 다음으로 Abnormal sample의 정의에 따라 novelty detection과 outlier detection으로 나눌 수 있습니다. 
 
-Novelty detection은 이전에 없던 형태의 sample을 찾아내는 방법이고, 해당 sample은 novel sample 또는 unseen sample이라고 합니다. 
+**Novelty detection**은 이전에 없던 형태의 sample을 찾아내는 방법이고, 해당 sample은 novel sample 또는 unseen sample이라고 합니다. 
 
-Outlier detection은 학습한 데이터와 전혀 관련 없는 비정상적인 sample을 찾아내는 방법이고, 해당 sample은 outlier sample 또는 abnormal sample이라고 합니다. 
+**Outlier detection**은 학습한 데이터와 전혀 관련 없는 비정상적인 sample을 찾아내는 방법이고, 해당 sample은 outlier sample 또는 abnormal sample이라고 합니다. 
 
 예를 들어 골든 리트리버, 닥스훈트, 도베르만, 말티즈의 총 4가지 종류의 강아지 sample으로 모델을 학습시켰을 때 test 시 불독 이미지는 novel sample에 해당하고 토끼 이미지는 outlier sample에 해당합니다. 
 
@@ -69,7 +69,7 @@ Outlier detection은 학습한 데이터와 전혀 관련 없는 비정상적인
 
 마지막으로 Normal sample의 class 개수에 따라 분류할 수도 있습니다. 
 
-Normal sample이 하나의 클래스로 구성되어 있는 경우 one-class normal sample detection에 해당하고, 여러 개 클래스로 구성되어 있는 경우 multi-class normal sample detection에 해당합니다. 
+Normal sample이 하나의 클래스로 구성되어 있는 경우 **one-class normal sample detection**에 해당하고, 여러 개 클래스로 구성되어 있는 경우 **multi-class normal sample detection**에 해당합니다. 
 
 출처: [https://hoya012.github.io/blog/anomaly-detection-overview-1/](https://hoya012.github.io/blog/anomaly-detection-overview-1/)
 
@@ -81,9 +81,9 @@ Normal sample이 하나의 클래스로 구성되어 있는 경우 one-class nor
 
 `OCLN`은 anomaly detection에서 조금 더 진보된 real world와 유사한 형태의 문제라고 할 수 있습니다. 
 
-실제로 모든 경우에 해당하는 sample들을 다 모으기는 불가능합니다. OCLN은 이렇게 제한적인 normal sample 하에서 abnormal sample을 잘 구별해내도록 하는 목적이 추가된 문제라고 할 수 있습니다. 
+실제로 모든 경우에 해당하는 sample들을 다 모으기는 불가능합니다. OCLN은 이렇게 제한적인 negative sample 하에서 positive sample을 잘 구별해내도록 하는 목적이 추가된 문제라고 할 수 있습니다. 이때 positive sample은 내가 찾고자 하는 단 하나의 클래스에 속하는 sample을 말하고, negative sample은 이외의 클래스에 속하는 sample들을 말합니다. 
 
-OCLN의 주요 목적인 낮은 FPR을 기록하면서, 동시에 높은 recall을 기록하는 것입니다. 
+OCLN의 주요 목적은 낮은 FPR을 기록하면서, 동시에 높은 recall을 기록하는 것입니다. 
 
 실생활 속의 OCLN task로 아이폰, 갤럭시에서 시리, 빅스비를 부를 때 반응하도록 하는 문제를 들 수 있습니다. 
 
@@ -101,7 +101,7 @@ OCLN의 주요 목적인 낮은 FPR을 기록하면서, 동시에 높은 recall�
 
 이제 본격적으로 본 논문에 대한 설명을 시작하겠습니다. 
 
-먼저 본문에서 제안하는 DROCC는 모델 아키텍쳐가 아닌, anomaly detection을 위한 하나의 '방법론'이라는 점을 숙지해주시길 바랍니다. 실제로 본문에서는 모델 아키텍쳐로 다양한 backbone 모델을 사용할 수 있다고 이야기합니다. 
+먼저 본문에서 제안하는 DROCC는 모델 아키텍쳐가 아닌, anomaly detection을 위한 하나의 '방법론'임을 먼저 밝힙니다. 실제로 본문에서는 모델 아키텍쳐로 다양한 backbone 모델을 사용할 수 있다고 이야기합니다. 
 
 <br>
 
@@ -132,7 +132,7 @@ OCLN의 주요 목적인 낮은 FPR을 기록하면서, 동시에 높은 recall�
 
 첫번째로 **Generative Modeling** 방법이 있습니다. 
 
-이는 GAN 또는 AutoEncoder 모델을 사용하여 수행할 수 있습니다. 하지만 이러한 방법은 latent space로부터 이미지를 복원해내는 decoding step이 추가되기 때문에 더 여려운 문제를 풀어야 한다는 문제점이 있습니다. 
+이는 GAN 또는 AutoEncoder 모델을 사용하여 수행할 수 있습니다. 하지만 이러한 방법은 latent space로부터 이미지를 복원해내는 decoding step이 추가되기 때문에 더 어려운 문제를 풀어야 한다는 문제점이 있습니다. 
 
 두번째로 **SVM**을 사용하는 방법이 있습니다. 
 
@@ -142,7 +142,7 @@ OCLN의 주요 목적인 낮은 FPR을 기록하면서, 동시에 높은 recall�
 
 세번째로 **Transformation** 기반의 방법이 있습니다. 여기서 말하는 transformation은 데이터에 가하는 변환을 의미합니다. 
 
-이는 self-supervised mothod로, sample에 다양한 변환을 가해서 모델이 sample에 가해진 변환이 무엇인지 맞히도록 학습하는 방법입니다. 이 방법에서 sample은 모델이 가해진 변환을 제대로 예측했을 경우에만 정상 sample로 간주됩니다. 
+이는 self-supervised method로, sample에 다양한 변환을 가해서 모델이 sample에 가해진 변환이 무엇인지 맞히도록 학습하는 방법입니다. 이 방법에서 sample은 모델이 가해진 변환을 제대로 예측했을 경우에만 정상 sample로 간주됩니다. 
 
 이러한 transformation 기반의 방법은 상당히 domain에 의존적이라는 문제점이 있습니다. 
 
@@ -180,7 +180,7 @@ DROCC에서 loss term과 negative sample 집합은 아래 두 식과 같이 표�
 
 ![image-20220424185830576](https://user-images.githubusercontent.com/70505378/165060412-92e461af-8b2c-4409-bd3b-7e8f0dc7a860.png)
 
-Loss term은 매우 간단하게 모델의 가중치에 대한 L2 regularization과 정상 sample을 1로, 비정상 sample을 -1로 매핑하는 것에 대한 손실값을 포함합니다. 
+Loss term은 매우 간단하게 모델의 가중치에 대한 L2 규제 항과 정상 sample을 1로, 비정상 sample을 -1로 매핑하는 것에 대한 손실값을 포함합니다. 
 
 이때 Negative sample은 보는 것과 같이 모든 정상 sample로부터 `r` 이상, `γ · r` 이하로 떨어진 sample로 정의됩니다. 
 
@@ -190,7 +190,7 @@ Loss term은 매우 간단하게 모델의 가중치에 대한 L2 regularization
 
 본문에서는 이러한 negative sample들을 주어진 positive sample로부터 생성하는 방법을 제안했고, 이것이 DROCC의 핵심 아이디어입니다. 
 
-Negative sample 집합에 해당하는 N<sub>i</sub>(r)이 있다고 했을 때, 생성된 negative sample들은 해당 영역에 존재해야 할 것입니다. 앞서 negative sample은 모든 positive sample로부터 거리가 r 이상 떨어져야 한다고 했는데, negative sample 생성 시에는 모든 positive sample에 대해 거리를 계산하는 것은 매우 오랜 시간이 소요되기 때문에 이 대신에 **gradient ascent** 방법을 사용했습니다. 
+Negative sample 집합에 해당하는 N<sub>i</sub>(r)이 있다고 했을 때, 생성된 negative sample들은 해당 영역에 존재해야 할 것입니다. 앞서 negative sample은 모든 positive sample로부터 거리가 r 이상 떨어져야 한다고 했는데, 실제로 negative sample 생성 시에는 모든 positive sample에 대해 거리를 계산하는 것은 매우 오랜 시간이 소요되기 때문에 이 대신에 **gradient ascent** 방법을 사용했습니다. 
 
 Gradient ascent에 대한 설명은 뒤에서 하도록 하겠습니다. 
 
@@ -202,15 +202,15 @@ Gradient ascent에 대한 설명은 뒤에서 하도록 하겠습니다.
 
 그럼 이제 DROCC의 전체 training process와 함께 gradient ascent를 통해 negative sample을 생성하는 방법에 대해 설명하겠습니다. 
 
-초기 setup으로, 모델은 주어진 positive sample data들로 학습을 진행합니다. 
+Initial steps는 초기 setup 단계이며, 모델은 주어진 positive sample data들로 1차 학습을 진행합니다. 
 
 ![image-20220424191329201](https://user-images.githubusercontent.com/70505378/165060418-4b2ea26c-9c04-4527-86df-202753732269.png)
 
-1차 학습이 완료되면 모델은 생성된 negative sample과 주어진 positive sample들로 앞서 본 loss term으로 학습을 한 번 더 진행합니다. 
+1차 학습이 완료되면 모델은 생성된 negative sample과 주어진 positive sample들을 사용하여 앞서 본 loss term으로 학습을 한 번 더 진행합니다. 
 
 ![image-20220424191510426](https://user-images.githubusercontent.com/70505378/165060394-54fc3dbc-a9e2-46b2-93f0-ce57e2f59d4c.png)
 
-위 과정에서 **Adversarial search** 부분이 negative sample을 생성하는 부분에 해당하는데요, 총 3단계로 구성됩니다. 
+DROCC steps에서 **Adversarial search** 부분이 negative sample을 생성하는 부분에 해당하는데요, 총 3단계로 구성됩니다. 
 
 1. 배치 데이터 분포 하에서 랜덤하게 feature h를 추출합니다. 그리고 positivie sample인 x에 h를 더해서 x+h 샘플이 negative sample이라고 가정하여 loss term을 구합니다. 
 2. 해당 loss의 미분을 통하여 gradient ascent를 수행합니다. 이를 통하여 loss 값이 커지는 feature h를 찾습니다. 
@@ -260,6 +260,8 @@ DROCC-LF에서는 euclidean distance 대신에 mahalanobis distance를 사용하
 
 ## Evaluation
 
+본 논문에서는 두 task에 대한 evaluation을 수행하였습니다. 
+
 먼저 Anomaly detection task에 대한 evaluation 결과는 아래와 같습니다. 
 
 본문에서는 DROCC로 학습한 모델을 다양한 domain에 적용시켜 봄으로써 거의 모든 경우에 기존의 모델들보다 더 나은 성능을 보임을 확인했습니다. 
@@ -298,8 +300,6 @@ DROCC-LF가 가장 높은 점수를 보이는 것을 확인할 수 있습니다.
 
 또한 기존의 방법들과 다르게 이미지, 음성, 시계열 데이터에 대해 다양하게 적용이 가능함을 보여주었습니다. 
 
-
-
 <br>
 
 <br>
@@ -328,7 +328,7 @@ _**논문에 대한 내용은 여기까지입니다. 아래부터는 개인적�
 
 **Mahalanabis distance**
 
-![image-20220425182612258](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20220425182612258.png)
+![image-20220425182612258](https://user-images.githubusercontent.com/70505378/165061511-995713b8-e836-4337-b82f-c4bf1b4e5df0.png)
 
 > - 기존에 알고 있던 유클리디안 거리에 공분산 계산이 더해진 것으로도 이해할 수 있습니다. 만약 Σ=σ2IΣ=σ2I인 형태라면 즉, 각 클래스 간의 공분산이 모두 0인 상태라면 마할라노비스 거리는 유클리디안 거리와 동일합니다.
 > - 따라서 **마할라노비스 거리에서는 공분산이 중요한 역할**을 합니다.
