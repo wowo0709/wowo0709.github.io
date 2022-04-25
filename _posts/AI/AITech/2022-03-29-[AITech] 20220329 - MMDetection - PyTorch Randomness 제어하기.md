@@ -287,6 +287,18 @@ data_loaders = [
 
 일반적으로는 **python, numpy, pytorch, cuda, cudnn** 이렇게 5가지의 randomness 제어를 잊지 말고 하면 될 것 같네요!!
 
+```python
+# seed 고정
+random_seed = 21
+random.seed(random_seed)
+np.random.seed(random_seed)
+torch.manual_seed(random_seed)
+torch.cuda.manual_seed(random_seed)
+torch.cuda.manual_seed_all(random_seed) # if use multi-GPU
+torch.backends.cudnn.deterministic = True
+torch.backends.cudnn.benchmark = False
+```
+
 
 
 
