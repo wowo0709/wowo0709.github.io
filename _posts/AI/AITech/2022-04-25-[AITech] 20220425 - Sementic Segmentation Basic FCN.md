@@ -15,7 +15,7 @@ _**본 포스팅은 KAIST의 '김현우' 마스터 님의 강의를 바탕으로
 
 # Semantic Segmentation Basic: FCN
 
-이번 포스팅에서는 대표적인 딥러닝을 이용한 segmentation model인 FCN을 살펴보며 semantic segmentation의 기본에 대한 이해를 해보겠습니다. 
+이번 포스팅에서는 2014년 발표된 대표적인 딥러닝을 이용한 segmentation model인 FCN을 살펴보며 semantic segmentation의 기본에 대한 이해를 해보겠습니다. 
 
 ## FCN (Fully Convolutional Networks)
 
@@ -392,34 +392,22 @@ _Transposed convolution_
 
 Convolution 식에서 input과 output을 바꿔주고 output에 대해 식을 정리한 것과 동일합니다. 
 
-Transposed convolution의 경우 가장 기본적으로 아래 코드가 size를 `x2`배 해줍니다. 
+Transposed convolution에서 resolution을 k만큼 키우고 싶을 때 stride, kernel_size, padding은 아래와 같이 정의됩니다. 
+
+* stride = k
+* kernel_size = 2s
+* padding = s/2
+
+예를 들어 2배 만큼 키울 때는 아래와 같습니다. 
 
 ```python
+resolution
 self.up_score_conv5 = nn.ConvTranspose2d(num_classes,
                                            num_classes,
                                            kernel_size=4,
                                            stride=2,
                                            padding=1) # x2
 ```
-
-이를 `x4`, `x8`, `x16` 할 때는 위 파라미터에서 kernel_size, stride, padding을 모두 그만큼 키워주면 됩니다. 
-
-```python
-# x8
-self.up_score = nn.ConvTranspose2d(num_classes, 
-                                           num_classes,
-                                           kernel_size=16,
-                                           stride=8,
-                                           padding=4) # x8
-# x16
-self.up_score = nn.ConvTranspose2d(num_classes, 
-                                            num_classes, 
-                                            kernel_size=32,
-                                            stride=16,
-                                            padding=8) # x16
-```
-
-
 
 
 
