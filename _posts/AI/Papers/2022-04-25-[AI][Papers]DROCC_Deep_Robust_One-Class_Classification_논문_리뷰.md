@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[Papers][CV][Face Detection] RetinaFace 논문 리뷰"
+title: "[Papers][CV][Face Detection] DROCC: Deep Robust One-Class Classification 논문 리뷰"
 categories: ['AI', 'AI-Papers']
 tag: []
 toc: true
@@ -11,7 +11,7 @@ toc_sticky: true
 
 <br>
 
-# RetinaFace 논문 리뷰
+# DROCC: Deep Robust One-Class Classification
 
 이번에 리뷰할 논문은 2020년 발표된 `Anomaly Detection` 분야의 논문인 `DROCC: Deep Robust One-Class Classification` 이라는 제목의 논문입니다. 
 
