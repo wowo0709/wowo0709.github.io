@@ -35,6 +35,8 @@ toc_sticky: true
 
 하이라이팅 되어 있는 부분이 모델의 핵심 아이디어를 나타내는데요, 이는 발표를 진행하면서 보도록 하겠습니다. 
 
+
+
 본격적인 소개에 앞서, RetinaFace 이전에 나온 face detection 모델에는 무엇이 있고 어떤 아이디어를 사용했는지 보도록 하겠습니다. 
 
 **MTCNN, STN**
@@ -61,6 +63,8 @@ FAN 모델은 anchor-level attention map을 사용해 겹쳐진 얼굴에 대한
 
 <br>
 
+
+
 ## Related Work
 
 다음으로 관련된 연구들에 대해 간단히 살펴보겠습니다. 
@@ -75,6 +79,8 @@ Image pyramid는 resizing된 각 input image에 대해 각각의 feature map들�
 
 최근의 추세를 따라, RetinaFace에서도 feature pyramid 방식을 채택했습니다. 
 
+
+
 **Two-stage vs single-stage**
 
 ![image-20220419140329018](https://user-images.githubusercontent.com/70505378/163938183-b8188a0b-c1a8-44f9-ae7d-d8122f005c83.png)
@@ -84,6 +90,8 @@ Image pyramid는 resizing된 각 input image에 대해 각각의 feature map들�
 RetinaFace에서는 빠른 속도와 높은 recall을 위해 1-stage model을 채택했습니다. 
 
 1-stage model의 고질적인 문제인 imbalanced sample로 인한 높은 False Positive rate를 해결하기 위해 OHEM이라는 별도의 sampling 기법을 사용하여 이를 완화했습니다. 
+
+
 
 **Context Modeling**
 
@@ -102,6 +110,8 @@ RetinaFace에서는 모델이 여러 task를 해결하도록 하는 multi-task l
 <br>
 
 <br>
+
+
 
 ## Multi-task Loss
 
@@ -149,13 +159,15 @@ Balancing coefficients
 
 <br>
 
+
+
 ## Dense Regression branch
 
 Dense regression branch에서는 3D Mesh Decoder를 사용하여 3D mesh 정보를 face detection에 활용합니다. 
 
 Mesh decoder에서는 왼쪽 그림과 같이 일반적인 2D convolution 대신 graph convolution을 사용하고, 이는 3D mesh의 형태와 더불어 연산의 효율성 때문입니다. 
 
-Graph convolution에서는 kernel의 크기 k는 거쳐가는 edge의 개수를 나타내며, k가 커질수록 더 멀리 떨어진 node와도 연산을 수행하게 됩니다. 
+Graph convolution에서 kernel의 크기 k는 거쳐가는 edge의 개수를 나타내며, k가 커질수록 더 멀리 떨어진 node와도 연산을 수행하게 됩니다. 
 
 ![image-20220419142038625](https://user-images.githubusercontent.com/70505378/163938191-b087b06a-ed1d-467b-91f4-7f63aa39a135.png)
 
@@ -167,9 +179,13 @@ x<sub>k</sub>를 구하는 식을 보면 L과 x<sub>k-1</sub>의 곱 연산을 �
 
 Graph convolution output인 y를 구하는 식을 정리하면, x<sub>0</sub>부터 x<sub>k-1</sub>을 concat한 후 graph kernel g<sub>θ</sub>와 곱하는 것으로 나타낼 수 있으며, 이 때 g<sub>θ</sub>는 dense matrix입니다. 
 
+<br>
+
 즉 정리하면, graph convolution 연산은 K번의 sparse vector-matrix multiplication 연산과 1번의 dense vector-matrix multiplication 연산이 일어나며, 이는 일반적인 2D convolution에 비해 매우 빠른 연산이 가능하고, 따라서 별도의 branch 로 사용할 수 있습니다. 
 
 <br>
+
+
 
 위 과정을 통해 shape과 texture를 나타내는 파라미터 P<sub>ST</sub>를 구하고 나면, camera view를 나타내는 파라미터 P<sub>cam</sub>과 광도를 나타내는 파라미터 P<sub>ill</sub>를 함께 사용하여 '랜더링된 2D face 정보'를 구합니다. 이를 실제 input image의 2D face 정보와 비교하여 dense regression loss를 계산함으로써 self-supervised learning을 할 수 있습니다. 
 
@@ -178,6 +194,8 @@ Graph convolution output인 y를 구하는 식을 정리하면, x<sub>0</sub>부
 <br>
 
 <br>
+
+
 
 ## Implementation Details
 
@@ -199,6 +217,8 @@ Graph convolution output인 y를 구하는 식을 정리하면, x<sub>0</sub>부
 <br>
 
 <br>
+
+
 
 ## Evaluation
 
@@ -226,9 +246,13 @@ RetinaFace가 기존 가장 높은 성능을 보이던 ISRN의 0.903보다 높�
 
 <br>
 
+
+
 ## Conclusion
 
 ![image-20220419150346566](https://user-images.githubusercontent.com/70505378/163938202-1c9b48d8-348a-44ec-a9a2-f0b2c721f708.png)
+
+
 
 ### Contributions
 
