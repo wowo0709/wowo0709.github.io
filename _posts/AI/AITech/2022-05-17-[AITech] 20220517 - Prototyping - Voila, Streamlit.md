@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[AITech][Product Serving] 20220517 - 프로토타이핑 - Voila, Streamlit"
+title: "[AITech][Product Serving] 20220517 - Prototyping - Voila, Streamlit"
 categories: ['AI', 'AITech']
 toc: true
 toc_sticky: true
