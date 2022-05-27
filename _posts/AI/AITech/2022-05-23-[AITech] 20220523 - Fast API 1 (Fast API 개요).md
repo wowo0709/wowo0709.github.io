@@ -1,10 +1,10 @@
 ---
 layout: single
-title: "[AITech][Product Serving] 20220523 - Fast API"
+title: "[AITech][Product Serving] 20220523 - Fast API 1 (Fast API 개요)"
 categories: ['AI', 'AITech']
 toc: true
 toc_sticky: true
-tag: []
+tag: ['Rest API', 'Fast API']
 ---
 
 
@@ -13,7 +13,7 @@ tag: []
 
 _**본 포스팅은 SOCAR의 '변성윤' 마스터 님의 강의를 바탕으로 작성되었습니다.**_
 
-# Fast API
+# Fast API 1 (Fast API 개요)
 
 ## Rest API
 
@@ -136,10 +136,6 @@ Fast API의 특징으로는 아래와 같은 부분들이 있습니다.
   * 클라이언트는 Swagger를 참고하여 사용 방법을 익힐 수 있음
 * 기능
   * API 디자인, 빌드, 문서화, 테스팅
-
-
-
-
 
 
 
