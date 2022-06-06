@@ -6,9 +6,9 @@ main:
     url: /search/
   - title: "Categories"
     url: /categories/
-  - title: "Yearly"
-    url: /year-archive/
   - title: "Monthly"
     url: /month-archive/
+  - title: "Yearly"
+    url: /year-archive/
   # - title: Tags
   #   url: /tags/
