@@ -21,11 +21,11 @@ tag: []
 ## Contents
 
 **1장 파이썬답게 생각하기**
-- Better way 1 사용 중인 파이썬의 버전을 알아두라
-- Better way 2 PEP 8 스타일 가이드를 따르라
-- Better way 3 bytes와 str의 차이를 알아두라
-- Better way 4 C 스타일 형식 문자열을 str.format과 쓰기보다는 f-문자열을 통한 인터폴레이션을 사용하라
-- Better way 5 복잡한 식을 쓰는 대신 도우미 함수를 작성하라
+- [Better way 1 사용 중인 파이썬의 버전을 알아두라](https://wowo0709.github.io/language/python/Python-Effective-Python-CH-1-1/#better-way-1-%EC%82%AC%EC%9A%A9-%EC%A4%91%EC%9D%B8-%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9D%98-%EB%B2%84%EC%A0%84%EC%9D%84-%EC%95%8C%EC%95%84%EB%91%90%EB%9D%BC)
+- [Better way 2 PEP 8 스타일 가이드를 따르라](https://wowo0709.github.io/language/python/Python-Effective-Python-CH-1-1/#better-way-2-pep-8-%EC%8A%A4%ED%83%80%EC%9D%BC-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%A5%BC-%EB%94%B0%EB%A5%B4%EB%9D%BC)
+- [Better way 3 bytes와 str의 차이를 알아두라](https://wowo0709.github.io/language/python/Python-Effective-Python-CH-1-1/#better-way-3-bytes%EC%99%80-str%EC%9D%98-%EC%B0%A8%EC%9D%B4%EB%A5%BC-%EC%95%8C%EC%95%84%EB%91%90%EB%9D%BC)
+- [Better way 4 C 스타일 형식 문자열을 str.format과 쓰기보다는 f-문자열을 통한 인터폴레이션을 사용하라](https://wowo0709.github.io/language/python/Python-Effective-Python-CH-1-1/#bettery-way-4-c-%EC%8A%A4%ED%83%80%EC%9D%BC-%ED%98%95%EC%8B%9D-%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%84-strformat%EA%B3%BC-%EC%93%B0%EA%B8%B0%EB%B3%B4%EB%8B%A4%EB%8A%94-f-%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%84-%ED%86%B5%ED%95%9C-%EC%9D%B8%ED%84%B0%ED%8F%B4%EB%A0%88%EC%9D%B4%EC%85%98%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC)
+- [Better way 5 복잡한 식을 쓰는 대신 도우미 함수를 작성하라](https://wowo0709.github.io/language/python/Python-Effective-Python-CH-1-1/#better-way-5-%EB%B3%B5%EC%9E%A1%ED%95%9C-%EC%8B%9D%EC%9D%84-%EC%93%B0%EB%8A%94-%EB%8C%80%EC%8B%A0-%EB%8F%84%EC%9A%B0%EB%AF%B8-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9E%91%EC%84%B1%ED%95%98%EB%9D%BC)
 - Better way 6 인덱스를 사용하는 대신 대입을 사용해 데이터를 언패킹하라
 - Better way 7 range보다는 enumerate를 사용하라 066
 - Better way 8 여러 이터레이터에 대해 나란히 루프를 수행하려면 zip을 사용하라
