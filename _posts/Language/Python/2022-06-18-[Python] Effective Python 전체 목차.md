@@ -26,11 +26,11 @@ tag: []
 - [Better way 3 bytes와 str의 차이를 알아두라](https://wowo0709.github.io/language/python/Python-Effective-Python-CH-1-1/#better-way-3-bytes%EC%99%80-str%EC%9D%98-%EC%B0%A8%EC%9D%B4%EB%A5%BC-%EC%95%8C%EC%95%84%EB%91%90%EB%9D%BC)
 - [Better way 4 C 스타일 형식 문자열을 str.format과 쓰기보다는 f-문자열을 통한 인터폴레이션을 사용하라](https://wowo0709.github.io/language/python/Python-Effective-Python-CH-1-1/#bettery-way-4-c-%EC%8A%A4%ED%83%80%EC%9D%BC-%ED%98%95%EC%8B%9D-%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%84-strformat%EA%B3%BC-%EC%93%B0%EA%B8%B0%EB%B3%B4%EB%8B%A4%EB%8A%94-f-%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%84-%ED%86%B5%ED%95%9C-%EC%9D%B8%ED%84%B0%ED%8F%B4%EB%A0%88%EC%9D%B4%EC%85%98%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC)
 - [Better way 5 복잡한 식을 쓰는 대신 도우미 함수를 작성하라](https://wowo0709.github.io/language/python/Python-Effective-Python-CH-1-1/#better-way-5-%EB%B3%B5%EC%9E%A1%ED%95%9C-%EC%8B%9D%EC%9D%84-%EC%93%B0%EB%8A%94-%EB%8C%80%EC%8B%A0-%EB%8F%84%EC%9A%B0%EB%AF%B8-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9E%91%EC%84%B1%ED%95%98%EB%9D%BC)
-- Better way 6 인덱스를 사용하는 대신 대입을 사용해 데이터를 언패킹하라
-- Better way 7 range보다는 enumerate를 사용하라 066
-- Better way 8 여러 이터레이터에 대해 나란히 루프를 수행하려면 zip을 사용하라
-- Better way 9 for나 while 루프 뒤에 else 블록을 사용하지 말라
-- Better way 10 대입식을 사용해 반복을 피하라
+- [Better way 6 인덱스를 사용하는 대신 대입을 사용해 데이터를 언패킹하라](https://wowo0709.github.io/language/python/Python-Effective-Python-CH-1-2/#bettery-way-6-%EC%9D%B8%EB%8D%B1%EC%8A%A4%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EB%8C%80%EC%8B%A0-%EB%8C%80%EC%9E%85%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%B4-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%EC%96%B8%ED%8C%A8%ED%82%B9%ED%95%98%EB%9D%BC)
+- [Better way 7 range보다는 enumerate를 사용하라](https://wowo0709.github.io/language/python/Python-Effective-Python-CH-1-2/#bettery-way-7-range%EB%B3%B4%EB%8B%A4%EB%8A%94-enumerate%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC)
+- [Better way 8 여러 이터레이터에 대해 나란히 루프를 수행하려면 zip을 사용하라](https://wowo0709.github.io/language/python/Python-Effective-Python-CH-1-2/#better-way-8-%EC%97%AC%EB%9F%AC-iterator%EC%97%90-%EB%8C%80%ED%95%B4-%EB%82%98%EB%9E%80%ED%9E%88-loop%EB%A5%BC-%EC%88%98%ED%96%89%ED%95%98%EB%A0%A4%EB%A9%B4-zip%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC)
+- [Better way 9 for나 while 루프 뒤에 else 블록을 사용하지 말라](https://wowo0709.github.io/language/python/Python-Effective-Python-CH-1-2/#better-way-9-for%EB%82%98-while-loop-%EB%92%A4%EC%97%90-else-%EB%B8%94%EB%A1%9D%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EB%A7%90%EB%9D%BC)
+- [Better way 10 대입식을 사용해 반복을 피하라](https://wowo0709.github.io/language/python/Python-Effective-Python-CH-1-2/#bettery-way-10-%EB%8C%80%EC%9E%85%EC%8B%9D%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%B4-%EB%B0%98%EB%B3%B5%EC%9D%84-%ED%94%BC%ED%95%98%EB%9D%BC)
 
 **2장 리스트와 딕셔너리**
 - Better way 11 시퀀스를 슬라이싱하는 방법을 익혀라
@@ -40,7 +40,7 @@ tag: []
 - Better way 15 딕셔너리 삽입 순서에 의존할 때는 조심하라
 - Better way 16 in을 사용하고 딕셔너리 키가 없을 때 KeyError를 처리하기보다는 get을 사용하라
 - Better way 17 내부 상태에서 원소가 없는 경우를 처리할 때는 setdefault보다 defaultdict를 사용하라
-- Better way 18 __missing__을 사용해 키에 따라 다른 디폴트 값을 생성하는 방법을 알아두라
+- Better way 18 `__missing__`을 사용해 키에 따라 다른 디폴트 값을 생성하는 방법을 알아두라
 
 **3장 함수**
 - Better way 19 함수가 여러 값을 반환하는 경우 절대로 네 값 이상을 언패킹하지 말라
@@ -77,10 +77,10 @@ tag: []
 - Better way 44 세터와 게터 메서드 대신 평범한 애트리뷰트를 사용하라
 - Better way 45 애트리뷰트를 리팩터링하는 대신 @property를 사용하라
 - Better way 46 재사용 가능한 @property 메서드를 만들려면 디스크립터를 사용하라
-- Better way 47 지연 계산 애트리뷰트가 필요하면 __getattr__, __getattribute__, __setattr__을 사용하라
-- Better way 48 __init_subclass__를 사용해 하위 클래스를 검증하라
-- Better way 49 __init_subclass__를 사용해 클래스 확장을 등록하라
-- Better way 50 __set_name__으로 클래스 애트리뷰트를 표시하라
+- Better way 47 지연 계산 애트리뷰트가 필요하면 `__getattr__`, `__getattribute__`, `__setattr__`을 사용하라
+- Better way 48 `__init_subclass__`를 사용해 하위 클래스를 검증하라
+- Better way 49 `__init_subclass__`를 사용해 클래스 확장을 등록하라
+- Better way 50 `__set_name__`으로 클래스 애트리뷰트를 표시하라
 - Better way 51 합성 가능한 클래스 확장이 필요하면 메타클래스보다는 클래스 데코레이터를 사용하라
 
 **7장 동시성과 병렬성**
