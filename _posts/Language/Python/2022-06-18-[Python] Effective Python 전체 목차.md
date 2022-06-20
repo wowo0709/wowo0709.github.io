@@ -33,10 +33,11 @@ tag: []
 - [Better way 10 대입식을 사용해 반복을 피하라](https://wowo0709.github.io/language/python/Python-Effective-Python-CH-1-2/#bettery-way-10-%EB%8C%80%EC%9E%85%EC%8B%9D%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%B4-%EB%B0%98%EB%B3%B5%EC%9D%84-%ED%94%BC%ED%95%98%EB%9D%BC)
 
 **2장 리스트와 딕셔너리**
-- Better way 11 시퀀스를 슬라이싱하는 방법을 익혀라
-- Better way 12 스트라이드와 슬라이스를 한 식에 함께 사용하지 말라
-- Better way 13 슬라이싱보다는 나머지를 모두 잡아내는 언패킹을 사용하라
-- Better way 14 복잡한 기준을 사용해 정렬할 때는 key 파라미터를 사용하라
+
+- [Better way 11 시퀀스를 슬라이싱하는 방법을 익혀라](https://wowo0709.github.io/language/python/Python-Effective-Python-CH-2-1/#better-way-11-%EC%8B%9C%ED%80%80%EC%8A%A4%EB%A5%BC-%EC%8A%AC%EB%9D%BC%EC%9D%B4%EC%8B%B1%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95%EC%9D%84-%EC%9D%B5%ED%98%80%EB%9D%BC)
+- [Better way 12 스트라이드와 슬라이스를 한 식에 함께 사용하지 말라](https://wowo0709.github.io/language/python/Python-Effective-Python-CH-2-1/#better-way-12-%EC%8A%A4%ED%8A%B8%EB%9D%BC%EC%9D%B4%EB%93%9C%EC%99%80-%EC%8A%AC%EB%9D%BC%EC%9D%B4%EC%8A%A4%EB%A5%BC-%ED%95%9C-%EC%8B%9D%EC%97%90-%ED%95%A8%EA%BB%98-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EB%A7%90%EB%9D%BC)
+- [Better way 13 슬라이싱보다는 나머지를 모두 잡아내는 언패킹을 사용하라](https://wowo0709.github.io/language/python/Python-Effective-Python-CH-2-1/#better-way-13-%EC%8A%AC%EB%9D%BC%EC%9D%B4%EC%8B%B1%EB%B3%B4%EB%8B%A4%EB%8A%94-%EB%82%98%EB%A8%B8%EC%A7%80%EB%A5%BC-%EB%AA%A8%EB%91%90-%EC%9E%A1%EC%95%84%EB%82%B4%EB%8A%94-%EC%96%B8%ED%8C%A8%ED%82%B9%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC)
+- [Better way 14 복잡한 기준을 사용해 정렬할 때는 key 파라미터를 사용하라](https://wowo0709.github.io/language/python/Python-Effective-Python-CH-2-1/#bettery-way-14-%EB%B3%B5%EC%9E%A1%ED%95%9C-%EA%B8%B0%EC%A4%80%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%B4-%EC%A0%95%EB%A0%AC%ED%95%A0-%EB%95%8C%EB%8A%94-key-%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC)
 - Better way 15 딕셔너리 삽입 순서에 의존할 때는 조심하라
 - Better way 16 in을 사용하고 딕셔너리 키가 없을 때 KeyError를 처리하기보다는 get을 사용하라
 - Better way 17 내부 상태에서 원소가 없는 경우를 처리할 때는 setdefault보다 defaultdict를 사용하라
